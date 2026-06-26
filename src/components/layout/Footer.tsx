@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE, PHONE_DISPLAY, PHONE_HREF, EMAIL_HREF } from "@/lib/constants";
 import NewsletterForm from "@/components/forms/NewsletterForm";
+import EqualHousingLogo from "./EqualHousingLogo";
 import {
   InstagramIcon,
   TikTokIcon,
@@ -58,9 +59,7 @@ export default function Footer() {
           <p className="mt-4 text-xs text-gray-mid">
             {SITE.nmls} | {SITE.company}
           </p>
-          <span className="mt-4 inline-flex items-center gap-2 rounded border border-white/15 px-3 py-1.5 text-xs text-gray-light">
-            <span className="font-bold text-gold">⌂</span> Equal Housing Lender
-          </span>
+          <EqualHousingLogo />
         </div>
 
         <div>

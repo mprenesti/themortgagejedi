@@ -11,10 +11,10 @@ export const SITE = {
   bookingUrl:
     "https://go.themortgagejedi.com/widget/booking/oGfLuFAqGRAgEdPCB6R7",
   social: {
-    instagram: "https://instagram.com/themortgagejedi",
-    tiktok: "https://tiktok.com/@themortgagejedi",
-    youtube: "https://youtube.com/@themortgagejedi",
-    facebook: "https://facebook.com/themortgagejedi",
+    instagram: "https://www.instagram.com/mikethemortgagejedi/",
+    tiktok: "https://www.tiktok.com/@mikethemortgagejedi",
+    youtube: "https://www.youtube.com/@mikethemortgagejedi",
+    facebook: "https://www.facebook.com/profile.php?id=1730445206",
     linkedin: "https://linkedin.com/in/mikeprenesti",
   },
   googleReviewsUrl: "https://g.page/r/themortgagejedi",
