@@ -52,10 +52,13 @@ export default function Footer() {
 
       <div className="container-page grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <span className="font-heading text-xl font-bold uppercase tracking-wide text-white">
-            The Mortgage <span className="text-gold">Jedi</span>
-          </span>
-          <p className="mt-3 text-sm text-gray-light">{SITE.tagline}</p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo-full.png"
+            alt="The Mortgage Jedi — Mike Prenesti"
+            className="h-14 w-auto"
+          />
+          <p className="mt-4 text-sm text-gray-light">{SITE.tagline}</p>
           <p className="mt-4 text-xs text-gray-mid">
             {SITE.nmls} | {SITE.company}
           </p>
