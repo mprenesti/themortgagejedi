@@ -17,7 +17,8 @@ export const SITE = {
     facebook: "https://www.facebook.com/profile.php?id=1730445206",
     linkedin: "https://linkedin.com/in/mikeprenesti",
   },
-  googleReviewsUrl: "https://g.page/r/themortgagejedi",
+  googleReviewsUrl:
+    "https://www.google.com/search?q=mike+prenesti+-+the+mortgage+jedi&rlz=1C1CHZN_enUS1157US1157&oq=mike&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MgoIAhAuGLEDGIAEMgoIAxAuGLEDGIAEMgYIBBBFGD0yBggFEEUYQTIGCAYQRRg9MgYIBxBFGD3SAQgxNTE2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8",
   nmlsConsumerAccess: "https://www.nmlsconsumeraccess.org/",
 } as const;
 
