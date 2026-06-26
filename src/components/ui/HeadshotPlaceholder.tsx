@@ -13,17 +13,16 @@ export default function HeadshotPlaceholder() {
   const [errored, setErrored] = useState(false);
 
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-b from-charcoal to-black shadow-[0_0_60px_rgba(255,232,26,0.15)]">
-      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gold/20" />
+    <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-full border-4 border-gold/40 bg-gradient-to-b from-charcoal to-black shadow-[0_0_70px_rgba(255,232,26,0.25)]">
+      <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-gold/30" />
       {!errored ? (
-        // `-scale-x-100` mirrors the photo horizontally so Mike faces left,
-        // toward the hero copy. Replace /public/images/mike-headshot.jpg to
-        // swap the photo.
+        // Circular portrait. Replace /public/images/mike-headshot.jpg to swap
+        // the photo.
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/images/mike-headshot.jpg"
           alt="Mike Prenesti, The Mortgage Jedi"
-          className="h-full w-full -scale-x-100 object-cover"
+          className="h-full w-full rounded-full object-cover"
           onError={() => setErrored(true)}
         />
       ) : (
