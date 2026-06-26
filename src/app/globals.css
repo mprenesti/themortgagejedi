@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-black text-white font-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+  ::selection {
+    @apply bg-gold text-black;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .section-label {
+    @apply font-heading text-sm font-semibold uppercase tracking-[0.25em] text-gold;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-3 font-heading text-base font-semibold uppercase tracking-wide text-black transition-all duration-200 hover:bg-gold-dark hover:shadow-[0_0_25px_rgba(255,232,26,0.4)] focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-black;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-gold/60 px-6 py-3 font-heading text-base font-semibold uppercase tracking-wide text-gold transition-all duration-200 hover:border-gold hover:bg-gold/10 focus:outline-none focus:ring-2 focus:ring-gold;
+  }
+  .heading-xl {
+    @apply font-heading text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl;
+  }
+  .heading-lg {
+    @apply font-heading text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl;
+  }
+  .card-dark {
+    @apply rounded-xl border border-white/10 bg-charcoal p-6 transition-colors;
+  }
+}
+
+/* Subtle star field background */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255, 232, 26, 0.6), transparent),
+    radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 80% 20%, rgba(255, 232, 26, 0.5), transparent),
+    radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 90% 60%, rgba(255, 232, 26, 0.4), transparent),
+    radial-gradient(1px 1px at 10% 60%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 35% 15%, rgba(255, 255, 255, 0.5), transparent);
+  background-repeat: repeat;
+  background-size: 600px 600px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
