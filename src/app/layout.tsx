@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description:
-    "Mike Prenesti, The Mortgage Jedi. Payment-first mortgage guidance for Las Vegas homebuyers. FHA, VA, Conventional, DSCR, and more. NMLS #1033445.",
+    "Mike Prenesti, The Mortgage Jedi. Payment first mortgage guidance for Las Vegas homebuyers. FHA, VA, Conventional, DSCR, and more. NMLS #1033445.",
   keywords: [
     "Las Vegas mortgage broker",
     "Mike Prenesti",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "The Mortgage Jedi | Las Vegas Mortgage Broker",
-    description: "Payment-first mortgage guidance for Las Vegas homebuyers.",
+    description: "Payment first mortgage guidance for Las Vegas homebuyers.",
     url: SITE.url,
     siteName: SITE.name,
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Mortgage Jedi | Las Vegas Mortgage Broker",
-    description: "Payment-first mortgage guidance for Las Vegas homebuyers.",
+    description: "Payment first mortgage guidance for Las Vegas homebuyers.",
     images: ["/images/og-default.jpg"],
   },
   robots: { index: true, follow: true },

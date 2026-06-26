@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const whyAgents = [
-  "Fast pre-approvals (same-day in most cases)",
+  "Fast pre-approvals (same day in most cases)",
   "Clear communication throughout the transaction",
   "I'll never embarrass you in front of your client",
   "I match my communication style to yours",
@@ -19,7 +19,7 @@ const whyAgents = [
 ];
 
 const whatIOffer = [
-  "Co-branded First-Time Buyer Guides (with your name and photo)",
+  "Co-branded First Time Buyer Guides (with your name and photo)",
   "Lunch and learn sessions for your team",
   "Market updates and rate context you can share with clients",
   "A direct line to me — not a call center",

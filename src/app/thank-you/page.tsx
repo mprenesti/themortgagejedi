@@ -29,7 +29,7 @@ export default function ThankYouPage({
         {isGuide ? (
           <>
             <p className="mt-4 text-lg text-gray-light">
-              Thanks for grabbing the First-Time Homebuyer Guide. Click below to
+              Thanks for grabbing the First Time Homebuyer Guide. Click below to
               download it now — I&apos;ve also sent a copy to your inbox.
             </p>
             <a

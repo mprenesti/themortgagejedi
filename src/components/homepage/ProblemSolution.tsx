@@ -39,7 +39,7 @@ export default function ProblemSolution() {
           </h2>
           <p className="mt-5 text-lg text-gray-light">
             I don&apos;t lead with approvals. I lead with questions. My
-            payment-first approach means we find out what fits your life before
+            payment first approach means we find out what fits your life before
             we ever talk numbers. You get the right loan — not the biggest one.
           </p>
         </Reveal>

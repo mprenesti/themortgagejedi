@@ -26,7 +26,7 @@ const choiceSteps: ChoiceStep[] = [
   },
   {
     key: "firstTime",
-    question: "Are you a first-time homebuyer?",
+    question: "Are you a first time homebuyer?",
     options: ["Yes, first time", "No, I've owned before", "I'm currently renting"],
   },
   {
@@ -45,9 +45,9 @@ const choiceSteps: ChoiceStep[] = [
     question: "What's your credit score range? (approximate is fine)",
     options: [
       "Excellent (720+)",
-      "Good (680-719)",
-      "Fair (620-679)",
-      "Building (580-619)",
+      "Good (680 to 719)",
+      "Fair (620 to 679)",
+      "Building (580 to 619)",
       "Not sure",
     ],
   },
