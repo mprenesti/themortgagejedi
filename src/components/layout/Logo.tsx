@@ -14,17 +14,15 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
       aria-label="The Mortgage Jedi — Home"
     >
       {!imgError ? (
-        // The supplied logo art is white on a dark/starry background. `mix-blend-screen`
-        // drops the dark background out against the black navbar so the mark blends in
-        // cleanly. Replace /public/images/logo.png with a transparent PNG for a perfect
-        // result. Falls back to a text mark if the file is missing.
+        // Transparent white mark (star background removed). Falls back to a
+        // text logo if the file is missing.
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/images/logo.png"
           alt="The Mortgage Jedi logo"
           width={44}
           height={44}
-          className="h-11 w-11 object-contain mix-blend-screen"
+          className="h-11 w-11 object-contain"
           onError={() => setImgError(true)}
         />
       ) : (
