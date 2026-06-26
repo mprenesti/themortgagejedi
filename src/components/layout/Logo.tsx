@@ -1,16 +1,37 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Logo({ onClick }: { onClick?: () => void }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <Link
       href="/"
       onClick={onClick}
-      className="group flex items-center gap-2"
+      className="group flex items-center gap-3"
       aria-label="The Mortgage Jedi — Home"
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-md border border-gold/60 bg-gold/10 font-accent text-2xl leading-none text-gold transition-colors group-hover:bg-gold/20">
-        MJ
-      </span>
+      {!imgError ? (
+        // The supplied logo art is white on a dark/starry background. `mix-blend-screen`
+        // drops the dark background out against the black navbar so the mark blends in
+        // cleanly. Replace /public/images/logo.png with a transparent PNG for a perfect
+        // result. Falls back to a text mark if the file is missing.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/images/logo.png"
+          alt="The Mortgage Jedi logo"
+          width={44}
+          height={44}
+          className="h-11 w-11 object-contain mix-blend-screen"
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        <span className="flex h-10 w-10 items-center justify-center rounded-md border border-gold/60 bg-gold/10 font-accent text-2xl leading-none text-gold transition-colors group-hover:bg-gold/20">
+          MJ
+        </span>
+      )}
       <span className="flex flex-col leading-none">
         <span className="font-heading text-lg font-bold uppercase tracking-wide text-white">
           The Mortgage <span className="text-gold">Jedi</span>
