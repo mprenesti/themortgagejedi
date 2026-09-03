@@ -58,7 +58,7 @@ export default function Footer() {
           <img
             src="/images/logo-full.png"
             alt="The Mortgage Jedi — Mike Prenesti"
-            className="h-20 w-auto"
+            className="h-[6.5rem] w-auto"
           />
           <p className="mt-4 text-sm text-gray-light">{SITE.tagline}</p>
           <div className="mt-4 space-y-1 text-xs text-gray-mid">
