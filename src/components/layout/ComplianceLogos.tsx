@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 
 /**
- * Compliance logos for the footer. Each renders on a small white chip so black
- * artwork reads correctly on the dark footer, and falls back to a text badge if
- * the image file is missing.
+ * Compliance logos for the (dark) footer. Logos are white-on-transparent and
+ * render directly on the dark background. Each image is preloaded and only
+ * shown once it loads, otherwise a text badge is displayed (so there are no
+ * broken-image icons before a file is uploaded).
  *
  * Expected files in /public/images:
- *   - nexa-logo.png                 (NEXA Mortgage)
- *   - equal-housing-lender.png      (already added)
- *   - equal-housing-opportunity.png (Equal Housing Opportunity)
+ *   - nexa-logo.png                 (white "empowered by NEXA Lending")
+ *   - equal-housing-lender.png      (white)
+ *   - equal-housing-opportunity.png (white) — pending a usable transparent file
  */
-function ChipLogo({
+function Logo({
   src,
   alt,
   fallback,
@@ -21,9 +22,6 @@ function ChipLogo({
   alt: string;
   fallback: string;
 }) {
-  // Preload the image and only render it once it successfully loads. This
-  // avoids a broken-image icon when the file hasn't been uploaded yet (the
-  // text badge is shown instead), and works reliably with SSR.
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -39,34 +37,32 @@ function ChipLogo({
 
   if (!loaded) {
     return (
-      <span className="inline-flex items-center rounded border border-white/15 px-3 py-2 text-xs text-gray-light">
+      <span className="inline-flex items-center rounded border border-white/20 px-3 py-2 text-xs text-gray-light">
         {fallback}
       </span>
     );
   }
 
   return (
-    <span className="inline-flex items-center rounded bg-white p-2">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt={alt} className="h-10 w-auto object-contain" />
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} className="h-12 w-auto object-contain opacity-90" />
   );
 }
 
 export default function ComplianceLogos() {
   return (
-    <div className="mt-4 flex flex-wrap items-center gap-3">
-      <ChipLogo
+    <div className="mt-5 flex flex-wrap items-center gap-5">
+      <Logo
         src="/images/nexa-logo.png"
-        alt="NEXA Mortgage, LLC"
+        alt="Empowered by NEXA Lending"
         fallback="NEXA Mortgage, LLC"
       />
-      <ChipLogo
+      <Logo
         src="/images/equal-housing-lender.png"
         alt="Equal Housing Lender"
         fallback="Equal Housing Lender"
       />
-      <ChipLogo
+      <Logo
         src="/images/equal-housing-opportunity.png"
         alt="Equal Housing Opportunity"
         fallback="Equal Housing Opportunity"
