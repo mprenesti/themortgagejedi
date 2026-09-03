@@ -77,7 +77,7 @@ export default function RootLayout({
         className={`${rajdhani.variable} ${inter.variable} ${bebas.variable} font-body`}
       >
         <Navbar />
-        <main className="min-h-screen pt-24 sm:pt-32">{children}</main>
+        <main className="min-h-screen pt-28 sm:pt-36">{children}</main>
         <Footer />
         <MobileStickyCTA />
 
