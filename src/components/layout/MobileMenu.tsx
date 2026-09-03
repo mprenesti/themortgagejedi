@@ -102,6 +102,13 @@ export default function MobileMenu() {
               >
                 Get Started
               </Link>
+              <Link
+                href="/apply"
+                onClick={() => setOpen(false)}
+                className="btn-outline w-full"
+              >
+                Apply Now
+              </Link>
               <a href={PHONE_HREF} className="btn-outline w-full">
                 Call {PHONE_DISPLAY}
               </a>
