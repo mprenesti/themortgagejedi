@@ -60,19 +60,19 @@ export default function ComplianceLogos() {
         src="/images/logo/nexa-lending-white.png"
         alt="NEXA Lending"
         fallback="NEXA Mortgage, LLC"
-        className="h-20"
+        className="h-24"
       />
       <Logo
         src="/images/equal-housing-lender.png"
         alt="Equal Housing Lender"
         fallback="Equal Housing Lender"
-        className="h-16"
+        className="h-20"
       />
       <Logo
         src="/images/equal-housing-opportunity.png"
         alt="Equal Housing Opportunity"
         fallback="Equal Housing Opportunity"
-        className="h-16"
+        className="h-20"
       />
     </div>
   );
