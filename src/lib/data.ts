@@ -18,19 +18,9 @@ export const NAV_LINKS: NavLink[] = [
       { label: "Pre-Approval Checklist", href: "/tools/checklist" },
     ],
   },
-  {
-    label: "Resources",
-    href: "/resources/first-time-buyer-guide",
-    children: [
-      {
-        label: "First Time Buyer Guide",
-        href: "/resources/first-time-buyer-guide",
-      },
-      { label: "FAQ", href: "/resources/faq" },
-    ],
-  },
   { label: "Guides", href: "/guides" },
   { label: "Blog", href: "/resources/blog" },
+  { label: "FAQ", href: "/resources/faq" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
