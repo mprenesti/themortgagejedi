@@ -2,12 +2,18 @@
 
 import { useState } from "react";
 import type { BlogMeta } from "@/lib/blog-types";
-import { BLOG_CATEGORIES } from "@/lib/blog-types";
 import BlogCard from "./BlogCard";
 import { cn } from "@/lib/utils";
 
 export default function BlogList({ posts }: { posts: BlogMeta[] }) {
   const [category, setCategory] = useState("All");
+
+  // Build the category filter from the categories actually present in the
+  // posts (in first-appearance order), so new categories show up automatically.
+  const categories = [
+    "All",
+    ...Array.from(new Set(posts.map((p) => p.category))),
+  ];
 
   const featured = posts[0];
   const rest = posts.slice(1);
@@ -20,7 +26,7 @@ export default function BlogList({ posts }: { posts: BlogMeta[] }) {
   return (
     <div>
       <div className="flex flex-wrap gap-2">
-        {BLOG_CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setCategory(cat)}
