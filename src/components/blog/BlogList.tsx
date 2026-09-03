@@ -37,7 +37,7 @@ export default function BlogList({ posts }: { posts: BlogMeta[] }) {
   return (
     <div>
       {/* Search articles */}
-      <div className="relative mb-6 max-w-xl">
+      <div className="relative mb-6 mx-auto w-full max-w-xl">
         <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-mid" />
         <input
           type="search"
