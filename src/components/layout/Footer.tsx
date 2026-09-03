@@ -21,6 +21,7 @@ const quickLinks = [
 ];
 
 const resourceLinks = [
+  { label: "Guides", href: "/guides" },
   { label: "FAQ", href: "/resources/faq" },
   { label: "First Time Buyer Guide", href: "/resources/first-time-buyer-guide" },
   { label: "Realtor Partners", href: "/realtor-partners" },
