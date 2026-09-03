@@ -20,9 +20,8 @@ export const NAV_LINKS: NavLink[] = [
   },
   {
     label: "Resources",
-    href: "/resources/blog",
+    href: "/resources/first-time-buyer-guide",
     children: [
-      { label: "Blog", href: "/resources/blog" },
       {
         label: "First Time Buyer Guide",
         href: "/resources/first-time-buyer-guide",
@@ -31,6 +30,7 @@ export const NAV_LINKS: NavLink[] = [
     ],
   },
   { label: "Guides", href: "/guides" },
+  { label: "Blog", href: "/resources/blog" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
