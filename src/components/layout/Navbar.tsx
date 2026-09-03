@@ -28,7 +28,7 @@ export default function Navbar() {
           : "bg-black",
       )}
     >
-      <nav className="container-page flex h-20 items-center justify-between">
+      <nav className="container-page flex h-24 items-center justify-between">
         <Logo />
 
         <div className="hidden items-center gap-1 lg:flex">

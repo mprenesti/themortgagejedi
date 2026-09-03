@@ -17,10 +17,12 @@ function Logo({
   src,
   alt,
   fallback,
+  className,
 }: {
   src: string;
   alt: string;
   fallback: string;
+  className: string;
 }) {
   const [loaded, setLoaded] = useState(false);
 
@@ -45,27 +47,32 @@ function Logo({
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt={alt} className="h-12 w-auto object-contain opacity-90" />
+    <img src={src} alt={alt} className={`w-auto object-contain opacity-90 ${className}`} />
   );
 }
 
 export default function ComplianceLogos() {
   return (
-    <div className="mt-5 flex flex-wrap items-center gap-5">
+    <div className="mt-6 flex flex-wrap items-center gap-6">
+      {/* NEXA wordmark carries transparent padding, so it runs taller than the
+          icons to read at a comparable visual size. */}
       <Logo
-        src="/images/nexa-logo.png"
-        alt="Empowered by NEXA Lending"
+        src="/images/logo/nexa-lending-white.png"
+        alt="NEXA Lending"
         fallback="NEXA Mortgage, LLC"
+        className="h-20"
       />
       <Logo
         src="/images/equal-housing-lender.png"
         alt="Equal Housing Lender"
         fallback="Equal Housing Lender"
+        className="h-16"
       />
       <Logo
         src="/images/equal-housing-opportunity.png"
         alt="Equal Housing Opportunity"
         fallback="Equal Housing Opportunity"
+        className="h-16"
       />
     </div>
   );
