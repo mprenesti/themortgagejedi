@@ -54,13 +54,11 @@ function Logo({
 export default function ComplianceLogos() {
   return (
     <div className="mt-6 flex flex-wrap items-center gap-6">
-      {/* NEXA wordmark carries transparent padding, so it runs taller than the
-          icons to read at a comparable visual size. */}
       <Logo
         src="/images/logo/nexa-lending-white.png"
         alt="NEXA Lending"
         fallback="NEXA Mortgage, LLC"
-        className="h-24"
+        className="h-20"
       />
       <Logo
         src="/images/equal-housing-lender.png"
