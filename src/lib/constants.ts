@@ -3,7 +3,13 @@ export const SITE = {
   fullName: "Mike Prenesti | The Mortgage Jedi",
   tagline: "Your Mortgage, Made Simple. Your Future, Made Possible.",
   nmls: "NMLS #1033445",
-  company: "C2 Financial Corporation",
+  company: "NEXA Mortgage, LLC",
+  corporateNmls: "NMLS #1660690",
+  // Corporate address NEXA loan officers display on their sites. Please confirm
+  // this is the exact address NEXA instructs you to use before going live.
+  corporateAddress: "3100 W Ray Rd, Ste 201, Office #209, Chandler, AZ 85226",
+  // Optional: your branch/office address. Leave blank if not applicable.
+  branchAddress: "",
   phone: "702-497-0584",
   phoneDirect: "702-291-9889",
   email: "mike@themortgagejedi.com",

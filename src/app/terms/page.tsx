@@ -48,10 +48,11 @@ export default function TermsPage() {
             for the content or practices of those sites.
           </p>
 
-          <h2>Equal Housing Lender</h2>
+          <h2>Equal Housing Lender &amp; Equal Housing Opportunity</h2>
           <p>
             We are committed to the letter and spirit of the U.S. policy for the
-            achievement of equal housing opportunity.
+            achievement of equal housing opportunity. We do business in
+            accordance with the Federal Fair Housing Law.
           </p>
 
           <h2>Contact</h2>

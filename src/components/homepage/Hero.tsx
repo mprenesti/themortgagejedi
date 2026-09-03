@@ -75,7 +75,8 @@ export default function Hero() {
 
       <div className="relative z-10 border-t border-white/10 bg-black/60">
         <p className="container-page py-3 text-center text-xs text-gray-mid">
-          Mike Prenesti | {SITE.nmls} | {SITE.company} | Licensed in Nevada
+          Mike Prenesti | {SITE.nmls} | {SITE.company} ({SITE.corporateNmls}) |
+          Licensed in Nevada
         </p>
       </div>
     </section>
