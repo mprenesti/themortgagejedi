@@ -14,7 +14,7 @@ const cards = [
   },
   {
     Icon: MessagesSquare,
-    title: "Question-Driven Discovery",
+    title: "Question Driven Discovery",
     body: "I approach every client like a podcast host approaches a guest. Open-ended questions. Real listening. Follow-up before advice. This isn't a sales technique. It's how I get to know you well enough to actually help.",
   },
 ];

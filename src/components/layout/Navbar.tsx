@@ -28,7 +28,7 @@ export default function Navbar() {
           : "bg-black",
       )}
     >
-      <nav className="container-page flex h-20 items-center justify-between">
+      <nav className="container-page flex h-28 items-center justify-between sm:h-36">
         <Logo />
 
         <div className="hidden items-center gap-1 lg:flex">
@@ -64,6 +64,9 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <Link href="/apply" className="btn-outline hidden sm:inline-flex">
+            Apply Now
+          </Link>
           <Link href="/get-started" className="btn-gold hidden sm:inline-flex">
             Get Started
           </Link>

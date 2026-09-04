@@ -14,7 +14,7 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "About Mike Prenesti — The Mortgage Jedi",
   description:
-    "16 years in the mortgage industry. Payment-first philosophy. No pressure. No rush. Meet Mike Prenesti, The Mortgage Jedi, serving Las Vegas homebuyers.",
+    "16 years in the mortgage industry. Payment first philosophy. No pressure. No rush. Meet Mike Prenesti, The Mortgage Jedi, serving Las Vegas homebuyers.",
 };
 
 const values = [
@@ -41,11 +41,11 @@ const values = [
 ];
 
 const credentials = [
-  "NMLS #1033445",
-  "C2 Financial Corporation",
+  "Mike Prenesti — NMLS #1033445",
+  "NEXA Mortgage, LLC — Corporate NMLS #1660690",
   "Licensed in Nevada",
   "16 Years in the Mortgage Industry",
-  "Specialties: First-Time Buyers, Self-Employed, Investors, New Construction",
+  "Specialties: First Time Buyers, Self-Employed, Investors, New Construction",
 ];
 
 function Block({
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <PageHero
         label="About"
         title="I'm Mike Prenesti. I help Las Vegas homebuyers get the right loan — not just the biggest approval."
-        subtitle="16 years in the mortgage industry. Payment-first philosophy. No pressure. No rush."
+        subtitle="16 years in the mortgage industry. Payment first philosophy. No pressure. No rush."
       />
 
       <div className="container-page space-y-16 py-16 sm:py-20">

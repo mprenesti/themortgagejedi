@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SITE, PHONE_DISPLAY, PHONE_HREF, EMAIL_HREF } from "@/lib/constants";
 import NewsletterForm from "@/components/forms/NewsletterForm";
-import EqualHousingLogo from "./EqualHousingLogo";
+import ComplianceLogos from "./ComplianceLogos";
 import {
   InstagramIcon,
   TikTokIcon,
@@ -16,12 +16,14 @@ const quickLinks = [
   { label: "Loan Options", href: "/loan-options" },
   { label: "Calculator", href: "/tools/calculator" },
   { label: "Blog", href: "/resources/blog" },
+  { label: "Apply Now", href: "/apply" },
   { label: "Get Started", href: "/get-started" },
 ];
 
 const resourceLinks = [
+  { label: "Guides", href: "/guides" },
   { label: "FAQ", href: "/resources/faq" },
-  { label: "First-Time Buyer Guide", href: "/resources/first-time-buyer-guide" },
+  { label: "First Time Buyer Guide", href: "/resources/first-time-buyer-guide" },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },
@@ -56,13 +58,29 @@ export default function Footer() {
           <img
             src="/images/logo-full.png"
             alt="The Mortgage Jedi — Mike Prenesti"
-            className="h-14 w-auto"
+            className="h-[7.5rem] w-auto"
           />
           <p className="mt-4 text-sm text-gray-light">{SITE.tagline}</p>
-          <p className="mt-4 text-xs text-gray-mid">
-            {SITE.nmls} | {SITE.company}
-          </p>
-          <EqualHousingLogo />
+          <div className="mt-4 space-y-1 text-xs text-gray-mid">
+            <p className="font-semibold text-gray-light">
+              {SITE.company} · Corporate {SITE.corporateNmls}
+            </p>
+            <p>Mike Prenesti · {SITE.nmls}</p>
+            <p>{SITE.corporateAddress}</p>
+            {SITE.branchAddress ? <p>Branch: {SITE.branchAddress}</p> : null}
+            <p>Licensed in Nevada</p>
+            <p>
+              <a
+                href={SITE.nmlsConsumerAccess}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-gold"
+              >
+                NMLS Consumer Access
+              </a>
+            </p>
+          </div>
+          <ComplianceLogos />
         </div>
 
         <div>
@@ -138,7 +156,8 @@ export default function Footer() {
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-gray-mid md:flex-row md:text-left">
           <p>
             © {new Date().getFullYear()} Mike Prenesti | The Mortgage Jedi |{" "}
-            {SITE.nmls} | {SITE.company} | Equal Housing Lender
+            {SITE.company} | Corporate {SITE.corporateNmls} | {SITE.nmls} |
+            Equal Housing Lender | Equal Housing Opportunity
           </p>
           <div className="flex gap-4">
             <Link href="/privacy-policy" className="hover:text-gold">

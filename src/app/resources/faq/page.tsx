@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const moreFaqs: FAQ[] = [
   {
     q: "How much do I need for a down payment?",
-    a: "It depends on the loan. VA loans can be 0% down for eligible veterans, FHA is as low as 3.5%, and conventional loans can start at 3-5%. Putting 20% down lets you avoid mortgage insurance, but it isn't required to buy.",
+    a: "It depends on the loan. VA loans can be 0% down for eligible veterans, FHA is as low as 3.5%, and conventional loans can start at 3 to 5%. Putting 20% down lets you avoid mortgage insurance, but it isn't required to buy.",
   },
   {
     q: "What credit score do I need to buy a home?",

@@ -21,7 +21,7 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
         <img
           src="/images/logo-full.png"
           alt="The Mortgage Jedi — Mike Prenesti"
-          className="h-11 w-auto sm:h-14"
+          className="h-24 w-auto sm:h-[7.5rem]"
           onError={() => setImgError(true)}
         />
       ) : (

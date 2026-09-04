@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 import GuideOptIn from "@/components/forms/GuideOptIn";
 
 export const metadata: Metadata = {
-  title: "The Ultimate First-Time Homebuyer Guide",
+  title: "The Ultimate First Time Homebuyer Guide",
   description:
     "Everything you need to know before, during, and after the mortgage process — in plain English. Free download from The Mortgage Jedi.",
 };
@@ -25,7 +25,7 @@ const sections = [
     points: [
       "How much home can I comfortably afford?",
       "How to determine your down payment (0%, 3.5%, 5%, 10%, 20% options)",
-      "Fixed-rate vs adjustable-rate mortgages explained",
+      "Fixed rate vs adjustable rate mortgages explained",
       "PMI and mortgage insurance explained simply",
     ],
   },
@@ -61,7 +61,7 @@ export default function FirstTimeBuyerGuidePage() {
     <>
       <PageHero
         label="Free Download"
-        title="The Ultimate First-Time Homebuyer Guide"
+        title="The Ultimate First Time Homebuyer Guide"
         subtitle="Everything you need to know before, during, and after the mortgage process — in plain English. Free download."
       />
 
@@ -117,7 +117,7 @@ export default function FirstTimeBuyerGuidePage() {
               called him. By the time we talked, I knew what questions to ask.”
             </blockquote>
             <figcaption className="mt-3 text-sm text-gray-mid">
-              — Las Vegas first-time buyer
+              — Las Vegas first time buyer
             </figcaption>
           </figure>
         </div>

@@ -25,17 +25,17 @@ const sections: LoanSection[] = [
   {
     id: "purchase",
     title: "Purchase Loans",
-    who: "First-time buyers, move-up buyers, anyone purchasing a primary residence.",
+    who: "First time buyers, move up buyers, anyone purchasing a primary residence.",
     programsLabel: "Programs",
     programs: [
       {
         name: "FHA Loans",
-        desc: "As low as 3.5% down. Credit scores from 580+. Great for first-time buyers.",
+        desc: "As low as 3.5% down. Credit scores from 580+. Great for first time buyers.",
         bold: true,
       },
       {
         name: "VA Loans",
-        desc: "0% down for eligible veterans and active-duty service members.",
+        desc: "0% down for eligible veterans and active duty service members.",
         bold: true,
       },
       {
@@ -45,12 +45,12 @@ const sections: LoanSection[] = [
       },
       {
         name: "Jumbo Loans",
-        desc: "For higher-priced homes above conforming loan limits.",
+        desc: "For higher priced homes above conforming loan limits.",
         bold: true,
       },
     ],
     benefits: [
-      "Payment-first approach — we start with your comfortable monthly payment",
+      "Payment first approach — we start with your comfortable monthly payment",
       "Pre-approval in as little as 24 hours",
       "Guidance from application to closing",
     ],
@@ -66,7 +66,7 @@ const sections: LoanSection[] = [
         desc: "Lower your rate or shorten your term.",
       },
       {
-        name: "Cash-out refinance",
+        name: "Cash out refinance",
         desc: "Access equity for renovations, debt payoff, or investment.",
       },
       {
@@ -75,7 +75,7 @@ const sections: LoanSection[] = [
       },
       {
         name: "Debt consolidation",
-        desc: "Roll high-interest debt into your mortgage.",
+        desc: "Roll high interest debt into your mortgage.",
       },
     ],
   },
@@ -102,7 +102,7 @@ const sections: LoanSection[] = [
       },
       {
         name: "P&L Loans",
-        desc: "Qualify using a CPA-prepared profit and loss statement.",
+        desc: "Qualify using a CPA prepared profit and loss statement.",
         bold: true,
       },
     ],
@@ -129,7 +129,7 @@ const sections: LoanSection[] = [
         bold: true,
       },
       {
-        name: "Cash-Out Refinance",
+        name: "Cash Out Refinance",
         desc: "Refinance your first mortgage and pull cash out.",
         bold: true,
       },
@@ -147,9 +147,9 @@ const sections: LoanSection[] = [
     programsLabel: "Programs",
     programs: [
       { name: "Bank Statement Loans (12 or 24 months)", desc: "" },
-      { name: "1099-Only Loans", desc: "" },
-      { name: "P&L Loans (CPA-prepared)", desc: "" },
-      { name: "Asset-Based Qualification", desc: "" },
+      { name: "1099 Only Loans", desc: "" },
+      { name: "P&L Loans (CPA prepared)", desc: "" },
+      { name: "Asset Based Qualification", desc: "" },
       { name: "Recent credit events considered", desc: "" },
     ],
     note: "If your tax returns don't reflect what you actually earn, we have programs built for that.",
@@ -185,7 +185,7 @@ const sections: LoanSection[] = [
 ];
 
 const quickFilters = [
-  { label: "First-time buyer? Start here", href: "#purchase" },
+  { label: "First time buyer? Start here", href: "#purchase" },
   { label: "Self-employed? See your options", href: "#non-qm" },
   { label: "Veteran? Full VA loan guide", href: "#purchase" },
   { label: "Investor? DSCR & more", href: "#investor" },

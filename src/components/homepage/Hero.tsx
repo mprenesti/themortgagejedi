@@ -31,7 +31,7 @@ export default function Hero() {
           <p className="mt-6 max-w-xl text-lg text-gray-light">
             I&apos;m Mike Prenesti, The Mortgage Jedi. I help Las Vegas
             homebuyers get the right loan — not just the biggest approval.
-            Payment-focused guidance. No pressure. No rush. Just the loan that
+            Payment focused guidance. No pressure. No rush. Just the loan that
             fits your life.
           </p>
 
@@ -75,7 +75,8 @@ export default function Hero() {
 
       <div className="relative z-10 border-t border-white/10 bg-black/60">
         <p className="container-page py-3 text-center text-xs text-gray-mid">
-          Mike Prenesti | {SITE.nmls} | {SITE.company} | Licensed in Nevada
+          Mike Prenesti | {SITE.nmls} | {SITE.company} ({SITE.corporateNmls}) |
+          Licensed in Nevada
         </p>
       </div>
     </section>

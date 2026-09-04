@@ -18,18 +18,9 @@ export const NAV_LINKS: NavLink[] = [
       { label: "Pre-Approval Checklist", href: "/tools/checklist" },
     ],
   },
-  {
-    label: "Resources",
-    href: "/resources/blog",
-    children: [
-      { label: "Blog", href: "/resources/blog" },
-      {
-        label: "First-Time Buyer Guide",
-        href: "/resources/first-time-buyer-guide",
-      },
-      { label: "FAQ", href: "/resources/faq" },
-    ],
-  },
+  { label: "Guides", href: "/guides" },
+  { label: "Blog", href: "/resources/blog" },
+  { label: "FAQ", href: "/resources/faq" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Contact", href: "/contact" },
 ];
@@ -79,7 +70,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "We were first-time buyers and completely overwhelmed. Mike walked us through everything with patience and never made us feel rushed. Highly recommend.",
+      "We were first time buyers and completely overwhelmed. Mike walked us through everything with patience and never made us feel rushed. Highly recommend.",
     name: "Brandon & Mia T.",
     date: "2023",
   },
@@ -110,7 +101,7 @@ export const HOME_FAQS: FAQ[] = [
   },
   {
     q: "How long does the mortgage process take?",
-    a: "Most loans close in 21-30 days from application. I keep you updated at every step so there are never any surprises.",
+    a: "Most loans close in 21 to 30 days from application. I keep you updated at every step so there are never any surprises.",
   },
   {
     q: "Can you help with investment property loans?",
@@ -118,7 +109,7 @@ export const HOME_FAQS: FAQ[] = [
   },
   {
     q: "What should I bring to my first consultation?",
-    a: "Nothing. Our first conversation is casual and pressure-free. I'll ask about your goals and situation, then guide you on what documentation we'll need when you're ready to move forward.",
+    a: "Nothing. Our first conversation is casual and pressure free. I'll ask about your goals and situation, then guide you on what documentation we'll need when you're ready to move forward.",
   },
   {
     q: "Do you only work in Las Vegas?",
@@ -153,7 +144,7 @@ export const LOAN_SERVICES: LoanProgram[] = [
   {
     id: "refinance",
     title: "Refinancing",
-    blurb: "Rate reduction, cash-out, debt consolidation",
+    blurb: "Rate reduction, cash out, debt consolidation",
     icon: "RefreshCw",
   },
   {
