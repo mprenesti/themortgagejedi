@@ -17,7 +17,8 @@ export const SITE = {
     facebook: "https://www.facebook.com/profile.php?id=1730445206",
     linkedin: "https://linkedin.com/in/mikeprenesti",
   },
-  googleReviewsUrl: "https://g.page/r/themortgagejedi",
+  googleReviewsUrl:
+    "https://www.google.com/search?q=The+Mortgage+Jedi+Mike+Prenesti+Las+Vegas+reviews",
   nmlsConsumerAccess: "https://www.nmlsconsumeraccess.org/",
 } as const;
 
