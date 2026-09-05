@@ -24,7 +24,7 @@ export const SITE = {
     linkedin: "https://linkedin.com/in/mikeprenesti",
   },
   googleReviewsUrl:
-    "https://www.google.com/search?q=Mike+Prenesti+The+Mortgage+Jedi+reviews",
+    "https://maps.app.goo.gl/pc8in2CWfhiqHcZU7",,
   nmlsConsumerAccess: "https://www.nmlsconsumeraccess.org/",
 } as const;
 
