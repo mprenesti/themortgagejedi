@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import GuideCard from "@/components/guides/GuideCard";
+import JsonLd from "@/components/JsonLd";
 import { getAllGuides } from "@/lib/guides";
 
 export const metadata: Metadata = {
@@ -15,8 +16,21 @@ export const metadata: Metadata = {
 export default function GuidesPage() {
   const guides = getAllGuides();
 
+  const guidesSchema = guides.map((guide) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: guide.title,
+    provider: {
+      "@type": "FinancialService",
+      name: "The Mortgage Jedi",
+      telephone: "+1-702-497-0584",
+    },
+    areaServed: "Las Vegas, NV",
+  }));
+
   return (
     <>
+      <JsonLd data={guidesSchema} />
       <PageHero
         label="Learn Before You Borrow"
         title="Mortgage Guides & Scenarios"

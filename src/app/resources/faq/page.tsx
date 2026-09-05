@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import Accordion from "@/components/ui/Accordion";
 import CTAStrip from "@/components/ui/CTAStrip";
+import JsonLd from "@/components/JsonLd";
 import { HOME_FAQS, type FAQ } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -37,9 +38,23 @@ const moreFaqs: FAQ[] = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [...HOME_FAQS, ...moreFaqs].map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+
 export default function FAQPage() {
   return (
     <>
+      <JsonLd data={faqSchema} />
       <PageHero
         label="FAQ"
         title="Frequently Asked Questions"

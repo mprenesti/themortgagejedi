@@ -6,6 +6,35 @@ import { SITE } from "@/lib/constants";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
+import JsonLd from "@/components/JsonLd";
+
+const FINANCIAL_SERVICE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  name: "The Mortgage Jedi",
+  alternateName: "Mike Prenesti - C2 Financial Corporation",
+  url: "https://themortgagejedi.com",
+  areaServed: {
+    "@type": "City",
+    name: "Las Vegas, NV",
+  },
+  telephone: "+1-702-497-0584",
+  priceRange: "Varies",
+};
+
+const PERSON_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mike Prenesti",
+  jobTitle: "Mortgage Loan Officer",
+  worksFor: {
+    "@type": "Organization",
+    name: "C2 Financial Corporation",
+  },
+  identifier: "NMLS #1033445",
+  url: "https://themortgagejedi.com",
+  telephone: "+1-702-497-0584",
+};
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -76,6 +105,8 @@ export default function RootLayout({
       <body
         className={`${rajdhani.variable} ${inter.variable} ${bebas.variable} font-body`}
       >
+        <JsonLd data={FINANCIAL_SERVICE_SCHEMA} />
+        <JsonLd data={PERSON_SCHEMA} />
         <Navbar />
         <main className="min-h-screen pt-28 sm:pt-36">{children}</main>
         <Footer />

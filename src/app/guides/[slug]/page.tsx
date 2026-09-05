@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft, ListChecks, CalendarCheck } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import GuideCard from "@/components/guides/GuideCard";
+import JsonLd from "@/components/JsonLd";
 import { getGuide, getGuideSlugs, getRelatedGuides } from "@/lib/guides";
 import { SITE } from "@/lib/constants";
 
@@ -38,8 +39,21 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
   const related = getRelatedGuides(params.slug, 3);
 
+  const guideSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: guide.title,
+    provider: {
+      "@type": "FinancialService",
+      name: "The Mortgage Jedi",
+      telephone: "+1-702-497-0584",
+    },
+    areaServed: "Las Vegas, NV",
+  };
+
   return (
     <>
+      <JsonLd data={guideSchema} />
       <PageHero label={guide.tag} title={guide.title} subtitle={guide.intro} />
 
       <div className="container-page py-12 sm:py-16">
