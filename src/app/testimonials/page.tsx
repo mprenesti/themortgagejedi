@@ -16,7 +16,9 @@ export const metadata: Metadata = {
 
 export default async function TestimonialsPage() {
   const googleReviews = await getGoogleReviews();
-  const allTestimonials = [...TESTIMONIALS, ...googleReviews];
+  const allTestimonials = [...TESTIMONIALS, ...googleReviews].sort(
+    (a, b) => (Number(b.date) || 0) - (Number(a.date) || 0)
+  );
 
   return (
     <>
