@@ -24,7 +24,7 @@ export const SITE = {
     linkedin: "https://linkedin.com/in/mikeprenesti",
   },
   googleReviewsUrl:
-    "https://maps.app.goo.gl/pc8in2CWfhiqHcZU7",,
+    "https://maps.app.goo.gl/pc8in2CWfhiqHcZU7",
   nmlsConsumerAccess: "https://www.nmlsconsumeraccess.org/",
 } as const;
 
