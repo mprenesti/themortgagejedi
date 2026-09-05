@@ -88,6 +88,65 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "The Ramirez Family",
     date: "2022",
   },
+  {
+    quote:
+      "Today I was able to close on my 1st ever home purchase. I had only a handful of knowledge in regards to what it takes to own a property, but after working with Mike I am happy to say I am a lot more knowledgeable than I ever thought I would be. Mike did a wonderful job answering all my questions in a timely manner and working with me even though I'm on a graveyard shift. If it wasn't for him, I don't think this process could have gone as smooth as it did. I am very grateful.",
+    name: "Tiáuna Krieger",
+    date: "2026",
+  },
+  {
+    quote:
+      "Great experience from start to finish. Mike was knowledgeable and responsive throughout the entire process. I always felt like a top priority. If you want a smooth and stress-free mortgage experience, look no further. Highly recommended!",
+    name: "David",
+    date: "2026",
+  },
+  {
+    quote:
+      "Very helpful and easy to deal with helping me with a lot of stuff that I didn't know.",
+    name: "Suren Karagozyan",
+    date: "2026",
+  },
+  {
+    quote:
+      "I don't normally write reviews, but Mike is absolutely the best! He made my home buying experience so stress-free. He asks all the hard questions upfront during pre-approval, so when you find a house, you can move fast. We actually closed early because of this! I also got to work with Suzanne for my loan processing and absolutely adored her. Love Mike and his team!",
+    name: "Holly Gutierrez",
+    date: "2026",
+  },
+  {
+    quote:
+      "Mike helped me get the best rate on my mortgage and was easy to work with.",
+    name: "Ty",
+    date: "2026",
+  },
+  {
+    quote: "Great guy. The force is strong and followed the Jedi Code.",
+    name: "Frank Galizia",
+    date: "2026",
+  },
+  {
+    quote:
+      "Mike the Mortgage Jedi was awesome in getting our deal across the finish line for our clients! He was patient, hard-working, and very attentive in getting back to me throughout the transaction. Very grateful for hard-working people like him!",
+    name: "Joanne Healea",
+    date: "2026",
+  },
+  {
+    quote:
+      "Just wanted to say I made a good decision going with Mike Prenesti as my loan officer. I looked him up and had a good feeling about him, and he didn't let me down. He's always there for me when I need an answer. That made my stress a lot less.",
+    name: "Young Kim",
+    date: "2026",
+  },
+  {
+    quote:
+      "Mike was very knowledgeable and helpful with getting our loan approved and helped us through all the steps. Would definitely recommend!",
+    name: "Amy Larios",
+    date: "2025",
+  },
+  {
+    quote:
+      "It was an absolute pleasure to work with Mike. He answered all my questions and kept me updated during each step of the process. I highly recommend Mike and his expertise!",
+    name: "C Sandoval",
+    date: "2025",
+  },
 ];
 
 export type FAQ = { q: string; a: string };
