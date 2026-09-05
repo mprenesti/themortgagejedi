@@ -29,6 +29,8 @@ export type Testimonial = {
   quote: string;
   name: string;
   date?: string;
+  rating?: number; // 1-5; omit for manual entries to default to 5 stars
+  source?: "google"; // only set on reviews pulled from Google
 };
 
 export const TESTIMONIALS: Testimonial[] = [

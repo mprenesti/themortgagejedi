@@ -6,6 +6,7 @@ import TestimonialCard from "@/components/ui/TestimonialCard";
 import CTAStrip from "@/components/ui/CTAStrip";
 import { TESTIMONIALS } from "@/lib/data";
 import { SITE } from "@/lib/constants";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
 export const metadata: Metadata = {
   title: "Testimonials — What Clients Are Saying",
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
     "Real stories from real Las Vegas homebuyers Mike Prenesti has helped over 16 years in the mortgage industry.",
 };
 
-export default function TestimonialsPage() {
+export default async function TestimonialsPage() {
+  const googleReviews = await getGoogleReviews();
+  const allTestimonials = [...TESTIMONIALS, ...googleReviews];
+
   return (
     <>
       <PageHero
@@ -21,16 +25,14 @@ export default function TestimonialsPage() {
         title="What Clients Are Saying"
         subtitle="Real stories from real people I've had the privilege of helping over 16 years."
       />
-
       <div className="container-page py-16 sm:py-20">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.name} delay={(i % 3) * 0.08}>
+          {allTestimonials.map((t, i) => (
+            <Reveal key={`${t.name}-${i}`} delay={(i % 3) * 0.08}>
               <TestimonialCard testimonial={t} />
             </Reveal>
           ))}
         </div>
-
         <div className="mt-12 text-center">
           <a
             href={SITE.googleReviewsUrl}
@@ -42,7 +44,6 @@ export default function TestimonialsPage() {
           </a>
         </div>
       </div>
-
       <CTAStrip
         title="Ready to Be the Next Success Story?"
         buttonLabel="Get Started"
