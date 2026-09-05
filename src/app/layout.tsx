@@ -12,7 +12,7 @@ const FINANCIAL_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
   name: "The Mortgage Jedi",
-  alternateName: "Mike Prenesti - C2 Financial Corporation",
+  alternateName: "Mike Prenesti - NEXA Mortgage, LLC",
   url: "https://themortgagejedi.com",
   areaServed: {
     "@type": "City",
@@ -29,9 +29,10 @@ const PERSON_SCHEMA = {
   jobTitle: "Mortgage Loan Officer",
   worksFor: {
     "@type": "Organization",
-    name: "C2 Financial Corporation",
+    name: "NEXA Mortgage, LLC",
   },
-  identifier: "NMLS #1033445",
+  identifier:
+    "NMLS #1033445 (Individual) / NEXA Mortgage, LLC NMLS #1660690 (Company)",
   url: "https://themortgagejedi.com",
   telephone: "+1-702-497-0584",
 };
