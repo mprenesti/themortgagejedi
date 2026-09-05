@@ -20,8 +20,8 @@ export const NAV_LINKS: NavLink[] = [
   },
   { label: "Guides", href: "/guides" },
   { label: "Blog", href: "/resources/blog" },
-  { label: "FAQ", href: "/resources/faq" },
   { label: "Testimonials", href: "/testimonials" },
+  { label: "FAQ", href: "/resources/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
