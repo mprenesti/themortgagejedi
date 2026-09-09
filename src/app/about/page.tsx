@@ -134,8 +134,9 @@ export default function AboutPage() {
         <Block title="Beyond the Office">
           <p>
             When I&apos;m not working with clients, I&apos;m coaching youth
-            hockey, training Krav Maga (10+ years), spending time with my wife
-            and kids, and leaning on my faith. Romans 8:31 keeps me grounded.
+            hockey, spending time with my wife and kids, and leaning on my
+            faith. Romans 8:31 keeps me grounded. It reads, if God is for us,
+            who can be against us.
           </p>
         </Block>
 
