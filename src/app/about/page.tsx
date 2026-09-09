@@ -135,8 +135,8 @@ export default function AboutPage() {
           <p>
             When I&apos;m not working with clients, I&apos;m coaching youth
             hockey, spending time with my wife and kids, and leaning on my
-            faith. Romans 8:31 keeps me grounded. It reads, if God is for us,
-            who can be against us.
+            faith. Romans 8:31 keeps me grounded. It reads, (if God is for us,
+            who can be against us).
           </p>
         </Block>
 
