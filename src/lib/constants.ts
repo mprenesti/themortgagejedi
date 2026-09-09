@@ -7,7 +7,7 @@ export const SITE = {
   corporateNmls: "NMLS #1660690",
   // Corporate address NEXA loan officers display on their sites. Please confirm
   // this is the exact address NEXA instructs you to use before going live.
-  corporateAddress: "3100 W Ray Rd, Ste 201, Office #209, Chandler, AZ 85226",
+  corporateAddress: "5559 S Sossaman Rd, Bldg #1, Ste #101, Mesa, AZ 85212",
   // Optional: your branch/office address. Leave blank if not applicable.
   branchAddress: "",
   phone: "702-497-0584",
