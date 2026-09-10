@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { submitLead } from "@/lib/submit-lead";
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
@@ -13,11 +12,22 @@ export default function NewsletterForm() {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-    const ok = await submitLead({ email, formSource: "Newsletter" });
-    if (ok) {
-      setStatus("done");
-      setEmail("");
-    } else {
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const json = (await res.json().catch(() => null)) as {
+        success?: boolean;
+      } | null;
+      if (res.ok && json?.success === true) {
+        setStatus("done");
+        setEmail("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
       setStatus("error");
     }
   }
