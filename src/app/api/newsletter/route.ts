@@ -6,9 +6,9 @@ const GHL_UPSERT_URL = "https://services.leadconnectorhq.com/contacts/upsert";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
-  let body: { email?: string };
+  let body: { email?: string; firstName?: string };
   try {
-    body = (await request.json()) as { email?: string };
+    body = (await request.json()) as { email?: string; firstName?: string };
   } catch {
     return NextResponse.json(
       { success: false, error: "Invalid request body." },
@@ -17,6 +17,7 @@ export async function POST(request: Request) {
   }
 
   const email = (body.email ?? "").trim();
+  const firstName = (body.firstName ?? "").trim();
 
   if (!email || !EMAIL_RE.test(email)) {
     return NextResponse.json(
@@ -49,6 +50,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         locationId,
         email,
+        firstName: firstName || undefined,
         source: "themortgagejedi.com - Newsletter Signup",
         tags: ["Website Lead", "newsletter lead"],
       }),
