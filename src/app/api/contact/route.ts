@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
+const OWNER_EMAIL = "mike@themortgagejedi.com";
 
 type ContactBody = {
   name?: string;
@@ -109,6 +110,32 @@ export async function POST(request: Request) {
       console.error(
         "[/api/contact] Note creation failed",
         noteRes.status,
+        detail,
+      );
+    }
+
+    // 3) Email the account owner.
+    const emailHtml =
+      "<p><strong>New contact form submission from themortgagejedi.com</strong></p>" +
+      `<p>Name: ${name}<br>Email: ${email}<br>Phone: ${phone}<br>` +
+      `Message: ${message}</p>`;
+
+    const emailRes = await fetch(`${GHL_BASE}/conversations/messages`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        type: "Email",
+        contactId,
+        emailTo: OWNER_EMAIL,
+        subject: `New Contact Form Inquiry: ${name}`,
+        html: emailHtml,
+      }),
+    });
+    if (!emailRes.ok) {
+      const detail = await emailRes.text().catch(() => "");
+      console.error(
+        "[/api/contact] Owner email failed",
+        emailRes.status,
         detail,
       );
     }
