@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
+import { submitLead } from "@/lib/submit-lead";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name."),
@@ -17,24 +19,38 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export default function RealtorForm() {
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   async function onSubmit(values: FormValues) {
-    await fetch("/api/lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "realtor",
-        data: { ...values, tag: "realtor-partner" },
-      }),
+    setStatus("idle");
+    const message = [
+      values.brokerage ? `Brokerage: ${values.brokerage}` : "",
+      values.lookingFor ? `Looking for: ${values.lookingFor}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+    const ok = await submitLead({
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      message,
+      formSource: "Realtor Partner",
     });
+    if (ok) {
+      setStatus("success");
+      reset();
+    } else {
+      setStatus("error");
+    }
   }
 
-  if (isSubmitSuccessful) {
+  if (status === "success") {
     return (
       <div className="card-dark flex items-start gap-3 border-gold/40">
         <CheckCircle2 className="mt-0.5 h-6 w-6 flex-shrink-0 text-gold" />
@@ -52,6 +68,25 @@ export default function RealtorForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {status === "error" ? (
+        <div className="flex items-start gap-3 rounded-md border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-200">
+          <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-300" />
+          <p>
+            Something went wrong. Please call{" "}
+            <a href="tel:+17024970584" className="font-semibold underline">
+              (702) 497-0584
+            </a>{" "}
+            or email{" "}
+            <a
+              href="mailto:mike@themortgagejedi.com"
+              className="font-semibold underline"
+            >
+              mike@themortgagejedi.com
+            </a>{" "}
+            and let&apos;s connect directly.
+          </p>
+        </div>
+      ) : null}
       <FieldWrapper label="Name" required error={errors.name?.message}>
         <Input {...register("name")} placeholder="Your full name" />
       </FieldWrapper>

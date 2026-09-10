@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Select } from "./fields";
 import BookingEmbed from "@/components/ui/BookingEmbed";
+import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
 type ChoiceStep = {
@@ -68,6 +69,7 @@ export default function GetStartedQuiz() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   const totalSteps = choiceSteps.length + 1; // +1 for contact step
   const isContactStep = step === choiceSteps.length;
@@ -81,20 +83,31 @@ export default function GetStartedQuiz() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
+    setError(false);
+    const message = [
+      answers.goal ? `Goal: ${answers.goal}` : "",
+      answers.firstTime ? `First-time buyer: ${answers.firstTime}` : "",
+      answers.payment ? `Comfortable payment: ${answers.payment}` : "",
+      answers.credit ? `Credit range: ${answers.credit}` : "",
+      contact.bestTime ? `Best time to reach: ${contact.bestTime}` : "",
+      contact.referral ? `Heard about Mike via: ${contact.referral}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
     try {
-      await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "getStarted",
-          data: {
-            ...answers,
-            ...contact,
-            name: `${contact.firstName} ${contact.lastName}`.trim(),
-          },
-        }),
+      const ok = await submitLead({
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        email: contact.email,
+        phone: contact.phone,
+        message,
+        formSource: "Get Started Quiz",
       });
-      setSubmitted(true);
+      if (ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -175,6 +188,25 @@ export default function GetStartedQuiz() {
           <h2 className="font-heading text-2xl font-bold text-white">
             Almost there — how can Mike reach you?
           </h2>
+          {error ? (
+            <div className="mt-6 flex items-start gap-3 rounded-md border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-200">
+              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-300" />
+              <p>
+                Something went wrong submitting your info. Please call{" "}
+                <a href="tel:+17024970584" className="font-semibold underline">
+                  (702) 497-0584
+                </a>{" "}
+                or email{" "}
+                <a
+                  href="mailto:mike@themortgagejedi.com"
+                  className="font-semibold underline"
+                >
+                  mike@themortgagejedi.com
+                </a>{" "}
+                and I&apos;ll help you directly.
+              </p>
+            </div>
+          ) : null}
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             <FieldWrapper label="First Name" required>
               <Input
