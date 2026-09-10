@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Select } from "./fields";
 import BookingEmbed from "@/components/ui/BookingEmbed";
-import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
 type ChoiceStep = {
@@ -84,30 +83,33 @@ export default function GetStartedQuiz() {
     e.preventDefault();
     setSubmitting(true);
     setError(false);
-    const message = [
-      answers.goal ? `Goal: ${answers.goal}` : "",
-      answers.firstTime ? `First-time buyer: ${answers.firstTime}` : "",
-      answers.payment ? `Comfortable payment: ${answers.payment}` : "",
-      answers.credit ? `Credit range: ${answers.credit}` : "",
-      contact.bestTime ? `Best time to reach: ${contact.bestTime}` : "",
-      contact.referral ? `Heard about Mike via: ${contact.referral}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
     try {
-      const ok = await submitLead({
-        firstName: contact.firstName,
-        lastName: contact.lastName,
-        email: contact.email,
-        phone: contact.phone,
-        message,
-        formSource: "Get Started Quiz",
+      const res = await fetch("/api/get-started", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          intent: answers.goal,
+          firstTimeBuyer: answers.firstTime,
+          paymentRange: answers.payment,
+          creditScore: answers.credit,
+          firstName: contact.firstName,
+          lastName: contact.lastName,
+          email: contact.email,
+          phone: contact.phone,
+          bestTimeToReach: contact.bestTime,
+          hearAboutSource: contact.referral,
+        }),
       });
-      if (ok) {
+      const json = (await res.json().catch(() => null)) as {
+        success?: boolean;
+      } | null;
+      if (res.ok && json?.success === true) {
         setSubmitted(true);
       } else {
         setError(true);
       }
+    } catch {
+      setError(true);
     } finally {
       setSubmitting(false);
     }
