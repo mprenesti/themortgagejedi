@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
-import { submitLead } from "@/lib/submit-lead";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name."),
@@ -28,17 +27,27 @@ export default function ContactForm() {
 
   async function onSubmit(values: FormValues) {
     setStatus("idle");
-    const ok = await submitLead({
-      name: values.name,
-      email: values.email,
-      phone: values.phone,
-      message: values.message,
-      formSource: "Contact Page",
-    });
-    if (ok) {
-      setStatus("success");
-      reset();
-    } else {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          message: values.message,
+        }),
+      });
+      const json = (await res.json().catch(() => null)) as {
+        success?: boolean;
+      } | null;
+      if (res.ok && json?.success === true) {
+        setStatus("success");
+        reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
       setStatus("error");
     }
   }
