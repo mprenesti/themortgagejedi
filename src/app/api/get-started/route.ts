@@ -3,8 +3,6 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
-const PIPELINE_ID = "2vY5fxvNqCkw24d4Bzzn";
-const PIPELINE_STAGE_ID = "42aa2e59-3d24-4ca6-b8dd-2209e54b5088";
 const OWNER_EMAIL = "mike@themortgagejedi.com";
 
 const FIELD_FIRST_TIME_BUYER = "cwtGtOBoOXHu9eBcfcTQ";
@@ -209,28 +207,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // 3) Create an Opportunity in the Leads pipeline.
-    const oppRes = await fetch(`${GHL_BASE}/opportunities/upsert`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        pipelineId: PIPELINE_ID,
-        pipelineStageId: PIPELINE_STAGE_ID,
-        contactId,
-        name: `${firstName} ${lastName} — Get Started (${intent})`,
-        status: "open",
-      }),
-    });
-    if (!oppRes.ok) {
-      const detail = await oppRes.text().catch(() => "");
-      console.error(
-        "[/api/get-started] Opportunity upsert failed",
-        oppRes.status,
-        detail,
-      );
-    }
-
-    // 4) Email the account owner.
+    // 3) Email the account owner.
     const emailHtml =
       "<p><strong>New Get Started quiz lead from themortgagejedi.com</strong></p>" +
       `<p>Name: ${firstName} ${lastName}<br>Email: ${email}<br>Phone: ${phone}<br>` +

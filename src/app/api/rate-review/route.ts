@@ -4,8 +4,6 @@ import { put } from "@vercel/blob";
 export const runtime = "nodejs";
 
 const GHL_BASE = "https://services.leadconnectorhq.com";
-const PIPELINE_ID = "2vY5fxvNqCkw24d4Bzzn";
-const PIPELINE_STAGE_ID = "42aa2e59-3d24-4ca6-b8dd-2209e54b5088";
 const OWNER_EMAIL = "mike@themortgagejedi.com";
 
 function ghlHeaders(apiKey: string) {
@@ -130,32 +128,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // 4) Create an Opportunity in the Leads pipeline.
-    const monetaryValue = Number(loanAmount.replace(/[^0-9.]/g, ""));
-    const oppRes = await fetch(`${GHL_BASE}/opportunities/upsert`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        pipelineId: PIPELINE_ID,
-        pipelineStageId: PIPELINE_STAGE_ID,
-        contactId,
-        name: `${name} — Loan Estimate Review`,
-        status: "open",
-        monetaryValue: Number.isFinite(monetaryValue) && monetaryValue > 0
-          ? monetaryValue
-          : undefined,
-      }),
-    });
-    if (!oppRes.ok) {
-      const detail = await oppRes.text().catch(() => "");
-      console.error(
-        "[/api/rate-review] Opportunity upsert failed",
-        oppRes.status,
-        detail,
-      );
-    }
-
-    // 5) Email the account owner.
+    // 4) Email the account owner.
     const emailHtml =
       "<p><strong>New loan estimate review request from themortgagejedi.com</strong></p>" +
       `<p>Name: ${name}<br>Email: ${email}<br>Phone: ${phone}<br>` +
