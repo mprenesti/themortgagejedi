@@ -1,4 +1,5 @@
 import Hero from "@/components/homepage/Hero";
+import TodaysRates from "@/components/homepage/TodaysRates";
 import ProblemSolution from "@/components/homepage/ProblemSolution";
 import Benefits from "@/components/homepage/Benefits";
 import Testimonials from "@/components/homepage/Testimonials";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <TodaysRates />
       <ProblemSolution />
       <Benefits />
       <Testimonials />
