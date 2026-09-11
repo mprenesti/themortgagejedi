@@ -79,6 +79,15 @@ export default function TodaysRates() {
             </div>
           </div>
         </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-gray-500">
+            These rates reflect national market averages, not a personalized
+            quote. Your actual rate depends on your credit profile, loan type,
+            down payment, and other factors. Contact Mike for rates tailored to
+            your situation.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
