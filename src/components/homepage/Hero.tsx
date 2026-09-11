@@ -24,8 +24,8 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <h1 className="heading-xl text-white">
-            Own Smart, <span className="text-gold">Live Free!</span> Your
-            Mortgage Journey <span className="text-gold">Made Simple</span>
+            Own Smart, <span className="text-gold">Live Free.</span> Your
+            Mortgage Journey <span className="text-gold">Made Simple!</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-gray-light">
             I&apos;m Mike Prenesti, The Mortgage Jedi. I help Las Vegas
