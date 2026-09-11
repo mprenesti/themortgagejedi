@@ -12,7 +12,7 @@ import CTAStrip from "@/components/ui/CTAStrip";
 import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "About Mike Prenesti — The Mortgage Jedi",
+  title: "About Mike Prenesti, The Mortgage Jedi",
   description:
     "16 years in the mortgage industry. Payment first philosophy. No pressure. No rush. Meet Mike Prenesti, The Mortgage Jedi, serving Las Vegas homebuyers.",
 };
@@ -41,8 +41,8 @@ const values = [
 ];
 
 const credentials = [
-  "Mike Prenesti — NMLS #1033445",
-  "NEXA Mortgage, LLC — Corporate NMLS #1660690",
+  "Mike Prenesti, NMLS #1033445",
+  "NEXA Mortgage, LLC (Corporate NMLS #1660690)",
   "Licensed in Nevada",
   "16 Years in the Mortgage Industry",
   "Specialties: First Time Buyers, Self-Employed, Investors, New Construction",
@@ -72,7 +72,7 @@ export default function AboutPage() {
     <>
       <PageHero
         label="About"
-        title="I'm Mike Prenesti. I help Las Vegas homebuyers get the right loan — not just the biggest approval."
+        title="I'm Mike Prenesti. I help Las Vegas homebuyers get the right loan. Not just the biggest approval."
         subtitle="16 years in the mortgage industry. Payment first philosophy. No pressure. No rush."
       />
 
@@ -80,7 +80,7 @@ export default function AboutPage() {
         <Block title="My Story">
           <p>
             I grew up in the San Fernando Valley. My dad ran an auto body shop.
-            I learned early what it means to run your own thing — to show up,
+            I learned early what it means to run your own thing: to show up,
             solve problems, and earn trust one client at a time.
           </p>
           <p>
@@ -162,7 +162,7 @@ export default function AboutPage() {
 
       <CTAStrip
         title="Let's find the loan that fits your life."
-        subtitle="No pressure, no rush — just honest guidance."
+        subtitle="No pressure, no rush. Just honest guidance."
         buttonLabel="Book a Free Consultation"
         href={SITE.bookingUrl}
         external

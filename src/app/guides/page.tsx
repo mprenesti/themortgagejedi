@@ -34,7 +34,7 @@ export default function GuidesPage() {
       <PageHero
         label="Learn Before You Borrow"
         title="Mortgage Guides & Scenarios"
-        subtitle="Real strategies, real numbers, and real programs — not generic advice. Each guide walks you through a specific scenario so you know exactly what to expect."
+        subtitle="Real strategies, real numbers, and real programs, not generic advice. Each guide walks you through a specific scenario so you know exactly what to expect."
       />
 
       <div className="container-page py-16 sm:py-20">

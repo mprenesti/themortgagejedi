@@ -5,7 +5,7 @@ import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Loan Options — FHA, VA, Conventional, DSCR & More",
+  title: "Loan Options: FHA, VA, Conventional, DSCR & More",
   description:
     "Purchase, refinance, investor, home equity, self-employed, and specialty loan programs. With 16 years of experience, Mike Prenesti finds the right fit for your situation.",
 };
@@ -50,7 +50,7 @@ const sections: LoanSection[] = [
       },
     ],
     benefits: [
-      "Payment first approach — we start with your comfortable monthly payment",
+      "Payment first approach: we start with your comfortable monthly payment",
       "Pre-approval in as little as 24 hours",
       "Guidance from application to closing",
     ],
@@ -199,7 +199,7 @@ export default function LoanOptionsPage() {
       <PageHero
         label="Loan Options"
         title="Loan Options for Every Situation"
-        subtitle="With 16 years of experience and a full range of programs, I can find the right fit — no matter your situation."
+        subtitle="With 16 years of experience and a full range of programs, I can find the right fit, no matter your situation."
       >
         <div className="flex flex-wrap gap-2">
           {quickFilters.map((f) => (

@@ -9,7 +9,7 @@ import { SITE } from "@/lib/constants";
 import { getGoogleReviews } from "@/lib/google-reviews";
 
 export const metadata: Metadata = {
-  title: "Testimonials — What Clients Are Saying",
+  title: "Testimonials: What Clients Are Saying",
   description:
     "Real stories from real Las Vegas homebuyers Mike Prenesti has helped over 16 years in the mortgage industry.",
 };

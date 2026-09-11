@@ -45,7 +45,7 @@ export default function TodaysRates() {
               Today&apos;s Mortgage Rates
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-light">
-              Updated daily from real market data — powered by Optimal Blue.
+              Updated daily from real market data, powered by Optimal Blue.
             </p>
           </div>
         </Reveal>

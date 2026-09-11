@@ -7,7 +7,7 @@ import GuideOptIn from "@/components/forms/GuideOptIn";
 export const metadata: Metadata = {
   title: "The Ultimate First Time Homebuyer Guide",
   description:
-    "Everything you need to know before, during, and after the mortgage process — in plain English. Free download from The Mortgage Jedi.",
+    "Everything you need to know before, during, and after the mortgage process, in plain English. Free download from The Mortgage Jedi.",
 };
 
 const sections = [
@@ -34,7 +34,7 @@ const sections = [
     points: [
       "What documents you'll need to apply",
       "How to choose the right lender (and why a broker beats a bank)",
-      "Pre-qualification vs pre-approval — what's the difference?",
+      "Pre-qualification vs pre-approval: what's the difference?",
     ],
   },
   {
@@ -51,7 +51,7 @@ const sections = [
       "How to complete your loan application",
       "Should you lock in your interest rate?",
       "What happens between application and closing?",
-      "Closing day — what to expect",
+      "Closing day: what to expect",
     ],
   },
 ];
@@ -62,7 +62,7 @@ export default function FirstTimeBuyerGuidePage() {
       <PageHero
         label="Free Download"
         title="The Ultimate First Time Homebuyer Guide"
-        subtitle="Everything you need to know before, during, and after the mortgage process — in plain English. Free download."
+        subtitle="Everything you need to know before, during, and after the mortgage process, in plain English. Free download."
       />
 
       <div className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr]">
@@ -117,7 +117,7 @@ export default function FirstTimeBuyerGuidePage() {
               called him. By the time we talked, I knew what questions to ask.”
             </blockquote>
             <figcaption className="mt-3 text-sm text-gray-mid">
-              — Las Vegas first time buyer
+              Las Vegas first time buyer
             </figcaption>
           </figure>
         </div>

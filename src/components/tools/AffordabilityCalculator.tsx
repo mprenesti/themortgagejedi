@@ -173,8 +173,8 @@ export default function AffordabilityCalculator() {
           </p>
           <p className="mt-2 text-sm text-gray-light">
             <span className="font-semibold text-white">Back-end DTI</span>{" "}
-            includes <em>all</em> your monthly debts — car payments, student
-            loans, credit cards — plus housing. Lenders typically want this at
+            includes <em>all</em> your monthly debts (car payments, student
+            loans, credit cards) plus housing. Lenders typically want this at
             36% or below, though many programs allow more.
           </p>
         </div>

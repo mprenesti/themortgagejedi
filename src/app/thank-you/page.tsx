@@ -30,7 +30,7 @@ export default function ThankYouPage({
           <>
             <p className="mt-4 text-lg text-gray-light">
               Thanks for grabbing the First Time Homebuyer Guide. Click below to
-              download it now — I&apos;ve also sent a copy to your inbox.
+              download it now. I&apos;ve also sent a copy to your inbox.
             </p>
             <a
               href="/downloads/first-time-buyer-guide.pdf"

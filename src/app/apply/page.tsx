@@ -7,7 +7,7 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Apply for Your Loan",
   description:
-    "Start your secure mortgage application with Mike Prenesti, The Mortgage Jedi. Quick, guided, and pressure free — apply online in minutes.",
+    "Start your secure mortgage application with Mike Prenesti, The Mortgage Jedi. Quick, guided, and pressure free. Apply online in minutes.",
 };
 
 const APPLY_URL =
@@ -22,7 +22,7 @@ const steps = [
   {
     Icon: UserCheck,
     title: "Mike Reviews It",
-    body: "I personally review your application and pull together the loan options that actually fit your goals — not just the biggest approval.",
+    body: "I personally review your application and pull together the loan options that actually fit your goals, not just the biggest approval.",
   },
   {
     Icon: MessagesSquare,
@@ -54,7 +54,7 @@ export default function ApplyPage() {
       <PageHero
         label="Apply Now"
         title="Apply for Your Loan"
-        subtitle="Ready to move forward? Start your secure application online. It's quick, guided, and there's no pressure — I'll be with you every step of the way."
+        subtitle="Ready to move forward? Start your secure application online. It's quick, guided, and there's no pressure. I'll be with you every step of the way."
       >
         <a
           href={APPLY_URL}
@@ -109,7 +109,7 @@ export default function ApplyPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-gray-light">
               Having these ready makes the process faster. Don&apos;t have
-              everything? No problem — apply anyway and we&apos;ll sort it out.
+              everything? No problem. Apply anyway and we&apos;ll sort it out.
             </p>
           </Reveal>
 

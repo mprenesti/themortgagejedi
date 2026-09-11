@@ -4,7 +4,7 @@ import BlogList from "@/components/blog/BlogList";
 import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Blog — Mortgage Resources & Market Insights",
+  title: "Blog: Mortgage Resources & Market Insights",
   description:
     "Educational articles to help you make smarter mortgage decisions, from The Mortgage Jedi, Mike Prenesti.",
 };

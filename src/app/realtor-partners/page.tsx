@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal";
 import RealtorForm from "@/components/forms/RealtorForm";
 
 export const metadata: Metadata = {
-  title: "Realtor Partners — Let's Build Something Together",
+  title: "Realtor Partners: Let's Build Something Together",
   description:
     "Mike Prenesti partners with Las Vegas real estate agents who care about their clients. Fast pre-approvals, clear communication, and co-branded marketing.",
 };
@@ -22,7 +22,7 @@ const whatIOffer = [
   "Co-branded First Time Buyer Guides (with your name and photo)",
   "Lunch and learn sessions for your team",
   "Market updates and rate context you can share with clients",
-  "A direct line to me — not a call center",
+  "A direct line to me, not a call center",
 ];
 
 export default function RealtorPartnersPage() {
@@ -30,7 +30,7 @@ export default function RealtorPartnersPage() {
     <>
       <PageHero
         label="Realtor Partners"
-        title="Realtor Partners — Let's Build Something Together"
+        title="Realtor Partners: Let's Build Something Together"
         subtitle="I work with real estate agents who care about their clients as much as I do. If that's you, let's talk."
       />
 

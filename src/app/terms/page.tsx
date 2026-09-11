@@ -20,8 +20,8 @@ export default function TermsPage() {
 
           <h2>Informational Purpose Only</h2>
           <p>
-            The content on this website — including calculators, articles, and
-            guides — is provided for general informational and educational
+            The content on this website, including calculators, articles, and
+            guides, is provided for general informational and educational
             purposes only. It does not constitute financial, legal, or tax
             advice, and is not a commitment to lend or an offer of credit. Loan
             terms, rates, and program availability are subject to change and

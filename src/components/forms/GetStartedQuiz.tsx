@@ -188,7 +188,7 @@ export default function GetStartedQuiz() {
       ) : (
         <form onSubmit={submit}>
           <h2 className="font-heading text-2xl font-bold text-white">
-            Almost there — how can Mike reach you?
+            Almost there. How can Mike reach you?
           </h2>
           {error ? (
             <div className="mt-6 flex items-start gap-3 rounded-md border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-200">

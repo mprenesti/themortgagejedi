@@ -15,12 +15,12 @@ export default function FinalCTA() {
       <div className="container-page relative z-10 text-center">
         <h2 className="heading-lg text-white">Ready to Find the Right Loan?</h2>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-light">
-          Take 2 minutes to get started. No pressure, no obligation — just
+          Take 2 minutes to get started. No pressure, no obligation. Just
           honest guidance.
         </p>
         <div className="mt-8 flex justify-center">
           <Link href="/get-started" className="btn-gold text-lg">
-            Get Started — It&apos;s Free
+            Get Started
           </Link>
         </div>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">

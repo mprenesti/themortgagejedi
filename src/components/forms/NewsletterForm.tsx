@@ -37,7 +37,7 @@ export default function NewsletterForm() {
   if (status === "done") {
     return (
       <p className="font-heading text-gold">
-        You&apos;re in! I&apos;ll send mortgage tips and market updates — no spam.
+        You&apos;re in! I&apos;ll send mortgage tips and market updates. No spam.
       </p>
     );
   }

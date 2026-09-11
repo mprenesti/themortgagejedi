@@ -12,7 +12,7 @@ export default function SecondOpinionStrip() {
           </h2>
           <p className="mt-1 text-black/80">
             Upload the Loan Estimate you received from another lender, and
-            I&apos;ll personally review your rate, fees, and loan terms — for
+            I&apos;ll personally review your rate, fees, and loan terms, for
             free.
           </p>
         </div>

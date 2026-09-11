@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/SocialIcons";
 
 export const metadata: Metadata = {
-  title: "Contact Mike Prenesti — The Mortgage Jedi",
+  title: "Contact Mike Prenesti, The Mortgage Jedi",
   description:
     "Get in touch with Mike Prenesti, The Mortgage Jedi. Call (702) 497-0584, email mike@themortgagejedi.com, or book a free consultation online.",
 };
@@ -103,7 +103,7 @@ export default function ContactPage() {
             Book a Free Consultation
           </h2>
           <p className="mt-2 text-gray-light">
-            Pick a time that works for you — no pressure, no obligation.
+            Pick a time that works for you. No pressure, no obligation.
           </p>
           <div className="mt-6">
             <BookingEmbed />

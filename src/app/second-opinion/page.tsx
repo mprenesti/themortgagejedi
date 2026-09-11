@@ -7,7 +7,7 @@ import SecondOpinionForm from "@/components/forms/SecondOpinionForm";
 export const metadata: Metadata = {
   title: "Free Second Opinion on Your Loan Estimate",
   description:
-    "Upload the Loan Estimate you received from another lender and Mike Prenesti will personally review your rate, fees, and loan terms — for free.",
+    "Upload the Loan Estimate you received from another lender and Mike Prenesti will personally review your rate, fees, and loan terms, for free.",
 };
 
 const points = [
@@ -22,7 +22,7 @@ export default function SecondOpinionPage() {
       <PageHero
         label="Second Opinion"
         title="Get a Free Second Opinion on Your Loan Estimate"
-        subtitle="Upload the Loan Estimate you received from another lender and I'll personally review your rate, fees, and loan terms — for free. No pressure, no obligation."
+        subtitle="Upload the Loan Estimate you received from another lender and I'll personally review your rate, fees, and loan terms, for free. No pressure, no obligation."
       />
 
       <div className="container-page grid gap-12 py-16 sm:py-20 lg:grid-cols-2">
@@ -44,7 +44,7 @@ export default function SecondOpinionPage() {
             <p className="text-gray-light">
               Comparing offers is one of the smartest things you can do before
               committing to a mortgage. I&apos;ll break down exactly what
-              you&apos;re being charged and whether there&apos;s a better fit —
+              you&apos;re being charged and whether there&apos;s a better fit,
               even if it means telling you to stick with your current lender.
             </p>
           </Reveal>

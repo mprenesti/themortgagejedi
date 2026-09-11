@@ -57,7 +57,7 @@ export default function Footer() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/logo-full.png"
-            alt="The Mortgage Jedi — Mike Prenesti"
+            alt="The Mortgage Jedi, Mike Prenesti"
             className="h-[7.5rem] w-auto"
           />
           <p className="mt-4 text-sm text-gray-light">{SITE.tagline}</p>

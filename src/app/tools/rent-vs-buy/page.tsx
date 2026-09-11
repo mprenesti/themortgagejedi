@@ -16,7 +16,7 @@ export default function RentVsBuyPage() {
       <PageHero
         label="Tools"
         title="Rent vs Buy Calculator"
-        subtitle="Compare the true long-term cost of renting versus buying — including equity, appreciation, and your break-even point."
+        subtitle="Compare the true long-term cost of renting versus buying, including equity, appreciation, and your break-even point."
       />
       <div className="container-page py-16 sm:py-20">
         <RentVsBuyCalculator />

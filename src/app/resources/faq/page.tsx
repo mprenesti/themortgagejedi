@@ -22,7 +22,7 @@ const moreFaqs: FAQ[] = [
   },
   {
     q: "What's the difference between pre-qualification and pre-approval?",
-    a: "Pre-qualification is a quick estimate based on information you share. Pre-approval is a stronger commitment based on verified documents — it tells sellers you're a serious, ready buyer.",
+    a: "Pre-qualification is a quick estimate based on information you share. Pre-approval is a stronger commitment based on verified documents. It tells sellers you're a serious, ready buyer.",
   },
   {
     q: "Should I lock my interest rate?",
@@ -30,7 +30,7 @@ const moreFaqs: FAQ[] = [
   },
   {
     q: "Are there costs to work with you?",
-    a: "Our consultation is always free. As a broker, my compensation is built into the loan and disclosed upfront — there are no surprise fees for talking with me about your options.",
+    a: "Our consultation is always free. As a broker, my compensation is built into the loan and disclosed upfront. There are no surprise fees for talking with me about your options.",
   },
   {
     q: "Can I buy a home if I'm self-employed?",

@@ -158,7 +158,7 @@ export const HOME_FAQS: FAQ[] = [
   },
   {
     q: "Do I need perfect credit to get a loan?",
-    a: "Not at all. There are loan programs available for credit scores as low as 500. I specialize in finding the right fit regardless of where your score is today — and I can help you build a plan to improve it over time.",
+    a: "Not at all. There are loan programs available for credit scores as low as 500. I specialize in finding the right fit regardless of where your score is today, and I can help you build a plan to improve it over time.",
   },
   {
     q: "How long does the mortgage process take?",

@@ -82,7 +82,7 @@ export default function BlogPostPage({
             </span>
             <div>
               <p className="font-heading font-semibold text-white">
-                Mike Prenesti — The Mortgage Jedi
+                Mike Prenesti, The Mortgage Jedi
               </p>
               <p className="text-sm text-gray-light">
                 16 years helping Las Vegas homebuyers find the right loan. {SITE.nmls}.
@@ -103,7 +103,7 @@ export default function BlogPostPage({
               Have questions about your situation?
             </h2>
             <p className="mt-2 text-gray-light">
-              Let&apos;s talk it through — no pressure, no obligation.
+              Let&apos;s talk it through. No pressure, no obligation.
             </p>
             <a
               href={SITE.bookingUrl}

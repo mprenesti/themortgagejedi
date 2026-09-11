@@ -23,7 +23,7 @@ export default function ProblemSolution() {
           </h2>
           <p className="mt-5 text-lg text-gray-light">
             Between conflicting advice online, lenders who treat you like a file
-            number, and loan products you didn&apos;t even know existed —
+            number, and loan products you didn&apos;t even know existed,
             it&apos;s easy to feel lost. Most borrowers settle for whatever their
             bank offers because they don&apos;t know there&apos;s a better way.
           </p>
@@ -40,7 +40,7 @@ export default function ProblemSolution() {
           <p className="mt-5 text-lg text-gray-light">
             I don&apos;t lead with approvals. I lead with questions. My
             payment first approach means we find out what fits your life before
-            we ever talk numbers. You get the right loan — not the biggest one.
+            we ever talk numbers. You get the right loan, not the biggest one.
           </p>
         </Reveal>
       </div>

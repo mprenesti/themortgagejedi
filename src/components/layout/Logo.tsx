@@ -11,7 +11,7 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
       href="/"
       onClick={onClick}
       className="group flex items-center"
-      aria-label="The Mortgage Jedi — Mike Prenesti — Home"
+      aria-label="The Mortgage Jedi, Mike Prenesti, Home"
     >
       {!imgError ? (
         // Full brand lockup (symbol + "Mike Prenesti" + "The Mortgage Jedi"),
@@ -20,7 +20,7 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/images/logo-full.png"
-          alt="The Mortgage Jedi — Mike Prenesti"
+          alt="The Mortgage Jedi, Mike Prenesti"
           className="h-24 w-auto sm:h-[7.5rem]"
           onError={() => setImgError(true)}
         />

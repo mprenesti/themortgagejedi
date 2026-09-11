@@ -30,7 +30,7 @@ export default function Hero() {
           </h1>
           <p className="mt-6 max-w-xl text-lg text-gray-light">
             I&apos;m Mike Prenesti, The Mortgage Jedi. I help Las Vegas
-            homebuyers get the right loan — not just the biggest approval.
+            homebuyers get the right loan, not just the biggest approval.
             Payment focused guidance. No pressure. No rush. Just the loan that
             fits your life.
           </p>
