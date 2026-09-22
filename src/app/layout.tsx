@@ -80,7 +80,6 @@ export const metadata: Metadata = {
     description: "Payment first mortgage guidance for Las Vegas homebuyers.",
     url: SITE.url,
     siteName: SITE.name,
-    images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
   },
@@ -88,7 +87,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Mortgage Jedi | Las Vegas Mortgage Broker",
     description: "Payment first mortgage guidance for Las Vegas homebuyers.",
-    images: ["/images/og-default.jpg"],
   },
   robots: { index: true, follow: true },
 };
