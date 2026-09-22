@@ -4,8 +4,8 @@ import { ArrowRight, FileSearch } from "lucide-react";
 export default function SecondOpinionStrip() {
   return (
     <section className="bg-gold">
-      <div className="container-page flex flex-col items-center gap-5 py-10 text-center md:flex-row md:text-left">
-        <FileSearch className="h-10 w-10 flex-shrink-0 text-black" />
+      <div className="container-page flex flex-col items-center gap-5 py-10 text-center md:flex-row md:gap-7 md:text-left">
+        <FileSearch className="h-[3.75rem] w-[3.75rem] flex-shrink-0 self-center text-black" />
         <div className="flex-1">
           <h2 className="font-heading text-2xl font-bold text-black">
             Already shopping? Get a Free Second Opinion on your Loan Estimate.
