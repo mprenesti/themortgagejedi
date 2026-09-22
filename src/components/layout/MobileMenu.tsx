@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
-import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/constants";
+import { PHONE_DISPLAY, SMS_HREF } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export default function MobileMenu() {
@@ -100,7 +100,7 @@ export default function MobileMenu() {
                 onClick={() => setOpen(false)}
                 className="btn-gold w-full"
               >
-                Get Started
+                Book a Call
               </Link>
               <Link
                 href="/apply"
@@ -109,8 +109,8 @@ export default function MobileMenu() {
               >
                 Apply Now
               </Link>
-              <a href={PHONE_HREF} className="btn-outline w-full">
-                Call {PHONE_DISPLAY}
+              <a href={SMS_HREF} className="btn-outline w-full">
+                Text {PHONE_DISPLAY}
               </a>
             </div>
           </div>

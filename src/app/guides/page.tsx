@@ -55,7 +55,7 @@ export default function GuidesPage() {
             situation. No pressure, no obligation.
           </p>
           <Link href="/get-started" className="btn-gold">
-            Get Started
+            Book a Call
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

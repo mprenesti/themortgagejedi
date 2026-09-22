@@ -48,7 +48,7 @@ export default async function TestimonialsPage() {
       </div>
       <CTAStrip
         title="Ready to Be the Next Success Story?"
-        buttonLabel="Get Started"
+        buttonLabel="Book a Call"
         href="/get-started"
       />
     </>

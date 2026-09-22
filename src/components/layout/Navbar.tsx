@@ -68,7 +68,7 @@ export default function Navbar() {
             Apply Now
           </Link>
           <Link href="/get-started" className="btn-gold hidden sm:inline-flex">
-            Get Started
+            Book a Call
           </Link>
           <MobileMenu />
         </div>

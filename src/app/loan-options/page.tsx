@@ -280,7 +280,7 @@ export default function LoanOptionsPage() {
                 className="btn-gold mt-7 inline-flex"
                 data-section={idx}
               >
-                Get Started <ArrowRight className="h-4 w-4" />
+                Book a Call <ArrowRight className="h-4 w-4" />
               </Link>
             </section>
           </Reveal>

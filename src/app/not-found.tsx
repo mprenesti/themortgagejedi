@@ -19,7 +19,7 @@ export default function NotFound() {
             Back to Home
           </Link>
           <Link href="/get-started" className="btn-outline">
-            Get Started
+            Book a Call
           </Link>
         </div>
       </div>

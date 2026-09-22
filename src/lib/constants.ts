@@ -29,5 +29,6 @@ export const SITE = {
 } as const;
 
 export const PHONE_HREF = `tel:+1${SITE.phone.replace(/\D/g, "")}`;
+export const SMS_HREF = `sms:+1${SITE.phone.replace(/\D/g, "")}`;
 export const PHONE_DISPLAY = "(702) 497-0584";
 export const EMAIL_HREF = `mailto:${SITE.email}`;

@@ -20,7 +20,7 @@ export default function FinalCTA() {
         </p>
         <div className="mt-8 flex justify-center">
           <Link href="/get-started" className="btn-gold text-lg">
-            Get Started
+            Book a Call
           </Link>
         </div>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
