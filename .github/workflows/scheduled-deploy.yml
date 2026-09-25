@@ -1,0 +1,35 @@
+name: Scheduled Deploy
+
+# Rebuilds the site each morning so newly scheduled posts go live at
+# 8:00 AM Pacific. Two runs cover both daylight (08:05 PDT = 15:05 UTC) and
+# standard (08:05 PST = 16:05 UTC) time. The blog gate hides any post whose
+# publish moment has not arrived, so an early or extra run is harmless.
+
+on:
+  schedule:
+    - cron: "5 15 * * *"
+    - cron: "5 16 * * *"
+  workflow_dispatch:
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK_URL" ]; then
+            echo "Error: the VERCEL_DEPLOY_HOOK_URL secret is not set. Add it in the repository settings."
+            exit 1
+          fi
+          echo "Triggering Vercel deploy hook..."
+          http_code=$(curl -s -o /tmp/deploy_response.txt -w "%{http_code}" -X POST "$HOOK_URL")
+          echo "Response status: $http_code"
+          cat /tmp/deploy_response.txt || true
+          echo ""
+          if [ "$http_code" -lt 200 ] || [ "$http_code" -ge 300 ]; then
+            echo "Deploy hook request failed with status $http_code."
+            exit 1
+          fi
+          echo "Deploy hook triggered successfully."

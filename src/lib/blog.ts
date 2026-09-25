@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import type { BlogMeta, BlogPost } from "./blog-types";
+import { isPublishedAt, shouldShowFuturePosts } from "./publish-schedule";
 
 export type { BlogMeta, BlogPost } from "./blog-types";
 export { BLOG_CATEGORIES } from "./blog-types";
@@ -34,9 +35,18 @@ function parseFile(fileName: string): BlogPost {
 }
 
 export function getAllPosts(): BlogPost[] {
-  return readFiles()
+  const posts = readFiles()
     .map(parseFile)
     .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+  // In production, hide posts whose scheduled publish moment (8:00 AM Pacific
+  // on their frontmatter date) has not arrived yet. Every other blog surface
+  // (getPostSlugs, getPostBySlug, getRelatedPosts, the blog index,
+  // generateStaticParams and the sitemap) flows through this function, so
+  // gating here covers all of them.
+  if (shouldShowFuturePosts()) return posts;
+  const now = new Date();
+  return posts.filter((post) => isPublishedAt(post.date, now));
 }
 
 export function getPostSlugs(): string[] {
