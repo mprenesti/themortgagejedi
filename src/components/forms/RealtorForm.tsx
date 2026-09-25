@@ -6,7 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
+import LeadSourceField from "./LeadSourceField";
 import { submitLead } from "@/lib/submit-lead";
+import { leadSourceNeedsDetail } from "@/lib/lead-source";
+import { getLeadSourceAuto } from "@/lib/attribution";
+import { trackGenerateLead } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name."),
@@ -20,6 +24,10 @@ type FormValues = z.infer<typeof schema>;
 
 export default function RealtorForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [leadSource, setLeadSource] = useState("");
+  const [leadSourceDetail, setLeadSourceDetail] = useState("");
+  const [leadSourceError, setLeadSourceError] = useState<string>();
+  const [detailError, setDetailError] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -29,6 +37,16 @@ export default function RealtorForm() {
 
   async function onSubmit(values: FormValues) {
     setStatus("idle");
+    if (!leadSource) {
+      setLeadSourceError("Please let me know how you found me.");
+      return;
+    }
+    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
+      setDetailError("Please add a quick detail.");
+      return;
+    }
+    setLeadSourceError(undefined);
+    setDetailError(undefined);
     const message = [
       values.brokerage ? `Brokerage: ${values.brokerage}` : "",
       values.lookingFor ? `Looking for: ${values.lookingFor}` : "",
@@ -41,8 +59,12 @@ export default function RealtorForm() {
       phone: values.phone,
       message,
       formSource: "Realtor Partner",
+      leadSource,
+      leadSourceDetail,
+      leadSourceAuto: getLeadSourceAuto(),
     });
     if (ok) {
+      trackGenerateLead("Realtor Partner", leadSource);
       setStatus("success");
       reset();
     } else {
@@ -108,6 +130,20 @@ export default function RealtorForm() {
           placeholder="Tell me what matters most to you and your clients..."
         />
       </FieldWrapper>
+      <LeadSourceField
+        value={leadSource}
+        onValueChange={(v) => {
+          setLeadSource(v);
+          setLeadSourceError(undefined);
+        }}
+        detail={leadSourceDetail}
+        onDetailChange={(v) => {
+          setLeadSourceDetail(v);
+          setDetailError(undefined);
+        }}
+        error={leadSourceError}
+        detailError={detailError}
+      />
       <button type="submit" disabled={isSubmitting} className="btn-gold w-full">
         {isSubmitting ? "Submitting..." : "Submit"}
       </button>

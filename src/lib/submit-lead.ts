@@ -8,6 +8,9 @@ export type LeadInput = {
   phone?: string;
   message?: string;
   formSource: string;
+  leadSource?: string;
+  leadSourceDetail?: string;
+  leadSourceAuto?: string;
 };
 
 /**
@@ -36,6 +39,9 @@ export async function submitLead(input: LeadInput): Promise<boolean> {
         phone: input.phone,
         message: input.message,
         formSource: input.formSource,
+        lead_source: input.leadSource,
+        lead_source_detail: input.leadSourceDetail,
+        lead_source_auto: input.leadSourceAuto,
       }),
     });
     const json = (await res.json().catch(() => null)) as {

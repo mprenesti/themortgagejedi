@@ -3,8 +3,12 @@
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Select } from "./fields";
+import LeadSourceField from "./LeadSourceField";
 import BookingEmbed from "@/components/ui/BookingEmbed";
 import { cn } from "@/lib/utils";
+import { leadSourceNeedsDetail } from "@/lib/lead-source";
+import { getLeadSourceAuto } from "@/lib/attribution";
+import { trackGenerateLead } from "@/lib/analytics";
 
 type ChoiceStep = {
   key: string;
@@ -64,8 +68,11 @@ export default function GetStartedQuiz() {
     email: "",
     phone: "",
     bestTime: "Morning",
-    referral: "",
   });
+  const [leadSource, setLeadSource] = useState("");
+  const [leadSourceDetail, setLeadSourceDetail] = useState("");
+  const [leadSourceError, setLeadSourceError] = useState<string>();
+  const [detailError, setDetailError] = useState<string>();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
@@ -81,6 +88,16 @@ export default function GetStartedQuiz() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (!leadSource) {
+      setLeadSourceError("Please let me know how you found me.");
+      return;
+    }
+    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
+      setDetailError("Please add a quick detail.");
+      return;
+    }
+    setLeadSourceError(undefined);
+    setDetailError(undefined);
     setSubmitting(true);
     setError(false);
     try {
@@ -97,13 +114,16 @@ export default function GetStartedQuiz() {
           email: contact.email,
           phone: contact.phone,
           bestTimeToReach: contact.bestTime,
-          hearAboutSource: contact.referral,
+          lead_source: leadSource,
+          lead_source_detail: leadSourceDetail,
+          lead_source_auto: getLeadSourceAuto(),
         }),
       });
       const json = (await res.json().catch(() => null)) as {
         success?: boolean;
       } | null;
       if (res.ok && json?.success === true) {
+        trackGenerateLead("Get Started Quiz", leadSource);
         setSubmitted(true);
       } else {
         setError(true);
@@ -260,15 +280,22 @@ export default function GetStartedQuiz() {
                 <option>Evening</option>
               </Select>
             </FieldWrapper>
-            <FieldWrapper label="How did you hear about Mike?">
-              <Input
-                value={contact.referral}
-                onChange={(e) =>
-                  setContact({ ...contact, referral: e.target.value })
-                }
-                placeholder="Google, referral, social..."
-              />
-            </FieldWrapper>
+          </div>
+          <div className="mt-4">
+            <LeadSourceField
+              value={leadSource}
+              onValueChange={(v) => {
+                setLeadSource(v);
+                setLeadSourceError(undefined);
+              }}
+              detail={leadSourceDetail}
+              onDetailChange={(v) => {
+                setLeadSourceDetail(v);
+                setDetailError(undefined);
+              }}
+              error={leadSourceError}
+              detailError={detailError}
+            />
           </div>
           <div className="mt-6 flex items-center justify-between gap-4">
             <button

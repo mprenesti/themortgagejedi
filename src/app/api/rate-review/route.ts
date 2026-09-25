@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
+import {
+  leadSourceCustomFields,
+  leadSourceNote,
+  leadSourceEmailHtml,
+} from "@/lib/ghl-lead-source";
 
 export const runtime = "nodejs";
 
@@ -25,6 +30,11 @@ export async function POST(request: Request) {
     const loanAmount = String(formData.get("loanAmount") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
     const file = formData.get("file");
+    const leadSourceData = {
+      leadSource: String(formData.get("lead_source") ?? "").trim(),
+      leadSourceDetail: String(formData.get("lead_source_detail") ?? "").trim(),
+      leadSourceAuto: String(formData.get("lead_source_auto") ?? "").trim(),
+    };
 
     // Both email and phone are required on the form.
     if (!email || !phone) {
@@ -77,6 +87,7 @@ export async function POST(request: Request) {
         phone,
         source: "themortgagejedi.com - Loan Estimate Review",
         tags: ["Website Lead", "Loan Estimate Review"],
+        customFields: leadSourceCustomFields(leadSourceData),
       }),
     });
 
@@ -109,7 +120,8 @@ export async function POST(request: Request) {
       `Current Lender: ${lenderName || "Not provided"}\n` +
       `Loan Amount: ${loanAmount || "Not provided"}\n` +
       `Message: ${message || "None"}\n` +
-      `Loan Estimate PDF: ${blobUrl || "Not uploaded"}`;
+      `Loan Estimate PDF: ${blobUrl || "Not uploaded"}\n\n` +
+      leadSourceNote(leadSourceData);
 
     const noteRes = await fetch(
       `${GHL_BASE}/contacts/${contactId}/notes`,
@@ -134,7 +146,8 @@ export async function POST(request: Request) {
       `<p>Name: ${name}<br>Email: ${email}<br>Phone: ${phone}<br>` +
       `Current Lender: ${lenderName || "Not provided"}<br>` +
       `Loan Amount: ${loanAmount || "Not provided"}<br>` +
-      `Message: ${message || "None"}</p>`;
+      `Message: ${message || "None"}</p>` +
+      `<p>${leadSourceEmailHtml(leadSourceData)}</p>`;
 
     const emailRes = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",

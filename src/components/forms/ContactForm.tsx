@@ -6,6 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
+import LeadSourceField from "./LeadSourceField";
+import { leadSourceNeedsDetail } from "@/lib/lead-source";
+import { getLeadSourceAuto } from "@/lib/attribution";
+import { trackGenerateLead } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name."),
@@ -18,6 +22,10 @@ type FormValues = z.infer<typeof schema>;
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [leadSource, setLeadSource] = useState("");
+  const [leadSourceDetail, setLeadSourceDetail] = useState("");
+  const [leadSourceError, setLeadSourceError] = useState<string>();
+  const [detailError, setDetailError] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -27,6 +35,16 @@ export default function ContactForm() {
 
   async function onSubmit(values: FormValues) {
     setStatus("idle");
+    if (!leadSource) {
+      setLeadSourceError("Please let me know how you found me.");
+      return;
+    }
+    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
+      setDetailError("Please add a quick detail.");
+      return;
+    }
+    setLeadSourceError(undefined);
+    setDetailError(undefined);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -36,12 +54,16 @@ export default function ContactForm() {
           email: values.email,
           phone: values.phone,
           message: values.message,
+          lead_source: leadSource,
+          lead_source_detail: leadSourceDetail,
+          lead_source_auto: getLeadSourceAuto(),
         }),
       });
       const json = (await res.json().catch(() => null)) as {
         success?: boolean;
       } | null;
       if (res.ok && json?.success === true) {
+        trackGenerateLead("Contact Form", leadSource);
         setStatus("success");
         reset();
       } else {
@@ -105,6 +127,20 @@ export default function ContactForm() {
           placeholder="Tell me a little about what you're looking for..."
         />
       </FieldWrapper>
+      <LeadSourceField
+        value={leadSource}
+        onValueChange={(v) => {
+          setLeadSource(v);
+          setLeadSourceError(undefined);
+        }}
+        detail={leadSourceDetail}
+        onDetailChange={(v) => {
+          setLeadSourceDetail(v);
+          setDetailError(undefined);
+        }}
+        error={leadSourceError}
+        detailError={detailError}
+      />
       <button type="submit" disabled={isSubmitting} className="btn-gold w-full">
         {isSubmitting ? "Sending..." : "Send Message"}
       </button>

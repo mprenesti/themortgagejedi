@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import {
+  leadSourceCustomFields,
+  leadSourceNote,
+  leadSourceEmailHtml,
+} from "@/lib/ghl-lead-source";
 
 export const runtime = "nodejs";
 
@@ -20,7 +25,9 @@ type QuizBody = {
   email?: string;
   phone?: string;
   bestTimeToReach?: string;
-  hearAboutSource?: string;
+  lead_source?: string;
+  lead_source_detail?: string;
+  lead_source_auto?: string;
 };
 
 function ghlHeaders(apiKey: string) {
@@ -95,7 +102,11 @@ export async function POST(request: Request) {
   const email = (body.email ?? "").trim();
   const phone = (body.phone ?? "").trim();
   const bestTimeToReach = (body.bestTimeToReach ?? "").trim();
-  const hearAboutSource = (body.hearAboutSource ?? "").trim();
+  const leadSourceData = {
+    leadSource: (body.lead_source ?? "").trim(),
+    leadSourceDetail: (body.lead_source_detail ?? "").trim(),
+    leadSourceAuto: (body.lead_source_auto ?? "").trim(),
+  };
 
   if (!email || !phone) {
     return NextResponse.json(
@@ -140,9 +151,15 @@ export async function POST(request: Request) {
     if (creditBucket) {
       customFields.push({ id: FIELD_CREDIT_SCORE, field_value: creditBucket });
     }
-    if (hearAboutSource) {
-      customFields.push({ id: FIELD_HEAR_ABOUT, field_value: hearAboutSource });
+    // Keep populating the existing "How did you hear about Mike" field with the
+    // human-readable lead source for continuity.
+    if (leadSourceData.leadSource) {
+      customFields.push({
+        id: FIELD_HEAR_ABOUT,
+        field_value: leadSourceData.leadSource,
+      });
     }
+    customFields.push(...leadSourceCustomFields(leadSourceData));
 
     // 1) Upsert the contact.
     const contactRes = await fetch(`${GHL_BASE}/contacts/upsert`, {
@@ -191,7 +208,7 @@ export async function POST(request: Request) {
       `Payment range: ${paymentRange}\n` +
       `Credit score: ${creditScore}\n` +
       `Best time to reach: ${bestTimeToReach || "Not provided"}\n` +
-      `Heard about Mike via: ${hearAboutSource || "Not provided"}`;
+      leadSourceNote(leadSourceData);
 
     const noteRes = await fetch(`${GHL_BASE}/contacts/${contactId}/notes`, {
       method: "POST",
@@ -214,7 +231,7 @@ export async function POST(request: Request) {
       `Intent: ${intent}<br>First-time buyer: ${firstTimeBuyer}<br>` +
       `Payment range: ${paymentRange}<br>Credit score: ${creditScore}<br>` +
       `Best time to reach: ${bestTimeToReach || "Not provided"}<br>` +
-      `Heard about Mike via: ${hearAboutSource || "Not provided"}</p>`;
+      `${leadSourceEmailHtml(leadSourceData)}</p>`;
 
     const emailRes = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",

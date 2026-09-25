@@ -1,4 +1,8 @@
 import { NextResponse } from "next/server";
+import {
+  leadSourceCustomFields,
+  leadSourceNote,
+} from "@/lib/ghl-lead-source";
 
 export const runtime = "nodejs";
 
@@ -9,9 +13,13 @@ type LeadBody = {
   phone?: string;
   message?: string;
   formSource?: string;
+  lead_source?: string;
+  lead_source_detail?: string;
+  lead_source_auto?: string;
 };
 
-const GHL_UPSERT_URL = "https://services.leadconnectorhq.com/contacts/upsert";
+const GHL_BASE = "https://services.leadconnectorhq.com";
+const GHL_UPSERT_URL = `${GHL_BASE}/contacts/upsert`;
 
 export async function POST(request: Request) {
   let body: LeadBody;
@@ -24,7 +32,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const { firstName, lastName, email, phone, formSource } = body;
+  const { firstName, lastName, email, phone, message, formSource } = body;
+  const leadSourceData = {
+    leadSource: body.lead_source,
+    leadSourceDetail: body.lead_source_detail,
+    leadSourceAuto: body.lead_source_auto,
+  };
 
   // At least one contact method is required to create a usable lead.
   if (!email && !phone) {
@@ -49,14 +62,16 @@ export async function POST(request: Request) {
     );
   }
 
+  const headers = {
+    Authorization: `Bearer ${apiKey}`,
+    Version: "2021-07-28",
+    "Content-Type": "application/json",
+  };
+
   try {
     const res = await fetch(GHL_UPSERT_URL, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        Version: "2021-07-28",
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({
         locationId,
         firstName,
@@ -65,6 +80,7 @@ export async function POST(request: Request) {
         phone,
         source: "themortgagejedi.com",
         tags: ["Website Lead", formSource].filter(Boolean),
+        customFields: leadSourceCustomFields(leadSourceData),
       }),
     });
 
@@ -80,6 +96,29 @@ export async function POST(request: Request) {
         },
         { status: 500 },
       );
+    }
+
+    // Best-effort note so the message and lead source always land on the
+    // contact record even when the optional custom fields are not configured.
+    const contactJson = (await res.json().catch(() => null)) as {
+      contact?: { id?: string };
+    } | null;
+    const contactId = contactJson?.contact?.id;
+    if (contactId) {
+      const noteBody =
+        (message ? `${message}\n\n` : "") + leadSourceNote(leadSourceData);
+      const noteRes = await fetch(
+        `${GHL_BASE}/contacts/${contactId}/notes`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ body: noteBody }),
+        },
+      );
+      if (!noteRes.ok) {
+        const detail = await noteRes.text().catch(() => "");
+        console.error("[/api/lead] Note creation failed", noteRes.status, detail);
+      }
     }
 
     return NextResponse.json({ success: true });

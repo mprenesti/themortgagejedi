@@ -3,16 +3,33 @@
 import { useRef, useState } from "react";
 import { CheckCircle2, Upload, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
+import LeadSourceField from "./LeadSourceField";
+import { leadSourceNeedsDetail } from "@/lib/lead-source";
+import { trackGenerateLead, trackUploadLoanEstimate } from "@/lib/analytics";
 
 export default function SecondOpinionForm() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [leadSource, setLeadSource] = useState("");
+  const [leadSourceDetail, setLeadSourceDetail] = useState("");
+  const [leadSourceError, setLeadSourceError] = useState<string>();
+  const [detailError, setDetailError] = useState<string>();
   const formRef = useRef<HTMLFormElement>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!leadSource) {
+      setLeadSourceError("Please let me know how you found me.");
+      return;
+    }
+    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
+      setDetailError("Please add a quick detail.");
+      return;
+    }
+    setLeadSourceError(undefined);
+    setDetailError(undefined);
     setSubmitting(true);
     setError(false);
     try {
@@ -25,6 +42,8 @@ export default function SecondOpinionForm() {
         success?: boolean;
       } | null;
       if (res.ok && json?.success === true) {
+        trackUploadLoanEstimate();
+        trackGenerateLead("Loan Estimate Review", leadSource);
         setDone(true);
       } else {
         setError(true);
@@ -107,6 +126,24 @@ export default function SecondOpinionForm() {
       <FieldWrapper label="Message (optional)">
         <Textarea name="message" placeholder="Anything you'd like me to know?" />
       </FieldWrapper>
+
+      <LeadSourceField
+        value={leadSource}
+        onValueChange={(v) => {
+          setLeadSource(v);
+          setLeadSourceError(undefined);
+        }}
+        detail={leadSourceDetail}
+        onDetailChange={(v) => {
+          setLeadSourceDetail(v);
+          setDetailError(undefined);
+        }}
+        error={leadSourceError}
+        detailError={detailError}
+        name="lead_source"
+        detailName="lead_source_detail"
+        autoName="lead_source_auto"
+      />
 
       <button type="submit" disabled={submitting} className="btn-gold w-full">
         {submitting ? "Submitting..." : "Submit for Free Review"}

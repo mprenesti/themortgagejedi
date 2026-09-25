@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import {
+  leadSourceCustomFields,
+  leadSourceNote,
+  leadSourceEmailHtml,
+} from "@/lib/ghl-lead-source";
 
 export const runtime = "nodejs";
 
@@ -10,6 +15,9 @@ type ContactBody = {
   email?: string;
   phone?: string;
   message?: string;
+  lead_source?: string;
+  lead_source_detail?: string;
+  lead_source_auto?: string;
 };
 
 function ghlHeaders(apiKey: string) {
@@ -35,6 +43,11 @@ export async function POST(request: Request) {
   const email = (body.email ?? "").trim();
   const phone = (body.phone ?? "").trim();
   const message = (body.message ?? "").trim();
+  const leadSourceData = {
+    leadSource: (body.lead_source ?? "").trim(),
+    leadSourceDetail: (body.lead_source_detail ?? "").trim(),
+    leadSourceAuto: (body.lead_source_auto ?? "").trim(),
+  };
 
   // Both email and phone are required on the contact form.
   if (!email || !phone) {
@@ -71,6 +84,7 @@ export async function POST(request: Request) {
         phone,
         source: "themortgagejedi.com - Contact Form",
         tags: ["Website Lead", "Contact Form"],
+        customFields: leadSourceCustomFields(leadSourceData),
       }),
     });
 
@@ -102,7 +116,9 @@ export async function POST(request: Request) {
       method: "POST",
       headers,
       body: JSON.stringify({
-        body: `Contact Form message via themortgagejedi.com\n\n${message}`,
+        body:
+          `Contact Form message via themortgagejedi.com\n\n${message}\n\n` +
+          leadSourceNote(leadSourceData),
       }),
     });
     if (!noteRes.ok) {
@@ -118,7 +134,8 @@ export async function POST(request: Request) {
     const emailHtml =
       "<p><strong>New contact form submission from themortgagejedi.com</strong></p>" +
       `<p>Name: ${name}<br>Email: ${email}<br>Phone: ${phone}<br>` +
-      `Message: ${message}</p>`;
+      `Message: ${message}</p>` +
+      `<p>${leadSourceEmailHtml(leadSourceData)}</p>`;
 
     const emailRes = await fetch(`${GHL_BASE}/conversations/messages`, {
       method: "POST",

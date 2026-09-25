@@ -7,7 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input } from "./fields";
+import LeadSourceField from "./LeadSourceField";
 import { submitLead } from "@/lib/submit-lead";
+import { leadSourceNeedsDetail } from "@/lib/lead-source";
+import { getLeadSourceAuto } from "@/lib/attribution";
+import { trackGenerateLead } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name."),
@@ -24,6 +28,10 @@ export default function GuideOptIn({
 }) {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "error">("idle");
+  const [leadSource, setLeadSource] = useState("");
+  const [leadSourceDetail, setLeadSourceDetail] = useState("");
+  const [leadSourceError, setLeadSourceError] = useState<string>();
+  const [detailError, setDetailError] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -32,13 +40,27 @@ export default function GuideOptIn({
 
   async function onSubmit(values: FormValues) {
     setStatus("idle");
+    if (!leadSource) {
+      setLeadSourceError("Please let me know how you found me.");
+      return;
+    }
+    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
+      setDetailError("Please add a quick detail.");
+      return;
+    }
+    setLeadSourceError(undefined);
+    setDetailError(undefined);
     const ok = await submitLead({
       name: values.name,
       email: values.email,
       phone: values.phone,
       formSource,
+      leadSource,
+      leadSourceDetail,
+      leadSourceAuto: getLeadSourceAuto(),
     });
     if (ok) {
+      trackGenerateLead(formSource, leadSource);
       router.push("/thank-you?guide=true");
     } else {
       setStatus("error");
@@ -75,6 +97,20 @@ export default function GuideOptIn({
       <FieldWrapper label="Phone (optional)" error={errors.phone?.message}>
         <Input type="tel" {...register("phone")} placeholder="(702) 555-0123" />
       </FieldWrapper>
+      <LeadSourceField
+        value={leadSource}
+        onValueChange={(v) => {
+          setLeadSource(v);
+          setLeadSourceError(undefined);
+        }}
+        detail={leadSourceDetail}
+        onDetailChange={(v) => {
+          setLeadSourceDetail(v);
+          setDetailError(undefined);
+        }}
+        error={leadSourceError}
+        detailError={detailError}
+      />
       <button type="submit" disabled={isSubmitting} className="btn-gold w-full">
         {isSubmitting ? "Sending..." : "Download the Free Guide"}
       </button>
