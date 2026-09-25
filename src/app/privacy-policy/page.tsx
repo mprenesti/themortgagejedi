@@ -44,9 +44,20 @@ export default function PrivacyPolicyPage() {
 
           <h2>Cookies &amp; Tracking</h2>
           <p>
-            Our site may use cookies and third-party tracking pixels (such as
-            Google Analytics and Meta Pixel) to understand how visitors use the
-            site. You can disable cookies in your browser settings.
+            Our site uses Google Analytics and third-party tracking pixels
+            (such as Meta Pixel) to understand how visitors find and use the
+            site, including whether they arrived from an AI assistant or search
+            engine. Google Analytics sets cookies and processes usage data on
+            our behalf. You can opt out of Google Analytics by installing the
+            Google Analytics Opt-out Browser Add-on at{" "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              tools.google.com/dlpage/gaoptout
+            </a>
+            , or by disabling cookies in your browser settings.
           </p>
 
           <h2>Your Choices</h2>
