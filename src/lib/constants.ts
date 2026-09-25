@@ -3,7 +3,7 @@ export const SITE = {
   fullName: "Mike Prenesti | The Mortgage Jedi",
   tagline: "Your Mortgage, Made Simple. Your Future, Made Possible.",
   nmls: "NMLS #1033445",
-  company: "NEXA Mortgage, LLC",
+  company: "Nexa Lending, LLC",
   corporateNmls: "NMLS #1660690",
   // Corporate address NEXA loan officers display on their sites. Please confirm
   // this is the exact address NEXA instructs you to use before going live.

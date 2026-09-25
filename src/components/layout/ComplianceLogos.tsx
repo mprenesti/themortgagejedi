@@ -57,7 +57,7 @@ export default function ComplianceLogos() {
       <Logo
         src="/images/logo/nexa-lending-white.png"
         alt="NEXA Lending"
-        fallback="NEXA Mortgage, LLC"
+        fallback="Nexa Lending, LLC"
         className="h-10"
       />
       <Logo
