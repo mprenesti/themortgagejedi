@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
 import JsonLd from "@/components/JsonLd";
+import Analytics from "@/components/analytics/Analytics";
 
 const FINANCIAL_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
@@ -91,7 +92,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? process.env.NEXT_PUBLIC_GA_ID;
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
 export default function RootLayout({
@@ -110,6 +112,7 @@ export default function RootLayout({
         <main className="min-h-screen pt-28 sm:pt-36">{children}</main>
         <Footer />
         <MobileStickyCTA />
+        <Analytics />
 
         {GA_ID ? (
           <>
