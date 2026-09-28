@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { CheckCircle2, Upload, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
 import LeadSourceField from "./LeadSourceField";
-import { leadSourceNeedsDetail } from "@/lib/lead-source";
 import { trackGenerateLead, trackUploadLoanEstimate } from "@/lib/analytics";
 
 export default function SecondOpinionForm() {
@@ -15,21 +14,15 @@ export default function SecondOpinionForm() {
   const [leadSource, setLeadSource] = useState("");
   const [leadSourceDetail, setLeadSourceDetail] = useState("");
   const [leadSourceError, setLeadSourceError] = useState<string>();
-  const [detailError, setDetailError] = useState<string>();
   const formRef = useRef<HTMLFormElement>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!leadSource) {
-      setLeadSourceError("Please let me know how you found me.");
-      return;
-    }
-    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
-      setDetailError("Please add a quick detail.");
+      setLeadSourceError("Please let me know how you heard about me.");
       return;
     }
     setLeadSourceError(undefined);
-    setDetailError(undefined);
     setSubmitting(true);
     setError(false);
     try {
@@ -134,12 +127,8 @@ export default function SecondOpinionForm() {
           setLeadSourceError(undefined);
         }}
         detail={leadSourceDetail}
-        onDetailChange={(v) => {
-          setLeadSourceDetail(v);
-          setDetailError(undefined);
-        }}
+        onDetailChange={setLeadSourceDetail}
         error={leadSourceError}
-        detailError={detailError}
         name="lead_source"
         detailName="lead_source_detail"
         autoName="lead_source_auto"

@@ -8,7 +8,6 @@ import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input, Textarea } from "./fields";
 import LeadSourceField from "./LeadSourceField";
 import { submitLead } from "@/lib/submit-lead";
-import { leadSourceNeedsDetail } from "@/lib/lead-source";
 import { getLeadSourceAuto } from "@/lib/attribution";
 import { trackGenerateLead } from "@/lib/analytics";
 
@@ -27,7 +26,6 @@ export default function RealtorForm() {
   const [leadSource, setLeadSource] = useState("");
   const [leadSourceDetail, setLeadSourceDetail] = useState("");
   const [leadSourceError, setLeadSourceError] = useState<string>();
-  const [detailError, setDetailError] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -38,15 +36,10 @@ export default function RealtorForm() {
   async function onSubmit(values: FormValues) {
     setStatus("idle");
     if (!leadSource) {
-      setLeadSourceError("Please let me know how you found me.");
-      return;
-    }
-    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
-      setDetailError("Please add a quick detail.");
+      setLeadSourceError("Please let me know how you heard about me.");
       return;
     }
     setLeadSourceError(undefined);
-    setDetailError(undefined);
     const message = [
       values.brokerage ? `Brokerage: ${values.brokerage}` : "",
       values.lookingFor ? `Looking for: ${values.lookingFor}` : "",
@@ -137,12 +130,8 @@ export default function RealtorForm() {
           setLeadSourceError(undefined);
         }}
         detail={leadSourceDetail}
-        onDetailChange={(v) => {
-          setLeadSourceDetail(v);
-          setDetailError(undefined);
-        }}
+        onDetailChange={setLeadSourceDetail}
         error={leadSourceError}
-        detailError={detailError}
       />
       <button type="submit" disabled={isSubmitting} className="btn-gold w-full">
         {isSubmitting ? "Submitting..." : "Submit"}

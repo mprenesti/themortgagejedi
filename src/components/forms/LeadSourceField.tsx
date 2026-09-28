@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { FieldWrapper, Input, Select } from "./fields";
 import {
+  LEAD_SOURCE_DETAIL_LABEL,
+  LEAD_SOURCE_DETAIL_PLACEHOLDER,
   LEAD_SOURCE_LABEL,
   LEAD_SOURCE_OPTIONS,
-  leadSourceDetailLabel,
-  leadSourceNeedsDetail,
+  leadSourceShowsDetail,
 } from "@/lib/lead-source";
 import { getLeadSourceAuto } from "@/lib/attribution";
 
@@ -16,8 +17,9 @@ type Props = {
   detail: string;
   onDetailChange: (value: string) => void;
   error?: string;
-  detailError?: string;
   required?: boolean;
+  // When true, render a tighter layout for compact spaces (newsletter bar).
+  compact?: boolean;
   // When set, native names are added so plain FormData submissions pick the
   // values up automatically (used by the multipart second-opinion form).
   name?: string;
@@ -31,8 +33,8 @@ export default function LeadSourceField({
   detail,
   onDetailChange,
   error,
-  detailError,
   required = true,
+  compact = false,
   name,
   detailName,
   autoName,
@@ -43,10 +45,10 @@ export default function LeadSourceField({
     setAuto(getLeadSourceAuto());
   }, []);
 
-  const needsDetail = leadSourceNeedsDetail(value);
+  const showDetail = leadSourceShowsDetail(value);
 
   return (
-    <div className="space-y-4">
+    <div className={compact ? "space-y-2" : "space-y-4"}>
       <FieldWrapper label={LEAD_SOURCE_LABEL} required={required} error={error}>
         <Select
           name={name}
@@ -63,25 +65,22 @@ export default function LeadSourceField({
         </Select>
       </FieldWrapper>
 
-      {needsDetail ? (
-        <FieldWrapper
-          label={leadSourceDetailLabel(value)}
-          required
-          error={detailError}
-        >
+      {showDetail ? (
+        <FieldWrapper label={LEAD_SOURCE_DETAIL_LABEL}>
           <Input
             name={detailName}
-            required
             value={detail}
             onChange={(e) => onDetailChange(e.target.value)}
-            placeholder={
-              value === "Agent or realtor referral"
-                ? "Agent name"
-                : "A quick note"
-            }
+            placeholder={LEAD_SOURCE_DETAIL_PLACEHOLDER}
           />
         </FieldWrapper>
-      ) : null}
+      ) : (
+        // Keep the field present (empty) for FormData submissions even when the
+        // input is hidden, so the multipart form never omits the key.
+        detailName ? (
+          <input type="hidden" name={detailName} value={detail} readOnly />
+        ) : null
+      )}
 
       {autoName ? (
         <input type="hidden" name={autoName} value={auto} readOnly />

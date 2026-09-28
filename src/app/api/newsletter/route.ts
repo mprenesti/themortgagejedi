@@ -1,14 +1,23 @@
 import { NextResponse } from "next/server";
+import { leadSourceCustomFields } from "@/lib/ghl-lead-source";
 
 export const runtime = "nodejs";
 
 const GHL_UPSERT_URL = "https://services.leadconnectorhq.com/contacts/upsert";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type NewsletterBody = {
+  email?: string;
+  firstName?: string;
+  lead_source?: string;
+  lead_source_detail?: string;
+  lead_source_auto?: string;
+};
+
 export async function POST(request: Request) {
-  let body: { email?: string; firstName?: string };
+  let body: NewsletterBody;
   try {
-    body = (await request.json()) as { email?: string; firstName?: string };
+    body = (await request.json()) as NewsletterBody;
   } catch {
     return NextResponse.json(
       { success: false, error: "Invalid request body." },
@@ -18,6 +27,11 @@ export async function POST(request: Request) {
 
   const email = (body.email ?? "").trim();
   const firstName = (body.firstName ?? "").trim();
+  const leadSourceData = {
+    leadSource: (body.lead_source ?? "").trim(),
+    leadSourceDetail: (body.lead_source_detail ?? "").trim(),
+    leadSourceAuto: (body.lead_source_auto ?? "").trim(),
+  };
 
   if (!email || !EMAIL_RE.test(email)) {
     return NextResponse.json(
@@ -53,6 +67,7 @@ export async function POST(request: Request) {
         firstName: firstName || undefined,
         source: "themortgagejedi.com - Newsletter Signup",
         tags: ["Website Lead", "newsletter lead"],
+        customFields: leadSourceCustomFields(leadSourceData),
       }),
     });
 

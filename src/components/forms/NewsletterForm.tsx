@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import LeadSourceField from "./LeadSourceField";
+import { getLeadSourceAuto } from "@/lib/attribution";
 
 export default function NewsletterForm() {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [leadSource, setLeadSource] = useState("");
+  const [leadSourceDetail, setLeadSourceDetail] = useState("");
+  const [leadSourceError, setLeadSourceError] = useState<string>();
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
     "idle",
   );
@@ -12,12 +17,23 @@ export default function NewsletterForm() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
+    if (!leadSource) {
+      setLeadSourceError("Please let me know how you heard about me.");
+      return;
+    }
+    setLeadSourceError(undefined);
     setStatus("loading");
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, email }),
+        body: JSON.stringify({
+          firstName,
+          email,
+          lead_source: leadSource,
+          lead_source_detail: leadSourceDetail,
+          lead_source_auto: getLeadSourceAuto(),
+        }),
       });
       const json = (await res.json().catch(() => null)) as {
         success?: boolean;
@@ -26,6 +42,8 @@ export default function NewsletterForm() {
         setStatus("done");
         setFirstName("");
         setEmail("");
+        setLeadSource("");
+        setLeadSourceDetail("");
       } else {
         setStatus("error");
       }
@@ -68,6 +86,17 @@ export default function NewsletterForm() {
           {status === "loading" ? "..." : "Subscribe"}
         </button>
       </div>
+      <LeadSourceField
+        compact
+        value={leadSource}
+        onValueChange={(v) => {
+          setLeadSource(v);
+          setLeadSourceError(undefined);
+        }}
+        detail={leadSourceDetail}
+        onDetailChange={setLeadSourceDetail}
+        error={leadSourceError}
+      />
       {status === "error" ? (
         <p className="text-sm text-red-300">
           Something went wrong. Please email{" "}

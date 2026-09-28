@@ -6,7 +6,6 @@ import { FieldWrapper, Input, Select } from "./fields";
 import LeadSourceField from "./LeadSourceField";
 import BookingEmbed from "@/components/ui/BookingEmbed";
 import { cn } from "@/lib/utils";
-import { leadSourceNeedsDetail } from "@/lib/lead-source";
 import { getLeadSourceAuto } from "@/lib/attribution";
 import { trackGenerateLead } from "@/lib/analytics";
 
@@ -72,7 +71,6 @@ export default function GetStartedQuiz() {
   const [leadSource, setLeadSource] = useState("");
   const [leadSourceDetail, setLeadSourceDetail] = useState("");
   const [leadSourceError, setLeadSourceError] = useState<string>();
-  const [detailError, setDetailError] = useState<string>();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
@@ -89,15 +87,10 @@ export default function GetStartedQuiz() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!leadSource) {
-      setLeadSourceError("Please let me know how you found me.");
-      return;
-    }
-    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
-      setDetailError("Please add a quick detail.");
+      setLeadSourceError("Please let me know how you heard about me.");
       return;
     }
     setLeadSourceError(undefined);
-    setDetailError(undefined);
     setSubmitting(true);
     setError(false);
     try {
@@ -289,12 +282,8 @@ export default function GetStartedQuiz() {
                 setLeadSourceError(undefined);
               }}
               detail={leadSourceDetail}
-              onDetailChange={(v) => {
-                setLeadSourceDetail(v);
-                setDetailError(undefined);
-              }}
+              onDetailChange={setLeadSourceDetail}
               error={leadSourceError}
-              detailError={detailError}
             />
           </div>
           <div className="mt-6 flex items-center justify-between gap-4">

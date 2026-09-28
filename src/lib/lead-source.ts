@@ -1,38 +1,30 @@
-// Shared options for the "How did you find me?" field used on every lead form.
-// Keep this list in one place so all forms stay in sync.
+// Shared options for the "How did you hear about me?" field used on every lead
+// form. Keep this list in one place so all forms stay in sync.
 
-export const LEAD_SOURCE_LABEL = "How did you find me?";
+export const LEAD_SOURCE_LABEL = "How did you hear about me?";
+
+// Optional follow up shown once any option is selected.
+export const LEAD_SOURCE_DETAIL_LABEL = "What did you search or ask?";
+export const LEAD_SOURCE_DETAIL_PLACEHOLDER =
+  "e.g. best mortgage broker in Las Vegas for FHA loans";
 
 export const LEAD_SOURCE_OPTIONS = [
-  "Google search",
   "ChatGPT",
+  "Google (search or AI answer)",
   "Gemini",
-  "Grok",
-  "Perplexity",
-  "Microsoft Copilot or Bing",
   "Claude",
-  "Instagram",
-  "TikTok",
-  "YouTube",
-  "Facebook",
-  "LinkedIn",
-  "Agent or realtor referral",
-  "Friend or family",
+  "Grok",
+  "Perplexity or another AI",
+  "Social media",
+  "A realtor referred me",
+  "A friend, family member, or past client referred me",
   "Other",
 ] as const;
 
 export type LeadSourceOption = (typeof LEAD_SOURCE_OPTIONS)[number];
 
-const AGENT_OPTION = "Agent or realtor referral";
-const OTHER_OPTION = "Other";
-
-// Options that reveal a short follow up text input.
-export function leadSourceNeedsDetail(value: string): boolean {
-  return value === AGENT_OPTION || value === OTHER_OPTION;
-}
-
-// Label for the follow up input, tailored to the selection.
-export function leadSourceDetailLabel(value: string): string {
-  if (value === AGENT_OPTION) return "Which agent?";
-  return "Tell me more";
+// The follow up input appears for any selection, so someone can share what
+// they searched or asked even if it was on Google or social media.
+export function leadSourceShowsDetail(value: string): boolean {
+  return value.trim().length > 0;
 }

@@ -9,7 +9,6 @@ import { AlertTriangle } from "lucide-react";
 import { FieldWrapper, Input } from "./fields";
 import LeadSourceField from "./LeadSourceField";
 import { submitLead } from "@/lib/submit-lead";
-import { leadSourceNeedsDetail } from "@/lib/lead-source";
 import { getLeadSourceAuto } from "@/lib/attribution";
 import { trackGenerateLead } from "@/lib/analytics";
 
@@ -31,7 +30,6 @@ export default function GuideOptIn({
   const [leadSource, setLeadSource] = useState("");
   const [leadSourceDetail, setLeadSourceDetail] = useState("");
   const [leadSourceError, setLeadSourceError] = useState<string>();
-  const [detailError, setDetailError] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -41,15 +39,10 @@ export default function GuideOptIn({
   async function onSubmit(values: FormValues) {
     setStatus("idle");
     if (!leadSource) {
-      setLeadSourceError("Please let me know how you found me.");
-      return;
-    }
-    if (leadSourceNeedsDetail(leadSource) && !leadSourceDetail.trim()) {
-      setDetailError("Please add a quick detail.");
+      setLeadSourceError("Please let me know how you heard about me.");
       return;
     }
     setLeadSourceError(undefined);
-    setDetailError(undefined);
     const ok = await submitLead({
       name: values.name,
       email: values.email,
@@ -104,12 +97,8 @@ export default function GuideOptIn({
           setLeadSourceError(undefined);
         }}
         detail={leadSourceDetail}
-        onDetailChange={(v) => {
-          setLeadSourceDetail(v);
-          setDetailError(undefined);
-        }}
+        onDetailChange={setLeadSourceDetail}
         error={leadSourceError}
-        detailError={detailError}
       />
       <button type="submit" disabled={isSubmitting} className="btn-gold w-full">
         {isSubmitting ? "Sending..." : "Download the Free Guide"}
