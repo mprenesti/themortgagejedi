@@ -30,7 +30,7 @@ export default function MobileMenu() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-[60] flex flex-col bg-black">
+        <div className="fixed inset-x-0 top-0 z-[60] flex h-[100dvh] flex-col overflow-y-auto bg-black">
           <div className="container-page flex h-20 items-center justify-between border-b border-white/10">
             <span className="font-heading text-lg font-bold uppercase text-white">
               The Mortgage <span className="text-gold">Jedi</span>
