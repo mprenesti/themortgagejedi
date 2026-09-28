@@ -41,7 +41,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="btn-gold"
             >
-              Book Your Free Consultation
+              Book Your Consultation
             </a>
             <Link href="/loan-options" className="btn-outline">
               See Loan Options

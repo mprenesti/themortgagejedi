@@ -8,12 +8,11 @@ export default function SecondOpinionStrip() {
         <FileSearch className="h-[3.75rem] w-[3.75rem] flex-shrink-0 self-center text-black" />
         <div className="flex-1">
           <h2 className="font-heading text-2xl font-bold text-black">
-            Already shopping? Get a Free Second Opinion on your Loan Estimate.
+            Already shopping? Get a Second Opinion on your Loan Estimate.
           </h2>
           <p className="mt-1 text-black/80">
             Upload the Loan Estimate you received from another lender, and
-            I&apos;ll personally review your rate, fees, and loan terms, for
-            free.
+            I&apos;ll personally review your rate, fees, and loan terms.
           </p>
         </div>
         <Link

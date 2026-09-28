@@ -146,7 +146,7 @@ export default function SecondOpinionForm() {
       />
 
       <button type="submit" disabled={submitting} className="btn-gold w-full">
-        {submitting ? "Submitting..." : "Submit for Free Review"}
+        {submitting ? "Submitting..." : "Submit for Review"}
       </button>
     </form>
   );
