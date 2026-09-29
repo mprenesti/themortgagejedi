@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import type { BlogMeta, BlogPost } from "./blog-types";
+import type { BlogFaq, BlogMeta, BlogPost } from "./blog-types";
 import { isPublishedAt, shouldShowFuturePosts } from "./publish-schedule";
 
 export type { BlogMeta, BlogPost } from "./blog-types";
@@ -30,6 +30,7 @@ function parseFile(fileName: string): BlogPost {
     excerpt: data.excerpt ?? "",
     coverImage: data.coverImage,
     readTime: data.readTime ?? "5 min",
+    faqs: Array.isArray(data.faqs) ? (data.faqs as BlogFaq[]) : undefined,
     content,
   };
 }

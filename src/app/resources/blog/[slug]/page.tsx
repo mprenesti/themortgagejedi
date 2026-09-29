@@ -8,6 +8,7 @@ import PageHero from "@/components/ui/PageHero";
 import CoverImage from "@/components/blog/CoverImage";
 import BlogCard from "@/components/blog/BlogCard";
 import ShareButtons from "@/components/blog/ShareButtons";
+import JsonLd from "@/components/JsonLd";
 import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/lib/blog";
 import { SITE } from "@/lib/constants";
 
@@ -45,8 +46,28 @@ export default function BlogPostPage({
   const related = getRelatedPosts(params.slug, 3);
   const url = `${SITE.url}/resources/blog/${post.slug}`;
 
+  // Emit FAQPage structured data when the post declares FAQs in frontmatter.
+  // Same pattern as the locations page: the text mirrors the visible FAQ in the
+  // post body word for word.
+  const faqSchema =
+    post.faqs && post.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: post.faqs.map((item) => ({
+            "@type": "Question",
+            name: item.q,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.a,
+            },
+          })),
+        }
+      : null;
+
   return (
     <>
+      {faqSchema ? <JsonLd data={faqSchema} /> : null}
       <PageHero
         label={post.category}
         title={post.title}
