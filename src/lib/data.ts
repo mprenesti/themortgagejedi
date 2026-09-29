@@ -4,10 +4,24 @@ export type NavLink = {
   children?: { label: string; href: string }[];
 };
 
+// Location landing pages. Add new cities here (Henderson is next). With a single
+// entry the nav shows a simple "Locations" link; with two or more it renders as
+// a dropdown using the same pattern as the Tools menu, so no component changes
+// are needed to grow this into a multi-city menu.
+export const LOCATIONS: { label: string; href: string }[] = [
+  { label: "Las Vegas", href: "/locations/nevada/las-vegas" },
+];
+
+const locationsNav: NavLink =
+  LOCATIONS.length > 1
+    ? { label: "Locations", href: LOCATIONS[0].href, children: LOCATIONS }
+    : { label: "Locations", href: LOCATIONS[0].href };
+
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Loan Options", href: "/loan-options" },
+  locationsNav,
   {
     label: "Tools",
     href: "/tools/calculator",
