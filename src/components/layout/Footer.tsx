@@ -24,6 +24,7 @@ const resourceLinks = [
   { label: "Guides", href: "/guides" },
   { label: "FAQ", href: "/resources/faq" },
   { label: "First Time Buyer Guide", href: "/resources/first-time-buyer-guide" },
+  { label: "Las Vegas Mortgages", href: "/locations/nevada/las-vegas" },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },

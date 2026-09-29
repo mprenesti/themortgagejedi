@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources/blog",
     "/resources/first-time-buyer-guide",
     "/resources/faq",
+    "/locations/nevada/las-vegas",
     "/testimonials",
     "/contact",
     "/get-started",
