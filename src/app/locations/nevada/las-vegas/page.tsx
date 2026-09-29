@@ -41,7 +41,7 @@ const LAS_VEGAS_FAQS: FAQ[] = [
   },
   {
     q: "What credit score do I need to buy a home in Las Vegas?",
-    a: "Most lenders look for a credit score of at least 620 for conventional loans and 580 for FHA loans with the lowest down payment option. DSCR loans and other non-QM programs can sometimes work with scores in the 620 to 640 range depending on the lender and the rest of the file.",
+    a: "Most lenders look for a credit score of at least 620 for conventional loans and 580 for FHA loans with the lowest down payment option of 3.5%. FHA also has a program that goes down to a 500 credit score with 10% down, for buyers who don't yet qualify at 580. DSCR loans and other non-QM programs can sometimes work with scores in the 620 to 640 range depending on the lender and the rest of the file.",
   },
   {
     q: "Is now a good time to buy in Las Vegas, or should I wait for rates to drop?",
