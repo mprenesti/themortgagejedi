@@ -36,6 +36,12 @@ export const LOCATIONS: Location[] = [
     description:
       "North Las Vegas home prices, FHA and VA financing, and one of the valley's most affordable markets.",
   },
+  {
+    label: "Reno",
+    href: "/locations/nevada/reno",
+    description:
+      "Reno home prices, Washoe County loan limits, and programs for a market of its own.",
+  },
 ];
 
 const locationsNav: NavLink = { label: "Locations", href: "/locations" };

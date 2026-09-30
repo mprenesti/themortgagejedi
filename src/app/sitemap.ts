@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/locations/nevada/henderson",
     "/locations/nevada/summerlin",
     "/locations/nevada/north-las-vegas",
+    "/locations/nevada/reno",
     "/testimonials",
     "/contact",
     "/get-started",
