@@ -42,6 +42,12 @@ export const LOCATIONS: Location[] = [
     description:
       "Reno home prices, Washoe County loan limits, and programs for a market of its own.",
   },
+  {
+    label: "Pahrump",
+    href: "/locations/nevada/pahrump",
+    description:
+      "Pahrump home prices, USDA rural financing, and a genuine buyer's market near the valley.",
+  },
 ];
 
 const locationsNav: NavLink = { label: "Locations", href: "/locations" };

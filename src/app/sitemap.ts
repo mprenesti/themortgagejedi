@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/locations/nevada/summerlin",
     "/locations/nevada/north-las-vegas",
     "/locations/nevada/reno",
+    "/locations/nevada/pahrump",
     "/testimonials",
     "/contact",
     "/get-started",

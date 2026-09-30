@@ -32,6 +32,7 @@ const resourceLinks = [
     href: "/locations/nevada/north-las-vegas",
   },
   { label: "Reno Mortgages", href: "/locations/nevada/reno" },
+  { label: "Pahrump Mortgages", href: "/locations/nevada/pahrump" },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },
