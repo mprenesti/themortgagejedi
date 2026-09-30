@@ -30,6 +30,12 @@ export const LOCATIONS: Location[] = [
     description:
       "Summerlin home values, jumbo loan limits, and programs across its sub-areas.",
   },
+  {
+    label: "North Las Vegas",
+    href: "/locations/nevada/north-las-vegas",
+    description:
+      "North Las Vegas home prices, FHA and VA financing, and one of the valley's most affordable markets.",
+  },
 ];
 
 const locationsNav: NavLink = { label: "Locations", href: "/locations" };

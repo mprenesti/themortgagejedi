@@ -27,6 +27,10 @@ const resourceLinks = [
   { label: "Las Vegas Mortgages", href: "/locations/nevada/las-vegas" },
   { label: "Henderson Mortgages", href: "/locations/nevada/henderson" },
   { label: "Summerlin Mortgages", href: "/locations/nevada/summerlin" },
+  {
+    label: "North Las Vegas Mortgages",
+    href: "/locations/nevada/north-las-vegas",
+  },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },
