@@ -4,18 +4,29 @@ export type NavLink = {
   children?: { label: string; href: string }[];
 };
 
-// Location landing pages. Add new cities here (Henderson is next). With a single
-// entry the nav shows a simple "Locations" link; with two or more it renders as
-// a dropdown using the same pattern as the Tools menu, so no component changes
-// are needed to grow this into a multi-city menu.
-export const LOCATIONS: { label: string; href: string }[] = [
-  { label: "Las Vegas", href: "/locations/nevada/las-vegas" },
+// Location landing pages. Add new cities here (Summerlin, North Las Vegas, Reno,
+// and Pahrump are next). Both the /locations index page and the sitemap read from
+// this array, so adding a city here surfaces it everywhere without touching other
+// files. The header nav "Locations" item points at the /locations index so the
+// menu stays clean no matter how many cities are live.
+export type Location = { label: string; href: string; description: string };
+
+export const LOCATIONS: Location[] = [
+  {
+    label: "Las Vegas",
+    href: "/locations/nevada/las-vegas",
+    description:
+      "Current Las Vegas mortgage rates, home prices, and loan programs from a local broker.",
+  },
+  {
+    label: "Henderson",
+    href: "/locations/nevada/henderson",
+    description:
+      "Henderson home prices, loan limits, and financing for master-planned communities.",
+  },
 ];
 
-const locationsNav: NavLink =
-  LOCATIONS.length > 1
-    ? { label: "Locations", href: LOCATIONS[0].href, children: LOCATIONS }
-    : { label: "Locations", href: LOCATIONS[0].href };
+const locationsNav: NavLink = { label: "Locations", href: "/locations" };
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
