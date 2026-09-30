@@ -24,6 +24,12 @@ export const LOCATIONS: Location[] = [
     description:
       "Henderson home prices, loan limits, and financing for master-planned communities.",
   },
+  {
+    label: "Summerlin",
+    href: "/locations/nevada/summerlin",
+    description:
+      "Summerlin home values, jumbo loan limits, and programs across its sub-areas.",
+  },
 ];
 
 const locationsNav: NavLink = { label: "Locations", href: "/locations" };

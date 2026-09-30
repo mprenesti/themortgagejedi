@@ -26,6 +26,7 @@ const resourceLinks = [
   { label: "First Time Buyer Guide", href: "/resources/first-time-buyer-guide" },
   { label: "Las Vegas Mortgages", href: "/locations/nevada/las-vegas" },
   { label: "Henderson Mortgages", href: "/locations/nevada/henderson" },
+  { label: "Summerlin Mortgages", href: "/locations/nevada/summerlin" },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },
