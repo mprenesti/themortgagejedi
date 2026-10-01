@@ -33,6 +33,7 @@ const resourceLinks = [
   },
   { label: "Reno Mortgages", href: "/locations/nevada/reno" },
   { label: "Pahrump Mortgages", href: "/locations/nevada/pahrump" },
+  { label: "Second Opinion", href: "/second-opinion" },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },
