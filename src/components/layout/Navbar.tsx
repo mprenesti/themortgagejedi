@@ -31,11 +31,14 @@ export default function Navbar() {
       <nav className="container-page flex h-28 items-center justify-between sm:h-36">
         <Logo />
 
-        <div className="hidden items-center gap-1 lg:flex">
+        {/* Desktop nav. Shown at xl and up so the full ten-item menu only
+            appears when there is room for it alongside the logo and the two
+            action buttons. Below xl the hamburger menu takes over. */}
+        <div className="hidden items-center gap-0.5 xl:flex">
           {NAV_LINKS.map((link) =>
             link.children ? (
               <div key={link.label} className="group relative">
-                <button className="flex items-center gap-1 px-3 py-2 font-heading text-sm font-medium uppercase tracking-wide text-white transition-colors hover:text-gold">
+                <button className="flex items-center gap-1 whitespace-nowrap px-2.5 py-2 font-heading text-sm font-medium uppercase tracking-wide text-white transition-colors hover:text-gold">
                   {link.label}
                   <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
                 </button>
@@ -55,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 font-heading text-sm font-medium uppercase tracking-wide text-white transition-colors hover:text-gold"
+                className="whitespace-nowrap px-2.5 py-2 font-heading text-sm font-medium uppercase tracking-wide text-white transition-colors hover:text-gold"
               >
                 {link.label}
               </Link>

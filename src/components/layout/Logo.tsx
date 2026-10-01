@@ -10,22 +10,24 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
     <Link
       href="/"
       onClick={onClick}
-      className="group flex items-center"
+      className="group flex shrink-0 items-center"
       aria-label="The Mortgage Jedi, Mike Prenesti, Home"
     >
       {!imgError ? (
         // Full brand lockup (symbol + "Mike Prenesti" + "The Mortgage Jedi"),
         // processed to transparent (star background removed). Falls back to a
-        // text mark if the file is missing.
+        // text mark if the file is missing. shrink-0 keeps the image at its
+        // natural aspect ratio so flexbox never squeezes it into a sliver when
+        // the nav row gets tight.
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/images/logo-full.png"
           alt="The Mortgage Jedi, Mike Prenesti"
-          className="h-24 w-auto sm:h-[7.5rem]"
+          className="h-20 w-auto shrink-0 sm:h-24"
           onError={() => setImgError(true)}
         />
       ) : (
-        <span className="flex items-center gap-3">
+        <span className="flex shrink-0 items-center gap-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-md border border-gold/60 bg-gold/10 font-accent text-2xl leading-none text-gold">
             MJ
           </span>
