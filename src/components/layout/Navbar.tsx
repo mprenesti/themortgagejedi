@@ -28,16 +28,18 @@ export default function Navbar() {
           : "bg-black",
       )}
     >
-      <nav className="container-page flex h-28 items-center justify-between sm:h-36">
+      <nav className="container-page flex min-h-[7rem] items-center justify-between gap-x-4 py-3 sm:min-h-[9rem]">
         <Logo />
 
-        {/* Desktop nav. Shown at the custom "nav" breakpoint (1200px) and up so
-            the full ten-item menu only appears when there is room for it
-            alongside the logo and the action buttons. Below that the hamburger
-            menu takes over. This is driven purely by CSS media queries (no
-            JS width state) so it always tracks the live window width and can
-            never get stuck after a resize. */}
-        <div className="hidden items-center gap-0 nav:flex">
+        {/* Inline nav. Shown at the "md" breakpoint (768px) and up. The row is
+            allowed to wrap, so when the ten items plus the logo and action
+            buttons no longer fit on a single line the extra links simply drop
+            to a second line and stay visible as plain text links. Only the
+            true mobile range below "md" collapses into the hamburger. Because
+            the switch is driven purely by CSS media queries and native flex
+            wrapping (no JS width state), it always tracks the live window width
+            and can never get stuck on the wrong layout after a resize. */}
+        <div className="hidden flex-1 flex-wrap items-center justify-end gap-x-0 gap-y-1 md:flex">
           {NAV_LINKS.map((link) =>
             link.children ? (
               <div key={link.label} className="group relative">
