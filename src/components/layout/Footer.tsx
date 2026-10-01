@@ -26,6 +26,7 @@ const resourceLinks = [
   { label: "First Time Buyer Guide", href: "/resources/first-time-buyer-guide" },
   { label: "All Locations", href: "/locations" },
   { label: "Second Opinion", href: "/second-opinion" },
+  { label: "Home Value", href: "/home-value" },
   { label: "Realtor Partners", href: "/realtor-partners" },
   { label: "Contact", href: "/contact" },
   { label: "Testimonials", href: "/testimonials" },

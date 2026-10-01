@@ -66,6 +66,7 @@ export const NAV_LINKS: NavLink[] = [
       { label: "Rent vs Buy", href: "/tools/rent-vs-buy" },
       { label: "Pre-Approval Checklist", href: "/tools/checklist" },
       { label: "Second Opinion", href: "/second-opinion" },
+      { label: "Home Value", href: "/home-value" },
     ],
   },
   { label: "Guides", href: "/guides" },

@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/get-started",
     "/second-opinion",
+    "/home-value",
     "/realtor-partners",
     "/privacy-policy",
     "/terms",
