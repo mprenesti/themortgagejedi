@@ -65,6 +65,7 @@ export const NAV_LINKS: NavLink[] = [
       { label: "Affordability Calculator", href: "/tools/affordability" },
       { label: "Rent vs Buy", href: "/tools/rent-vs-buy" },
       { label: "Pre-Approval Checklist", href: "/tools/checklist" },
+      { label: "Second Opinion", href: "/second-opinion" },
     ],
   },
   { label: "Guides", href: "/guides" },
