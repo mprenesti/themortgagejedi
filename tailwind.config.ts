@@ -9,6 +9,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Custom breakpoint for the header. The full inline nav (ten items plus
+      // logo and action buttons) only fits above this width; below it the
+      // hamburger takes over. Keep this value in sync with HEADER_NAV_MIN_WIDTH
+      // in MobileMenu.tsx.
+      screens: {
+        nav: "1200px",
+      },
       colors: {
         gold: "#FFE81A",
         "gold-dark": "#D4C200",

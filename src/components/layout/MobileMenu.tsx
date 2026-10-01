@@ -7,6 +7,9 @@ import { NAV_LINKS } from "@/lib/data";
 import { PHONE_DISPLAY, SMS_HREF } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+// Keep in sync with the custom "nav" breakpoint in tailwind.config.ts.
+const HEADER_NAV_MIN_WIDTH = 1200;
+
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -18,8 +21,22 @@ export default function MobileMenu() {
     };
   }, [open]);
 
+  // The hamburger is hidden by CSS at desktop widths, but the open overlay and
+  // its scroll lock live in React state. If the window is widened past the nav
+  // breakpoint while the menu is open (for example, collapsing a sidebar), close
+  // it so the body scroll lock is released and nothing is left hidden-but-open.
+  useEffect(() => {
+    const mql = window.matchMedia(`(min-width: ${HEADER_NAV_MIN_WIDTH}px)`);
+    const handle = (e: MediaQueryListEvent | MediaQueryList) => {
+      if (e.matches) setOpen(false);
+    };
+    handle(mql);
+    mql.addEventListener("change", handle);
+    return () => mql.removeEventListener("change", handle);
+  }, []);
+
   return (
-    <div className="xl:hidden">
+    <div className="nav:hidden">
       <button
         type="button"
         aria-label="Open menu"
