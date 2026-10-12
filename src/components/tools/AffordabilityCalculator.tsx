@@ -55,10 +55,10 @@ export default function AffordabilityCalculator() {
   const [term, setTerm] = useState(30);
 
   const result = useMemo(() => {
-    // Front-end: 28% of gross income toward housing (PITI)
-    const frontPayment = income * 0.28;
-    // Back-end: 36% of gross income toward all debts
-    const backPayment = Math.max(income * 0.36 - debts, 0);
+    // Front-end: 43% of gross income toward housing (PITI)
+    const frontPayment = income * 0.43;
+    // Back-end: 50% of gross income toward all debts
+    const backPayment = Math.max(income * 0.5 - debts, 0);
 
     // Estimate taxes+insurance as ~1.25% of home value annually -> rough monthly
     // We solve P&I assuming ~20% of payment goes to tax/insurance.
@@ -131,7 +131,7 @@ export default function AffordabilityCalculator() {
             <p className="text-sm uppercase tracking-wide text-gray-light">
               Max Home Price
             </p>
-            <p className="text-xs text-gray-mid">28% front-end DTI</p>
+            <p className="text-xs text-gray-mid">43% front-end DTI</p>
             <p className="mt-2 font-heading text-3xl font-bold text-gold">
               {formatCurrency(result.homeFront)}
             </p>
@@ -140,7 +140,7 @@ export default function AffordabilityCalculator() {
             <p className="text-sm uppercase tracking-wide text-gray-light">
               Max Home Price
             </p>
-            <p className="text-xs text-gray-mid">36% back-end DTI</p>
+            <p className="text-xs text-gray-mid">50% back-end DTI</p>
             <p className="mt-2 font-heading text-3xl font-bold text-white">
               {formatCurrency(result.homeBack)}
             </p>
@@ -169,13 +169,13 @@ export default function AffordabilityCalculator() {
           <p className="mt-2 text-sm text-gray-light">
             <span className="font-semibold text-white">Front-end DTI</span> looks
             at how much of your gross monthly income goes toward your housing
-            payment alone. Lenders generally like this at 28% or below.
+            payment alone. Lenders generally like this at 43% or below.
           </p>
           <p className="mt-2 text-sm text-gray-light">
             <span className="font-semibold text-white">Back-end DTI</span>{" "}
             includes <em>all</em> your monthly debts (car payments, student
             loans, credit cards) plus housing. Lenders typically want this at
-            36% or below, though many programs allow more.
+            50% or below, though many programs allow more.
           </p>
         </div>
       </div>
