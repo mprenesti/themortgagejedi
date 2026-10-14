@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { format } from "date-fns";
+import { formatPostDate } from "@/lib/format-post-date";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Clock, ArrowLeft } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
@@ -73,7 +73,7 @@ export default function BlogPostPage({
         title={post.title}
         subtitle={
           <span className="inline-flex items-center gap-4 text-base">
-            <span>{format(new Date(post.date), "MMMM d, yyyy")}</span>
+            <span>{formatPostDate(post.date, "MMMM d, yyyy")}</span>
             <span className="inline-flex items-center gap-1">
               <Clock className="h-4 w-4" /> {post.readTime}
             </span>

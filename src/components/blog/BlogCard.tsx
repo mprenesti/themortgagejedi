@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { format } from "date-fns";
 import { Clock, ArrowRight } from "lucide-react";
+import { formatPostDate } from "@/lib/format-post-date";
 import type { BlogMeta } from "@/lib/blog-types";
 import CoverImage from "./CoverImage";
 
@@ -29,7 +29,7 @@ export default function BlogCard({
             {post.category}
           </span>
           <span className="text-gray-mid">
-            {format(new Date(post.date), "MMM d, yyyy")}
+            {formatPostDate(post.date, "MMM d, yyyy")}
           </span>
         </div>
         <h3
