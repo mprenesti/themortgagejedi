@@ -12,6 +12,12 @@ import JsonLd from "@/components/JsonLd";
 import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/lib/blog";
 import { SITE } from "@/lib/constants";
 
+// Re-render hourly so a post whose scheduled publish moment has passed is
+// served even if it was still in the future at the last build. New slugs not
+// returned by generateStaticParams are rendered on demand (dynamicParams
+// defaults to true).
+export const revalidate = 3600;
+
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
 }

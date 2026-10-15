@@ -9,6 +9,10 @@ export const metadata: Metadata = {
     "Educational articles to help you make smarter mortgage decisions, from The Mortgage Jedi, Mike Prenesti.",
 };
 
+// Re-render hourly so scheduled posts appear once their publish moment (8 AM
+// Pacific on the frontmatter date) passes, without waiting for a new deploy.
+export const revalidate = 3600;
+
 export default function BlogIndexPage() {
   const posts = getAllPosts();
 

@@ -2,6 +2,10 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
 
+// Regenerate hourly so newly published scheduled posts enter the sitemap
+// without waiting for the next deploy.
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
