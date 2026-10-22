@@ -106,8 +106,8 @@ export default function SummerlinLocationPage() {
 
       <div className="container-page max-w-3xl space-y-12 py-16 sm:py-20">
         <p className="text-lg text-gray-light">
-          Summerlin is one of the most desirable master-planned communities in
-          the country, and financing here rewards a broker who understands how
+          Summerlin is a master-planned community on the west side of the Las
+          Vegas valley, and financing here rewards a broker who understands how
           different its sub-areas really are. Prices range from relatively
           affordable homes in Summerlin North to luxury new construction in
           Summerlin West that regularly runs past $1 million, which means the

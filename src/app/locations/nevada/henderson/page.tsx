@@ -13,6 +13,7 @@ import type { FAQ } from "@/lib/data";
 // answers + JSON-LD schema) roughly every quarter, or whenever the local
 // market shifts materially, so the page stays accurate for search and AI
 // answer engines.
+// Parks, shopping, school-link and road details verified October 14, 2026. Recheck hours, addresses and links when refreshing.
 
 export const metadata: Metadata = {
   title: "Henderson, NV Mortgage Loans",
@@ -25,11 +26,11 @@ export const metadata: Metadata = {
 const HENDERSON_FAQS: FAQ[] = [
   {
     q: "What is the median home price in Henderson right now?",
-    a: "Henderson's median home sale price was $540,000 in September 2026, up 5.4% year over year. That's roughly $68,000 above the Las Vegas valley's overall median, reflecting Henderson's reputation for top-rated schools and safety.",
+    a: "Henderson's median home sale price was $540,000 in September 2026, up 5.4% year over year. That's roughly $68,000 above the Las Vegas valley's overall median.",
   },
   {
     q: "Why are homes in Henderson more expensive than Las Vegas overall?",
-    a: "Henderson carries a price premium driven by strong schools, lower crime rates, and steady demand from California buyers relocating to Nevada. Master-planned communities like Green Valley, Anthem, and Lake Las Vegas also command higher prices than much of the broader valley.",
+    a: "Henderson's median price sits above the Las Vegas valley's overall median. Newer master-planned communities like Green Valley, Anthem, and Lake Las Vegas, higher-end areas like MacDonald Highlands, and steady demand from California buyers relocating to Nevada all play a role in pricing here.",
   },
   {
     q: "Does FHA financing cover home prices in Henderson?",
@@ -58,6 +59,22 @@ const HENDERSON_FAQS: FAQ[] = [
   {
     q: "How long does it take to close on a house in Henderson?",
     a: "Most purchase loans close in 30 to 45 days from the time an offer is accepted, though VA and FHA loans can sometimes take slightly longer depending on the lender and the appraisal timeline. Getting fully pre-approved before you start shopping is the biggest factor in keeping that timeline tight.",
+  },
+  {
+    q: "What parks and trails are in Henderson?",
+    a: "The City of Henderson reports more than 70 parks and more than 220 miles of trails. Examples include Cornerstone Park (1600 Wigwam Pkwy), Heritage Park (350 S. Racetrack Rd), the 34-mile River Mountains Loop Trail with a Henderson trailhead at 1020 Golda Way, and the Henderson Bird Viewing Preserve (350 E. Galleria Dr). Confirm hours and amenities with the City of Henderson before you visit.",
+  },
+  {
+    q: "Where can I shop and dine in Henderson?",
+    a: "Henderson has several districts, including the Water Street District in downtown Henderson, The District at Green Valley Ranch, Galleria at Sunset (1300 W. Sunset Rd), and MonteLago Village at Lake Las Vegas.",
+  },
+  {
+    q: "Which school district serves Henderson?",
+    a: "The Clark County School District serves Henderson. Schools are assigned by address, so use the CCSD zoning lookup at ccsd.net/zoning to see which schools serve a specific home. Official school data is available from the Nevada Report Card at nevadareportcard.nv.gov/di/. This page does not rate or rank schools.",
+  },
+  {
+    q: "What major roads connect Henderson to the rest of the Las Vegas valley?",
+    a: "Major routes include I-215, US-93 and US-95 (I-515), Boulder Highway, and Lake Mead Parkway.",
   },
 ];
 
@@ -102,13 +119,14 @@ export default function HendersonLocationPage() {
 
       <div className="container-page max-w-3xl space-y-12 py-16 sm:py-20">
         <p className="text-lg text-gray-light">
-          Henderson is one of the most sought-after places to live in the Las
-          Vegas valley, known for its top-rated schools, low crime, and
-          well-planned communities. That reputation comes with a price premium,
-          which means financing here often looks different than it does in the
-          rest of the valley. Between higher price points that push up against
-          FHA loan limits, a wave of California buyers relocating to Nevada, and
-          higher-end communities that call for jumbo financing, most Henderson
+          Henderson sits southeast of Las Vegas and is made up largely of
+          master-planned communities, including Green Valley, Anthem, Inspirada,
+          and Lake Las Vegas. Its median home price runs above the rest of the
+          Las Vegas valley, which means financing here often looks different
+          than it does in the rest of the valley. Between higher price points
+          that push up against FHA loan limits, a wave of California buyers
+          relocating to Nevada, and higher-end communities that call for jumbo
+          financing, most Henderson
           buyers benefit from a broker who can work across loan programs rather
           than a single bank product.
         </p>
@@ -120,10 +138,11 @@ export default function HendersonLocationPage() {
           <p className="text-gray-light">
             Henderson&apos;s median home sale price was $540,000 in September
             2026, up 5.4% year over year and roughly $68,000 above the Las Vegas
-            valley&apos;s overall median. That premium is driven largely by
-            top-rated schools, safety, and continued California relocation
-            demand. Inventory sits at about 2.3 months of supply with a median
-            of 35 days on market, which points to a fairly balanced market where
+            valley&apos;s overall median. Newer master-planned communities,
+            higher-end areas like MacDonald Highlands, and continued California
+            relocation demand all contribute to that difference. Inventory sits
+            at about 2.3 months of supply with a median of 35 days on market,
+            which points to a fairly balanced market where
             well-priced homes in popular communities still move quickly.
             Mortgage rates remain elevated compared to a year ago: 30-year
             conventional rates are running around 7.2% as of late September
@@ -180,6 +199,119 @@ export default function HendersonLocationPage() {
             condo or planned-development approval can shape which loan programs
             are available, so it pays to line up financing with your target
             neighborhood in mind.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-heading text-2xl font-bold text-gold sm:text-3xl">
+            Parks and trails in Henderson
+          </h2>
+          <p className="text-gray-light">
+            The City of Henderson reports more than 70 parks and more than 220
+            miles of trails. A few places that show the range:
+          </p>
+          <ul className="list-disc space-y-2 pl-6 text-gray-light">
+            <li>
+              <strong className="font-semibold text-white">
+                Cornerstone Park
+              </strong>
+              , 1600 Wigwam Pkwy, has a lake, trails, pavilions, and public art.
+            </li>
+            <li>
+              <strong className="font-semibold text-white">Heritage Park</strong>
+              , 350 S. Racetrack Rd, has an amphitheater, sports fields, a play
+              area, and a Bark Park.
+            </li>
+            <li>
+              <strong className="font-semibold text-white">
+                River Mountains Loop Trail
+              </strong>{" "}
+              is a 34-mile loop with a Henderson trailhead at 1020 Golda Way.
+            </li>
+            <li>
+              <strong className="font-semibold text-white">
+                Henderson Bird Viewing Preserve
+              </strong>
+              , 350 E. Galleria Dr, covers about 80 acres with nine ponds. Hours
+              vary by season.
+            </li>
+          </ul>
+          <p className="text-gray-light">
+            Hours, access, and amenities change, so confirm details with the
+            City of Henderson before you visit.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-heading text-2xl font-bold text-gold sm:text-3xl">
+            Shopping, dining, and things to do
+          </h2>
+          <p className="text-gray-light">
+            Henderson has several shopping and dining districts spread across
+            the city:
+          </p>
+          <ul className="list-disc space-y-2 pl-6 text-gray-light">
+            <li>
+              <strong className="font-semibold text-white">
+                Water Street District
+              </strong>
+              , in downtown Henderson, is a City redevelopment area.
+            </li>
+            <li>
+              <strong className="font-semibold text-white">
+                The District at Green Valley Ranch
+              </strong>
+              .
+            </li>
+            <li>
+              <strong className="font-semibold text-white">
+                Galleria at Sunset
+              </strong>
+              , 1300 W. Sunset Rd.
+            </li>
+            <li>
+              <strong className="font-semibold text-white">
+                MonteLago Village at Lake Las Vegas
+              </strong>
+              .
+            </li>
+          </ul>
+          <p className="text-gray-light">
+            Dated events are published by the City of Henderson and change from
+            year to year.
+          </p>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="font-heading text-2xl font-bold text-gold sm:text-3xl">
+            Schools and getting around
+          </h2>
+          <p className="text-gray-light">
+            The Clark County School District (CCSD) serves Henderson. Schools
+            are assigned by address, so use the CCSD zoning lookup at{" "}
+            <a
+              href="https://www.ccsd.net/zoning"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-gold"
+            >
+              ccsd.net/zoning
+            </a>{" "}
+            to see which schools serve a specific home. For official school
+            data, see the Nevada Report Card at{" "}
+            <a
+              href="https://nevadareportcard.nv.gov/di/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-gold"
+            >
+              nevadareportcard.nv.gov/di/
+            </a>
+            . This page does not rate or rank schools.
+          </p>
+          <p className="text-gray-light">
+            Main routes through and around Henderson include I-215, US-93 and
+            US-95 (I-515), Boulder Highway, and Lake Mead Parkway.
           </p>
         </section>
 
