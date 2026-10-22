@@ -130,7 +130,7 @@ export default async function OpengraphImage() {
           <span style={{ color: GOLD, marginLeft: "0.3em" }}>
             The Mortgage Jedi
           </span>
-          <span style={{ marginLeft: "0.3em" }}>powered by Nexa</span>
+          <span style={{ marginLeft: "0.3em" }}>powered by C2 Financial</span>
         </div>
       </div>
     ),

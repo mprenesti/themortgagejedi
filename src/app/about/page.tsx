@@ -42,7 +42,7 @@ const values = [
 
 const credentials = [
   "Mike Prenesti, NMLS #1033445",
-  "Nexa Lending, LLC (Corporate NMLS #1660690)",
+  "C2 Financial Corporation (Corporate NMLS #135622)",
   "Licensed in Nevada",
   "16 Years in the Mortgage Industry",
   "Specialties: First Time Buyers, Self-Employed, Investors, New Construction",

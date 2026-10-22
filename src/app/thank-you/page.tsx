@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, Download } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import StarField from "@/components/ui/StarField";
-import { SITE } from "@/lib/constants";
+import { SITE, SMS_HREF } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -23,26 +23,19 @@ export default function ThankYouPage({
       <div className="container-page relative z-10 mx-auto max-w-2xl text-center">
         <CheckCircle2 className="mx-auto h-16 w-16 text-gold" />
         <h1 className="heading-lg mt-6 text-white">
-          {isGuide ? "Your Guide Is Ready!" : "Thank You!"}
+          {isGuide ? "Your Guide Is On Its Way" : "Thank You!"}
         </h1>
 
         {isGuide ? (
-          <>
-            <p className="mt-4 text-lg text-gray-light">
-              Thanks for grabbing the First Time Homebuyer Guide. Click below to
-              download it now. I&apos;ve also sent a copy to your inbox.
-            </p>
-            <a
-              href="/downloads/first-time-buyer-guide.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="btn-gold mt-8 inline-flex"
-            >
-              <Download className="h-5 w-5" />
-              Download Your Free Guide
-            </a>
-          </>
+          <p className="mt-4 text-lg text-gray-light">
+            Thanks for requesting the First Time Homebuyer Guide. I just sent it
+            to your inbox. If you do not see it within a few minutes, check your
+            spam or promotions folder, or{" "}
+            <a href={SMS_HREF} className="text-gold hover:underline">
+              text me
+            </a>{" "}
+            and I will send it over.
+          </p>
         ) : (
           <p className="mt-4 text-lg text-gray-light">
             Mike will reach out within one business day. Talk soon!

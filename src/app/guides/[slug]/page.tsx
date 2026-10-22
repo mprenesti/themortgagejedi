@@ -8,9 +8,6 @@ import JsonLd from "@/components/JsonLd";
 import { getGuide, getGuideSlugs, getRelatedGuides } from "@/lib/guides";
 import { SITE } from "@/lib/constants";
 
-const APPLY_URL =
-  "https://1660690.my1003app.com/1033445/register?time=1788461595787";
-
 export function generateStaticParams() {
   return getGuideSlugs().map((slug) => ({ slug }));
 }
@@ -137,10 +134,9 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                   Book a Call
                   <ArrowRight className="h-4 w-4" />
                 </a>
+                {/* Restore target="_blank" rel="noopener noreferrer" when SITE.applyUrl is an external URL. */}
                 <a
-                  href={APPLY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={SITE.applyUrl}
                   className="btn-outline"
                 >
                   Apply Now

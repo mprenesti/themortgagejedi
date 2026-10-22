@@ -69,8 +69,7 @@ export default function Footer() {
               {SITE.company} · Corporate {SITE.corporateNmls}
             </p>
             <p>Mike Prenesti · {SITE.nmls}</p>
-            <p>{SITE.corporateAddress}</p>
-            {SITE.branchAddress ? <p>Branch: {SITE.branchAddress}</p> : null}
+            <p>Branch office: {SITE.branchAddress}</p>
             <p>Licensed in Nevada</p>
             <p>
               <a
@@ -159,8 +158,8 @@ export default function Footer() {
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-gray-mid md:flex-row md:text-left">
           <p>
             © {new Date().getFullYear()} Mike Prenesti | The Mortgage Jedi |{" "}
-            {SITE.company} | Corporate {SITE.corporateNmls} | {SITE.nmls} |
-            Equal Housing Lender | Equal Housing Opportunity
+            {SITE.company} | {SITE.licenseLine} | Equal Housing Lender | Equal
+            Housing Opportunity
           </p>
           <div className="flex gap-4">
             <Link href="/privacy-policy" className="hover:text-gold">

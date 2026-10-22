@@ -63,8 +63,8 @@ export default function TermsPage() {
           </p>
 
           <p className="text-sm text-gray-mid">
-            {SITE.nmls} | {SITE.company} | Equal Housing Lender | Licensed in
-            Nevada
+            {SITE.company} | {SITE.licenseLine} | Equal Housing Lender |
+            Licensed in Nevada
           </p>
         </div>
       </div>
