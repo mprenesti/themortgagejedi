@@ -13,7 +13,7 @@ const FINANCIAL_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
   name: "The Mortgage Jedi",
-  alternateName: "Mike Prenesti - Nexa Lending, LLC",
+  alternateName: `Mike Prenesti - ${SITE.company}`,
   url: "https://themortgagejedi.com",
   areaServed: {
     "@type": "City",
@@ -30,10 +30,9 @@ const PERSON_SCHEMA = {
   jobTitle: "Mortgage Loan Officer",
   worksFor: {
     "@type": "Organization",
-    name: "Nexa Lending, LLC",
+    name: SITE.company,
   },
-  identifier:
-    "NMLS #1033445 (Individual) / Nexa Lending, LLC NMLS #1660690 (Company)",
+  identifier: `${SITE.nmls} (Individual) / ${SITE.company} ${SITE.corporateNmls} (Company)`,
   url: "https://themortgagejedi.com",
   telephone: "+1-702-497-0584",
 };

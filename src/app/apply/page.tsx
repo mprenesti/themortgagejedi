@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Start your secure mortgage application with Mike Prenesti, The Mortgage Jedi. Quick, guided, and pressure free. Apply online in minutes.",
 };
 
+// TODO(C2 switch): replace with the C2 application link (C2_APPLY_URL) before merge.
 const APPLY_URL =
   "https://1660690.my1003app.com/1033445/register?time=1788461595787";
 

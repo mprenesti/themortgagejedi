@@ -70,7 +70,7 @@ export default function ContactPage() {
             </li>
           </ul>
           <p className="mt-3 text-sm text-gray-mid">
-            {SITE.nmls} | {SITE.company}
+            {SITE.company} | {SITE.licenseLine}
           </p>
 
           <div className="mt-8">

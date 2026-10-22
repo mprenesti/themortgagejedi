@@ -3,13 +3,12 @@ export const SITE = {
   fullName: "Mike Prenesti | The Mortgage Jedi",
   tagline: "Your Mortgage, Made Simple. Your Future, Made Possible.",
   nmls: "NMLS #1033445",
-  company: "Nexa Lending, LLC",
-  corporateNmls: "NMLS #1660690",
-  // Corporate address NEXA loan officers display on their sites. Please confirm
-  // this is the exact address NEXA instructs you to use before going live.
-  corporateAddress: "5559 S Sossaman Rd, Bldg #1, Ste #101, Mesa, AZ 85212",
-  // Optional: your branch/office address. Leave blank if not applicable.
-  branchAddress: "",
+  company: "C2 Financial Corporation",
+  corporateNmls: "NMLS #135622",
+  // Branch office address displayed across the site.
+  branchAddress: "2320 Paseo Del Prado, Suite B204, Las Vegas, NV 89102",
+  // Compliance licensing line shown in the footer and legal copy.
+  licenseLine: "C2 NMLS #135622 | C2 NV #3260 | NMLS #1033445",
   phone: "702-497-0584",
   phoneDirect: "702-291-9889",
   email: "mike@themortgagejedi.com",

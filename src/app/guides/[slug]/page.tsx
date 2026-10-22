@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import { getGuide, getGuideSlugs, getRelatedGuides } from "@/lib/guides";
 import { SITE } from "@/lib/constants";
 
+// TODO(C2 switch): replace with the C2 application link (C2_APPLY_URL) before merge.
 const APPLY_URL =
   "https://1660690.my1003app.com/1033445/register?time=1788461595787";
 

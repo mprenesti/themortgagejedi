@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
  * broken-image icons before a file is uploaded).
  *
  * Expected files in /public/images:
- *   - nexa-logo.png                 (white "empowered by NEXA Lending")
+ *   - logo/c2-financial-white.png   (C2 Financial logo)
  *   - equal-housing-lender.png      (white)
  *   - equal-housing-opportunity.png (white) — pending a usable transparent file
  */
@@ -55,9 +55,9 @@ export default function ComplianceLogos() {
   return (
     <div className="mt-6 flex flex-wrap items-center gap-6">
       <Logo
-        src="/images/logo/nexa-lending-white.png"
-        alt="NEXA Lending"
-        fallback="Nexa Lending, LLC"
+        src="/images/logo/c2-financial-white.png"
+        alt="C2 Financial"
+        fallback="C2 Financial Corporation"
         className="h-10"
       />
       <Logo

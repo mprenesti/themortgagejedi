@@ -135,8 +135,8 @@ export default function HomeValuePage() {
               <p className="text-xs leading-relaxed text-gray-mid">
                 This report is for informational purposes only and does not
                 constitute an appraisal, loan commitment, or official offer of
-                credit. Mike Prenesti, NMLS #1033445. Nexa Lending, LLC, NMLS
-                #1660690. Equal Housing Opportunity. Licensed in Nevada.
+                credit. Mike Prenesti, NMLS #1033445. C2 Financial Corporation,
+                NMLS #135622. Equal Housing Opportunity. Licensed in Nevada.
               </p>
             </Reveal>
           </div>

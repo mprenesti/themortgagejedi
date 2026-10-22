@@ -213,7 +213,7 @@ export default function PahrumpLocationPage() {
             <p className="mt-2 text-gray-light">
               Mike Prenesti, NMLS #1033445
               <br />
-              Nexa Lending, LLC, NMLS #1660690
+              C2 Financial Corporation, NMLS #135622
               <br />
               <a href={PHONE_HREF} className="hover:text-gold">
                 702-497-0584
