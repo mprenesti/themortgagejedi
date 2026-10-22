@@ -53,24 +53,24 @@ function Logo({
 
 export default function ComplianceLogos() {
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-6">
+    <div className="mt-6 flex flex-nowrap items-center gap-4 sm:gap-6">
       <Logo
         src="/images/logo/c2-financial-white.png"
         alt="C2 Financial"
         fallback="C2 Financial Corporation"
-        className="h-10 bg-transparent p-0"
+        className="h-6 sm:h-8 bg-transparent p-0"
       />
       <Logo
         src="/images/equal-housing-lender.png"
         alt="Equal Housing Lender"
         fallback="Equal Housing Lender"
-        className="h-10"
+        className="h-8 sm:h-10"
       />
       <Logo
         src="/images/equal-housing-opportunity.png"
         alt="Equal Housing Opportunity"
         fallback="Equal Housing Opportunity"
-        className="h-10"
+        className="h-8 sm:h-10"
       />
     </div>
   );
