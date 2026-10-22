@@ -3,7 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Logo({ onClick }: { onClick?: () => void }) {
+export default function Logo({
+  onClick,
+  compact = false,
+}: {
+  onClick?: () => void;
+  compact?: boolean;
+}) {
   const [imgError, setImgError] = useState(false);
 
   return (
@@ -23,7 +29,11 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
         <img
           src="/images/logo-full.png"
           alt="The Mortgage Jedi, Mike Prenesti"
-          className="h-20 w-auto shrink-0 sm:h-24"
+          className={
+            compact
+              ? "h-20 w-auto shrink-0 sm:h-24 transition-all duration-300"
+              : "h-[7.5rem] w-auto shrink-0 min-[640px]:h-36 min-[768px]:h-24 min-[900px]:h-[8.5rem] min-[1024px]:h-36 min-[1280px]:h-[7.25rem] transition-all duration-300"
+          }
           onError={() => setImgError(true)}
         />
       ) : (
