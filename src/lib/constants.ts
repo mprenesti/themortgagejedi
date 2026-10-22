@@ -15,6 +15,8 @@ export const SITE = {
   url: "https://themortgagejedi.com",
   bookingUrl:
     "https://go.themortgagejedi.com/widget/booking/oGfLuFAqGRAgEdPCB6R7",
+  // TODO(C2 switch): replace with the C2 application link when available.
+  applyUrl: "/get-started",
   social: {
     instagram: "https://www.instagram.com/mikethemortgagejedi/",
     tiktok: "https://www.tiktok.com/@mikethemortgagejedi",

@@ -58,7 +58,7 @@ export default function ComplianceLogos() {
         src="/images/logo/c2-financial-white.png"
         alt="C2 Financial"
         fallback="C2 Financial Corporation"
-        className="h-10"
+        className="h-10 bg-transparent p-0"
       />
       <Logo
         src="/images/equal-housing-lender.png"
