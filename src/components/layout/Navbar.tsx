@@ -28,8 +28,15 @@ export default function Navbar() {
           : "bg-black",
       )}
     >
-      <nav className="container-page flex min-h-[7rem] items-center justify-between gap-x-4 py-3 sm:min-h-[9rem]">
-        <Logo />
+      <nav
+        className={cn(
+          "container-page flex items-center justify-between gap-x-4 py-3 transition-all duration-300",
+          scrolled
+            ? "min-h-[7rem] sm:min-h-[9rem]"
+            : "min-h-[9rem] sm:min-h-[10.5rem]",
+        )}
+      >
+        <Logo compact={scrolled} />
 
         {/* Inline nav. Shown at the "md" breakpoint (768px) and up. The row is
             allowed to wrap, so when the ten items plus the logo and action
