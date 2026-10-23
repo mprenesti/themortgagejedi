@@ -14,7 +14,7 @@ const FINANCIAL_SERVICE_SCHEMA = {
   "@type": "FinancialService",
   name: "The Mortgage Jedi",
   alternateName: `Mike Prenesti - ${SITE.company}`,
-  url: "https://themortgagejedi.com",
+  url: SITE.url,
   areaServed: {
     "@type": "City",
     name: "Las Vegas, NV",
@@ -33,7 +33,7 @@ const PERSON_SCHEMA = {
     name: SITE.company,
   },
   identifier: `${SITE.nmls} (Individual) / ${SITE.company} ${SITE.corporateNmls} (Company)`,
-  url: "https://themortgagejedi.com",
+  url: SITE.url,
   telephone: "+1-702-497-0584",
 };
 
@@ -89,6 +89,7 @@ export const metadata: Metadata = {
     description: "Payment first mortgage guidance for Las Vegas homebuyers.",
   },
   robots: { index: true, follow: true },
+  alternates: { canonical: "./" },
 };
 
 const GA_ID =
