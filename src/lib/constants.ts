@@ -12,7 +12,7 @@ export const SITE = {
   phone: "702-497-0584",
   phoneDirect: "702-291-9889",
   email: "mike@themortgagejedi.com",
-  url: "https://themortgagejedi.com",
+  url: "https://www.themortgagejedi.com",
   bookingUrl:
     "https://go.themortgagejedi.com/widget/booking/oGfLuFAqGRAgEdPCB6R7",
   // TODO(C2 switch): replace with the C2 application link when available.
