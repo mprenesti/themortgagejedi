@@ -2,9 +2,12 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
 
-// Regenerate hourly so newly published scheduled posts enter the sitemap
-// without waiting for the next deploy.
-export const revalidate = 3600;
+// Build-time only. Reading content/blog at runtime on Vercel ISR left the
+// sitemap with static routes and no posts, because those MDX files are not
+// in the serverless bundle. force-static keeps generation in `next build`,
+// when the files are on disk. New dated posts enter the sitemap on the next
+// deploy, not at 8 AM Pacific by themselves.
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
