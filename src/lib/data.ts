@@ -82,7 +82,7 @@ export type Testimonial = {
   quote: string;
   name: string;
   date?: string;
-  rating?: number; // 1-5; omit for manual entries to default to 5 stars
+  rating?: number; // 1-5 only when the client gave that rating. Omit to show no stars.
   source?: "google"; // only set on reviews pulled from Google
 };
 
