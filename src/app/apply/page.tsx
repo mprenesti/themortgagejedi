@@ -53,9 +53,10 @@ export default function ApplyPage() {
         title="Apply for Your Loan"
         subtitle="Ready to move forward? Start your secure application online. It's quick, guided, and there's no pressure. I'll be with you every step of the way."
       >
-        {/* Restore target="_blank" rel="noopener noreferrer" when SITE.applyUrl is an external URL. */}
         <a
           href={SITE.applyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="btn-gold text-lg"
         >
           Start My Application
@@ -155,9 +156,10 @@ export default function ApplyPage() {
               you&apos;d like to talk it through before you apply.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              {/* Restore target="_blank" rel="noopener noreferrer" when SITE.applyUrl is an external URL. */}
               <a
                 href={SITE.applyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-gold"
               >
                 Start My Application

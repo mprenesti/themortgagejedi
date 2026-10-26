@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { LOAN_SERVICES } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
+import { SITE } from "@/lib/constants";
 
 const ICONS: Record<string, LucideIcon> = {
   Home,
@@ -30,8 +31,8 @@ export default function Services() {
             Loan Options for Every Situation
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-gray-light">
-            With 16 years of experience and a full range of programs, I can find
-            the right fit no matter where you are.
+            With {SITE.experienceYears} years of experience and a full range of
+            programs, I can find the right fit no matter where you are.
           </p>
         </Reveal>
 

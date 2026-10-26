@@ -43,7 +43,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     provider: {
       "@type": "FinancialService",
       name: "The Mortgage Jedi",
-      telephone: "+1-702-497-0584",
+      telephone: `+1-${SITE.phone}`,
     },
     areaServed: "Las Vegas, NV",
   };
@@ -134,9 +134,10 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                   Book a Call
                   <ArrowRight className="h-4 w-4" />
                 </a>
-                {/* Restore target="_blank" rel="noopener noreferrer" when SITE.applyUrl is an external URL. */}
                 <a
                   href={SITE.applyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-outline"
                 >
                   Apply Now

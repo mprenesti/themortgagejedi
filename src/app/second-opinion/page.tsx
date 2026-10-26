@@ -18,6 +18,7 @@ import {
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import SecondOpinionForm from "@/components/forms/SecondOpinionForm";
+import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Free Second Opinion on Your Loan Estimate",
@@ -197,8 +198,9 @@ export default function SecondOpinionPage() {
               <p className="text-xs leading-relaxed text-gray-mid">
                 This review is for educational purposes only and does not
                 constitute a loan commitment, approval, or official offer of
-                credit. Mike Prenesti, NMLS #1033445. C2 Financial Corporation,
-                NMLS #135622. Equal Housing Opportunity. Licensed in Nevada.
+                credit. Mike Prenesti, {SITE.nmls}. {SITE.company},{" "}
+                {SITE.corporateNmls}. Equal Housing Opportunity. Licensed in
+                Nevada.
               </p>
             </Reveal>
           </div>

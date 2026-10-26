@@ -6,6 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 import GuideCard from "@/components/guides/GuideCard";
 import JsonLd from "@/components/JsonLd";
 import { getAllGuides } from "@/lib/guides";
+import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Mortgage Guides & Scenarios",
@@ -23,7 +24,7 @@ export default function GuidesPage() {
     provider: {
       "@type": "FinancialService",
       name: "The Mortgage Jedi",
-      telephone: "+1-702-497-0584",
+      telephone: `+1-${SITE.phone}`,
     },
     areaServed: "Las Vegas, NV",
   }));

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SMS_HREF } from "@/lib/constants";
+import { SMS_HREF, SITE } from "@/lib/constants";
 
 export default function MobileStickyCTA() {
   return (
@@ -10,12 +10,14 @@ export default function MobileStickyCTA() {
       >
         Text Mike
       </a>
-      <Link
-        href="/apply"
+      <a
+        href={SITE.applyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex items-center justify-center whitespace-nowrap border-x border-black/20 bg-gold px-1 py-3.5 text-center font-heading text-xs font-bold uppercase tracking-tight text-black"
       >
         Apply Now
-      </Link>
+      </a>
       <Link
         href="/get-started"
         className="flex items-center justify-center whitespace-nowrap bg-gold-dark px-1 py-3.5 text-center font-heading text-xs font-bold uppercase tracking-tight text-black"

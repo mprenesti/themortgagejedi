@@ -19,7 +19,7 @@ const FINANCIAL_SERVICE_SCHEMA = {
     "@type": "City",
     name: "Las Vegas, NV",
   },
-  telephone: "+1-702-497-0584",
+  telephone: `+1-${SITE.phone}`,
   priceRange: "Varies",
 };
 
@@ -34,7 +34,7 @@ const PERSON_SCHEMA = {
   },
   identifier: `${SITE.nmls} (Individual) / ${SITE.company} ${SITE.corporateNmls} (Company)`,
   url: SITE.url,
-  telephone: "+1-702-497-0584",
+  telephone: `+1-${SITE.phone}`,
 };
 
 const rajdhani = Rajdhani({
@@ -58,6 +58,8 @@ const bebas = Bebas_Neue({
   display: "swap",
 });
 
+const isPreview = process.env.VERCEL_ENV === "preview";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
@@ -78,7 +80,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "The Mortgage Jedi | Las Vegas Mortgage Broker",
     description: "Payment first mortgage guidance for Las Vegas homebuyers.",
-    url: SITE.url,
     siteName: SITE.name,
     locale: "en_US",
     type: "website",
@@ -88,13 +89,18 @@ export const metadata: Metadata = {
     title: "The Mortgage Jedi | Las Vegas Mortgage Broker",
     description: "Payment first mortgage guidance for Las Vegas homebuyers.",
   },
-  robots: { index: true, follow: true },
+  robots: isPreview
+    ? { index: false, follow: false }
+    : { index: true, follow: true },
   alternates: { canonical: "./" },
 };
 
-const GA_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? process.env.NEXT_PUBLIC_GA_ID;
-const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const GA_ID = isPreview
+  ? undefined
+  : process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? process.env.NEXT_PUBLIC_GA_ID;
+const FB_PIXEL_ID = isPreview
+  ? undefined
+  : process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
 export default function RootLayout({
   children,

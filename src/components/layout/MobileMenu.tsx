@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
-import { PHONE_DISPLAY, SMS_HREF } from "@/lib/constants";
+import { PHONE_DISPLAY, SMS_HREF, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 // Width at and above which the inline (wrapping) nav replaces the hamburger.
@@ -121,13 +121,15 @@ export default function MobileMenu() {
               >
                 Book a Call
               </Link>
-              <Link
-                href="/apply"
+              <a
+                href={SITE.applyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="btn-outline w-full"
               >
                 Apply Now
-              </Link>
+              </a>
               <a href={SMS_HREF} className="btn-outline w-full">
                 Text {PHONE_DISPLAY}
               </a>

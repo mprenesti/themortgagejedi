@@ -43,7 +43,12 @@ export default function Analytics() {
         trackEvent("click_text", { link_url: href });
         return;
       }
-      if (/(^|\/)apply(\/|$|\?)/.test(href) || text.includes("apply now")) {
+      if (
+        href === SITE.applyUrl ||
+        href.includes("my1003app.com") ||
+        /(^|\/)apply(\/|$|\?)/.test(href) ||
+        text.includes("apply now")
+      ) {
         trackEvent("click_apply", { link_text: text });
         return;
       }
