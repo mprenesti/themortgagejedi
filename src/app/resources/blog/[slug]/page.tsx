@@ -112,7 +112,8 @@ export default function BlogPostPage({
                 Mike Prenesti, The Mortgage Jedi
               </p>
               <p className="text-sm text-gray-light">
-                16 years helping Las Vegas homebuyers find the right loan. {SITE.nmls}.
+                {SITE.experienceYears} years helping Las Vegas homebuyers find
+                the right loan. {SITE.nmls}.
               </p>
             </div>
           </div>

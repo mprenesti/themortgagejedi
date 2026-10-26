@@ -1,3 +1,5 @@
+import { CLOSING_TIMELINE_FAQ } from "@/lib/constants";
+
 export type NavLink = {
   label: string;
   href: string;
@@ -213,7 +215,7 @@ export const HOME_FAQS: FAQ[] = [
   },
   {
     q: "How long does the mortgage process take?",
-    a: "Most loans close in 21 to 30 days from application. I keep you updated at every step so there are never any surprises.",
+    a: CLOSING_TIMELINE_FAQ,
   },
   {
     q: "Can you help with investment property loans?",

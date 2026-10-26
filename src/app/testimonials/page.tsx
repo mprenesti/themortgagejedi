@@ -11,7 +11,7 @@ import { getGoogleReviews } from "@/lib/google-reviews";
 export const metadata: Metadata = {
   title: "Testimonials: What Clients Are Saying",
   description:
-    "Real stories from real Las Vegas homebuyers Mike Prenesti has helped over 16 years in the mortgage industry.",
+    `Real stories from real Las Vegas homebuyers Mike Prenesti has helped over ${SITE.experienceYears} years in mortgage lending.`,
 };
 
 export default async function TestimonialsPage() {
@@ -25,7 +25,7 @@ export default async function TestimonialsPage() {
       <PageHero
         label="Testimonials"
         title="What Clients Are Saying"
-        subtitle="Real stories from real people I've had the privilege of helping over 16 years."
+        subtitle={`Real stories from real people I've had the privilege of helping over ${SITE.experienceYears} years.`}
       />
       <div className="container-page py-16 sm:py-20">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

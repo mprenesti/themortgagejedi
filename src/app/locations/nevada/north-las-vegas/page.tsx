@@ -5,6 +5,7 @@ import Accordion from "@/components/ui/Accordion";
 import CTAStrip from "@/components/ui/CTAStrip";
 import JsonLd from "@/components/JsonLd";
 import LocationContact from "@/components/locations/LocationContact";
+import { CLOSING_TIMELINE_FAQ } from "@/lib/constants";
 import type { FAQ } from "@/lib/data";
 
 // CONTENT REFRESH NOTE:
@@ -58,7 +59,7 @@ const NORTH_LAS_VEGAS_FAQS: FAQ[] = [
   },
   {
     q: "How long does it take to close on a house in North Las Vegas?",
-    a: "Most purchase loans close in 30 to 45 days from the time an offer is accepted, though VA and FHA loans can sometimes take slightly longer depending on the lender and the appraisal timeline. Getting fully pre-approved before you start shopping is the biggest factor in keeping that timeline tight.",
+    a: CLOSING_TIMELINE_FAQ,
   },
 ];
 

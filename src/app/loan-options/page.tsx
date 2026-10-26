@@ -3,11 +3,12 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
+import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Loan Options: FHA, VA, Conventional, DSCR & More",
   description:
-    "Purchase, refinance, investor, home equity, self-employed, and specialty loan programs. With 16 years of experience, Mike Prenesti finds the right fit for your situation.",
+    `Purchase, refinance, investor, home equity, self-employed, and specialty loan programs. With ${SITE.experienceYears} years of experience, Mike Prenesti finds the right fit for your situation.`,
 };
 
 type Program = { name: string; desc: string; bold?: boolean };
@@ -199,7 +200,7 @@ export default function LoanOptionsPage() {
       <PageHero
         label="Loan Options"
         title="Loan Options for Every Situation"
-        subtitle="With 16 years of experience and a full range of programs, I can find the right fit, no matter your situation."
+        subtitle={`With ${SITE.experienceYears} years of experience and a full range of programs, I can find the right fit, no matter your situation.`}
       >
         <div className="flex flex-wrap gap-2">
           {quickFilters.map((f) => (

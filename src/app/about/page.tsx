@@ -14,7 +14,7 @@ import { SITE } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "About Mike Prenesti, The Mortgage Jedi",
   description:
-    "16 years in the mortgage industry. Payment first philosophy. No pressure. No rush. Meet Mike Prenesti, The Mortgage Jedi, serving Las Vegas homebuyers.",
+    "18+ years in mortgage lending. Payment first philosophy. No pressure. No rush. Meet Mike Prenesti, The Mortgage Jedi, serving Las Vegas homebuyers.",
 };
 
 const values = [
@@ -44,7 +44,7 @@ const credentials = [
   `Mike Prenesti, ${SITE.nmls}`,
   `${SITE.company} (Corporate ${SITE.corporateNmls})`,
   "Licensed in Nevada",
-  "16 Years in the Mortgage Industry",
+  SITE.experiencePhrase,
   "Specialties: First Time Buyers, Self-Employed, Investors, New Construction",
 ];
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <PageHero
         label="About"
         title="I'm Mike Prenesti. I help Las Vegas homebuyers get the right loan. Not just the biggest approval."
-        subtitle="16 years in the mortgage industry. Payment first philosophy. No pressure. No rush."
+        subtitle={`${SITE.experiencePhrase}. Payment first philosophy. No pressure. No rush.`}
       />
 
       <div className="container-page space-y-16 py-16 sm:py-20">
@@ -90,7 +90,8 @@ export default function AboutPage() {
             pushed the biggest loan. The person who found the right one.
           </p>
           <p>
-            After 16 years, I&apos;ve helped hundreds of families in Las Vegas
+            After {SITE.experienceYears} years, I&apos;ve helped hundreds of
+            families in Las Vegas
             find the right mortgage. My process hasn&apos;t changed: ask good
             questions, listen more than I talk, and never recommend something I
             wouldn&apos;t do myself.

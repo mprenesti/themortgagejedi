@@ -5,6 +5,7 @@ import Accordion from "@/components/ui/Accordion";
 import CTAStrip from "@/components/ui/CTAStrip";
 import JsonLd from "@/components/JsonLd";
 import LocationContact from "@/components/locations/LocationContact";
+import { CLOSING_TIMELINE_FAQ } from "@/lib/constants";
 import type { FAQ } from "@/lib/data";
 
 // CONTENT REFRESH NOTE:
@@ -69,7 +70,7 @@ const PAHRUMP_FAQS: FAQ[] = [
   },
   {
     q: "How long does it take to close on a house in Pahrump?",
-    a: "Most purchase loans close in 30 to 45 days from the time an offer is accepted, though USDA loans in particular can sometimes take a bit longer due to the extra property eligibility review. Getting fully pre-approved before you start shopping is the biggest factor in keeping that timeline tight.",
+    a: CLOSING_TIMELINE_FAQ,
   },
 ];
 
