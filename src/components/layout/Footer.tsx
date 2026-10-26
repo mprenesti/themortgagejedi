@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { SITE, PHONE_DISPLAY, PHONE_HREF, EMAIL_HREF } from "@/lib/constants";
+import {
+  SITE,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  EMAIL_HREF,
+  APPLY_LINK,
+} from "@/lib/constants";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 import ComplianceLogos from "./ComplianceLogos";
 import {
@@ -16,7 +22,6 @@ const quickLinks = [
   { label: "Loan Options", href: "/loan-options" },
   { label: "Calculator", href: "/tools/calculator" },
   { label: "Blog", href: "/resources/blog" },
-  { label: "Apply Now", href: "/apply" },
   { label: "Get Started", href: "/get-started" },
 ];
 
@@ -100,6 +105,14 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                {...APPLY_LINK}
+                className="text-sm text-gray-light transition-colors hover:text-gold"
+              >
+                Apply Now
+              </a>
+            </li>
           </ul>
         </div>
 

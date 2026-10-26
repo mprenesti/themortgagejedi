@@ -4,7 +4,7 @@ import PageHero from "@/components/ui/PageHero";
 import Accordion from "@/components/ui/Accordion";
 import CTAStrip from "@/components/ui/CTAStrip";
 import JsonLd from "@/components/JsonLd";
-import { PHONE_HREF, EMAIL_HREF } from "@/lib/constants";
+import LocationContact from "@/components/locations/LocationContact";
 import type { FAQ } from "@/lib/data";
 
 // CONTENT REFRESH NOTE:
@@ -201,24 +201,7 @@ export default function NorthLasVegasLocationPage() {
             investing in the North Las Vegas area, reach out and let&apos;s map
             out your options.
           </p>
-          <div className="rounded-2xl border border-gold/30 bg-charcoal p-6">
-            <p className="font-heading text-lg font-bold text-white">
-              Contact The Mortgage Jedi
-            </p>
-            <p className="mt-2 text-gray-light">
-              Mike Prenesti, NMLS #1033445
-              <br />
-              C2 Financial Corporation, NMLS #135622
-              <br />
-              <a href={PHONE_HREF} className="hover:text-gold">
-                702-497-0584
-              </a>{" "}
-              |{" "}
-              <a href={EMAIL_HREF} className="hover:text-gold">
-                mike@themortgagejedi.com
-              </a>
-            </p>
-          </div>
+          <LocationContact />
         </section>
 
         <section className="space-y-5">

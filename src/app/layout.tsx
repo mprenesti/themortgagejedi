@@ -19,7 +19,7 @@ const FINANCIAL_SERVICE_SCHEMA = {
     "@type": "City",
     name: "Las Vegas, NV",
   },
-  telephone: "+1-702-497-0584",
+  telephone: `+1-${SITE.phone}`,
   priceRange: "Varies",
 };
 
@@ -34,7 +34,7 @@ const PERSON_SCHEMA = {
   },
   identifier: `${SITE.nmls} (Individual) / ${SITE.company} ${SITE.corporateNmls} (Company)`,
   url: SITE.url,
-  telephone: "+1-702-497-0584",
+  telephone: `+1-${SITE.phone}`,
 };
 
 const rajdhani = Rajdhani({

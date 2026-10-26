@@ -79,9 +79,14 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link href="/apply" className="btn-outline hidden sm:inline-flex">
+          <a
+            href={SITE.applyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline hidden sm:inline-flex"
+          >
             Apply Now
-          </Link>
+          </a>
           <Link href="/get-started" className="btn-gold hidden sm:inline-flex">
             Book a Call
           </Link>

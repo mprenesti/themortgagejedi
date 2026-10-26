@@ -41,8 +41,8 @@ const values = [
 ];
 
 const credentials = [
-  "Mike Prenesti, NMLS #1033445",
-  "C2 Financial Corporation (Corporate NMLS #135622)",
+  `Mike Prenesti, ${SITE.nmls}`,
+  `${SITE.company} (Corporate ${SITE.corporateNmls})`,
   "Licensed in Nevada",
   "16 Years in the Mortgage Industry",
   "Specialties: First Time Buyers, Self-Employed, Investors, New Construction",

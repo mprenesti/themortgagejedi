@@ -15,8 +15,11 @@ export const SITE = {
   url: "https://www.themortgagejedi.com",
   bookingUrl:
     "https://go.themortgagejedi.com/widget/booking/oGfLuFAqGRAgEdPCB6R7",
-  // TODO(C2 switch): replace with the C2 application link when available.
-  applyUrl: "/get-started",
+  // C2 Financial my1003 application, registered to Mike's individual NMLS.
+  // Use this exact address. Do not append query strings or timestamps.
+  applyUrl: "https://135622.my1003app.com/1033445/register",
+  experienceYears: "18+",
+  experiencePhrase: "18+ years in mortgage lending",
   social: {
     instagram: "https://www.instagram.com/mikethemortgagejedi/",
     tiktok: "https://www.tiktok.com/@mikethemortgagejedi",
@@ -33,3 +36,15 @@ export const PHONE_HREF = `tel:+1${SITE.phone.replace(/\D/g, "")}`;
 export const SMS_HREF = `sms:+1${SITE.phone.replace(/\D/g, "")}`;
 export const PHONE_DISPLAY = "(702) 497-0584";
 export const EMAIL_HREF = `mailto:${SITE.email}`;
+
+export const APPLY_LINK = {
+  href: SITE.applyUrl,
+  target: "_blank",
+  rel: "noopener noreferrer",
+} as const;
+
+// Non-blog closing-time copy. Clock starts at the signed contract. Not a
+// guarantee. Loan type, appraisal, underwriting, title, and documentation
+// can move the date.
+export const CLOSING_TIMELINE_FAQ =
+  "A clean purchase often closes in about 25 to 35 days from the signed contract. FHA, VA, USDA, jumbo, new construction, and files with open underwriting conditions, a late appraisal, or title issues can take longer. No closing timeline is guaranteed. Getting fully pre-approved before you start shopping is the biggest factor in keeping that timeline tight.";

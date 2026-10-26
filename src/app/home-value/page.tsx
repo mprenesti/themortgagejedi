@@ -12,6 +12,7 @@ import {
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import HomeValueForm from "@/components/forms/HomeValueForm";
+import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Request Your Free Home Value Report",
@@ -135,8 +136,9 @@ export default function HomeValuePage() {
               <p className="text-xs leading-relaxed text-gray-mid">
                 This report is for informational purposes only and does not
                 constitute an appraisal, loan commitment, or official offer of
-                credit. Mike Prenesti, NMLS #1033445. C2 Financial Corporation,
-                NMLS #135622. Equal Housing Opportunity. Licensed in Nevada.
+                credit. Mike Prenesti, {SITE.nmls}. {SITE.company},{" "}
+                {SITE.corporateNmls}. Equal Housing Opportunity. Licensed in
+                Nevada.
               </p>
             </Reveal>
           </div>
