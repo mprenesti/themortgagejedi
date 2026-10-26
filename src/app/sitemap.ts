@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
+import { getGuideSlugs } from "@/lib/guides";
 
 // Build-time only. Reading content/blog at runtime on Vercel ISR left the
 // sitemap with static routes and no posts, because those MDX files are not
@@ -21,6 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources/blog",
     "/resources/first-time-buyer-guide",
     "/resources/faq",
+    "/guides",
+    "/apply",
     "/locations",
     "/locations/nevada/las-vegas",
     "/locations/nevada/henderson",
@@ -54,5 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...pages, ...posts];
+  const guides: MetadataRoute.Sitemap = getGuideSlugs().map((slug) => ({
+    url: `${SITE.url}/guides/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...pages, ...posts, ...guides];
 }
