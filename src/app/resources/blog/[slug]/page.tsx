@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { formatPostDate } from "@/lib/format-post-date";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { Clock, ArrowLeft } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
 import CoverImage from "@/components/blog/CoverImage";
+import MdxContent from "@/components/blog/MdxContent";
 import BlogCard from "@/components/blog/BlogCard";
 import ShareButtons from "@/components/blog/ShareButtons";
 import JsonLd from "@/components/JsonLd";
@@ -118,8 +118,8 @@ export default function BlogPostPage({
             </div>
           </div>
 
-          <div className="prose prose-invert mt-10 max-w-none prose-headings:font-heading prose-headings:text-white prose-a:text-gold prose-strong:text-white prose-li:marker:text-gold">
-            <MDXRemote source={post.content} />
+          <div className="prose prose-invert mt-10 max-w-none overflow-x-hidden prose-headings:font-heading prose-headings:text-white prose-a:text-gold prose-strong:text-white prose-li:marker:text-gold">
+            <MdxContent source={post.content} />
           </div>
 
           <div className="mt-10 border-t border-white/10 pt-6">
