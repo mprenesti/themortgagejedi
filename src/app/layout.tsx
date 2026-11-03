@@ -9,12 +9,22 @@ import MobileStickyCTA from "@/components/layout/MobileStickyCTA";
 import JsonLd from "@/components/JsonLd";
 import Analytics from "@/components/analytics/Analytics";
 
+const BRANCH_POSTAL_ADDRESS = {
+  "@type": "PostalAddress",
+  streetAddress: SITE.branchStreet,
+  addressLocality: SITE.branchCity,
+  addressRegion: SITE.branchState,
+  postalCode: SITE.branchZip,
+  addressCountry: "US",
+};
+
 const FINANCIAL_SERVICE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "FinancialService",
   name: "The Mortgage Jedi",
   alternateName: `Mike Prenesti - ${SITE.company}`,
   url: SITE.url,
+  address: BRANCH_POSTAL_ADDRESS,
   areaServed: {
     "@type": "City",
     name: "Las Vegas, NV",
@@ -34,6 +44,7 @@ const PERSON_SCHEMA = {
   },
   identifier: `${SITE.nmls} (Individual) / ${SITE.company} ${SITE.corporateNmls} (Company)`,
   url: SITE.url,
+  address: BRANCH_POSTAL_ADDRESS,
   telephone: `+1-${SITE.phone}`,
 };
 

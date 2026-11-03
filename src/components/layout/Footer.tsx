@@ -74,7 +74,11 @@ export default function Footer() {
               {SITE.company} · Corporate {SITE.corporateNmls}
             </p>
             <p>Mike Prenesti · {SITE.nmls}</p>
-            <p>Branch office: {SITE.branchAddress}</p>
+            <p>
+              Branch office: {SITE.branchStreet}
+              <br />
+              {SITE.branchCity}, {SITE.branchState} {SITE.branchZip}
+            </p>
             <p>Licensed in Nevada</p>
             <p>
               <a

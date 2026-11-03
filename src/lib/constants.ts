@@ -6,7 +6,12 @@ export const SITE = {
   company: "C2 Financial Corporation",
   corporateNmls: "NMLS #135622",
   // Branch office address displayed across the site.
-  branchAddress: "2320 Paseo Del Prado, Suite B204, Las Vegas, NV 89102",
+  branchStreet: "8488 Rozita Lee Ave., Bldg 3, Suite 100, Office PO 38",
+  branchCity: "Las Vegas",
+  branchState: "NV",
+  branchZip: "89113",
+  branchAddress:
+    "8488 Rozita Lee Ave., Bldg 3, Suite 100, Office PO 38, Las Vegas, NV 89113",
   // Compliance licensing line shown in the footer and legal copy.
   licenseLine: "C2 NMLS #135622 | C2 NV #3260 | NMLS #1033445",
   phone: "702-497-0584",
