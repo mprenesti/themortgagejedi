@@ -12,10 +12,12 @@ import JsonLd from "@/components/JsonLd";
 import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/lib/blog";
 import { SITE } from "@/lib/constants";
 
-// Re-render hourly so a post whose scheduled publish moment has passed is
-// served even if it was still in the future at the last build. New slugs not
-// returned by generateStaticParams are rendered on demand (dynamicParams
-// defaults to true).
+// Always emit this route from the current build so a new deploy cannot keep
+// serving a previous Incremental Cache payload (the pre-GFM pipe-text HTML).
+// Hourly revalidate still lets a scheduled post appear after 8 AM Pacific
+// without waiting for another deploy. New slugs not returned by
+// generateStaticParams are rendered on demand (dynamicParams defaults to true).
+export const dynamic = "force-static";
 export const revalidate = 3600;
 
 export function generateStaticParams() {
