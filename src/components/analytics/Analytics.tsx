@@ -36,11 +36,17 @@ export default function Analytics() {
       const text = (el.textContent ?? "").trim().toLowerCase();
 
       if (href.startsWith("tel:")) {
-        trackEvent("click_call", { link_url: href });
+        trackEvent("click_call", {
+          link_url: href,
+          transport_type: "beacon",
+        });
         return;
       }
       if (href.startsWith("sms:")) {
-        trackEvent("click_text", { link_url: href });
+        trackEvent("click_text", {
+          link_url: href,
+          transport_type: "beacon",
+        });
         return;
       }
       if (
