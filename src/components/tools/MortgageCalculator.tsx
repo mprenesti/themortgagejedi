@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { formatCurrency } from "@/lib/utils";
 
 function monthlyPI(principal: number, annualRate: number, years: number) {
@@ -30,16 +30,39 @@ function dollarsFromPercent(pct: number, homePrice: number) {
   return clampDownDollars((homePrice * clampPercent(pct)) / 100, homePrice);
 }
 
-function parseDollarInput(raw: string): number | null {
-  const digits = raw.replace(/[^\d]/g, "");
-  if (digits === "") return null;
-  return Number.parseInt(digits, 10);
-}
-
 function formatDollarInput(amount: number) {
   return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: 0,
   }).format(amount);
+}
+
+function countDigits(value: string) {
+  return (value.match(/\d/g) || []).length;
+}
+
+function cursorAfterDigits(formatted: string, digitCount: number) {
+  if (digitCount <= 0) return 0;
+  let seen = 0;
+  for (let i = 0; i < formatted.length; i++) {
+    if (formatted[i] >= "0" && formatted[i] <= "9") {
+      seen += 1;
+      if (seen === digitCount) return i + 1;
+    }
+  }
+  return formatted.length;
+}
+
+function sanitizeDollarChange(raw: string, cursor: number) {
+  const digitsBefore = countDigits(raw.slice(0, Math.max(cursor, 0)));
+  let digits = raw.replace(/[^\d]/g, "");
+  if (digits.length > 10) digits = digits.slice(0, 10);
+  if (digits === "") return { text: "", cursor: 0, value: null as number | null };
+  const value = Number.parseInt(digits, 10);
+  if (!Number.isFinite(value) || value < 0) {
+    return { text: "", cursor: 0, value: null };
+  }
+  const text = formatDollarInput(value);
+  return { text, cursor: cursorAfterDigits(text, digitsBefore), value };
 }
 
 function displayPercent(value: number) {
@@ -85,15 +108,26 @@ function NumberField({
   );
 }
 
-function DollarField({
+function CommaDollarField({
   label,
   text,
-  onTextChange,
+  onChange,
+  onBlur,
 }: {
   label: string;
   text: string;
-  onTextChange: (raw: string) => void;
+  onChange: (formatted: string, value: number | null) => void;
+  onBlur?: () => void;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const cursorRef = useRef<number | null>(null);
+
+  useLayoutEffect(() => {
+    if (cursorRef.current === null || !inputRef.current) return;
+    inputRef.current.setSelectionRange(cursorRef.current, cursorRef.current);
+    cursorRef.current = null;
+  }, [text]);
+
   return (
     <label className="block">
       <span className="mb-1.5 block font-heading text-sm font-medium uppercase tracking-wide text-gray-light">
@@ -102,11 +136,27 @@ function DollarField({
       <div className="flex items-center rounded-md border border-white/15 bg-black/60 focus-within:border-gold">
         <span className="pl-3 text-gray-mid">$</span>
         <input
+          ref={inputRef}
           type="text"
           inputMode="numeric"
           autoComplete="off"
           value={text}
-          onChange={(e) => onTextChange(e.target.value)}
+          onChange={(e) => {
+            const next = sanitizeDollarChange(
+              e.target.value,
+              e.target.selectionStart ?? e.target.value.length,
+            );
+            cursorRef.current = next.cursor;
+            onChange(next.text, next.value);
+            requestAnimationFrame(() => {
+              if (cursorRef.current === null || !inputRef.current) return;
+              inputRef.current.setSelectionRange(
+                cursorRef.current,
+                cursorRef.current,
+              );
+            });
+          }}
+          onBlur={onBlur}
           className="w-full bg-transparent px-3 py-3 text-white focus:outline-none"
         />
       </div>
@@ -119,6 +169,7 @@ const DEFAULT_DOWN_PCT = 10;
 
 export default function MortgageCalculator() {
   const [homePrice, setHomePrice] = useState(DEFAULT_PRICE);
+  const [priceText, setPriceText] = useState(formatDollarInput(DEFAULT_PRICE));
   const [downPct, setDownPct] = useState(DEFAULT_DOWN_PCT);
   const [downAmount, setDownAmount] = useState(
     dollarsFromPercent(DEFAULT_DOWN_PCT, DEFAULT_PRICE),
@@ -130,7 +181,9 @@ export default function MortgageCalculator() {
   const [rate, setRate] = useState(7.0);
   const [term, setTerm] = useState(30);
   const [annualTax, setAnnualTax] = useState(3000);
+  const [taxText, setTaxText] = useState(formatDollarInput(3000));
   const [annualIns, setAnnualIns] = useState(1800);
+  const [insText, setInsText] = useState(formatDollarInput(1800));
   const [showAmort, setShowAmort] = useState(false);
 
   const applyPercent = (rawPct: number) => {
@@ -142,8 +195,7 @@ export default function MortgageCalculator() {
     setDollarText(formatDollarInput(dollars));
   };
 
-  const applyDollars = (raw: string) => {
-    const parsed = parseDollarInput(raw);
+  const applyDollars = (formatted: string, parsed: number | null) => {
     setLastEdited("dollars");
     if (parsed === null) {
       setDownAmount(0);
@@ -154,17 +206,24 @@ export default function MortgageCalculator() {
     const dollars = clampDownDollars(parsed, homePrice);
     setDownAmount(dollars);
     setDownPct(percentFromDollars(dollars, homePrice));
-    setDollarText(formatDollarInput(dollars));
+    setDollarText(
+      dollars === parsed ? formatted : formatDollarInput(dollars),
+    );
   };
 
-  const applyHomePrice = (nextPrice: number) => {
-    const price = Number.isFinite(nextPrice) && nextPrice > 0 ? nextPrice : 0;
-    setHomePrice(price);
+  const syncDownForPrice = (price: number, capToPrice: boolean) => {
     if (lastEdited === "dollars") {
-      const dollars = clampDownDollars(downAmount, price);
+      const dollars =
+        capToPrice && price > 0
+          ? clampDownDollars(downAmount, price)
+          : downAmount;
       setDownAmount(dollars);
-      setDownPct(percentFromDollars(dollars, price));
-      setDollarText(dollars === 0 && dollarText === "" ? "" : formatDollarInput(dollars));
+      setDownPct(
+        price > 0 ? Math.min(percentFromDollars(dollars, price), 100) : 0,
+      );
+      setDollarText(
+        dollars === 0 && dollarText === "" ? "" : formatDollarInput(dollars),
+      );
     } else {
       const dollars = dollarsFromPercent(downPct, price);
       setDownAmount(dollars);
@@ -172,12 +231,27 @@ export default function MortgageCalculator() {
     }
   };
 
+  const applyHomePrice = (
+    nextPrice: number,
+    formatted?: string,
+    capToPrice = formatted === undefined,
+  ) => {
+    const price = Number.isFinite(nextPrice) && nextPrice > 0 ? nextPrice : 0;
+    setHomePrice(price);
+    if (formatted !== undefined) {
+      setPriceText(formatted);
+    } else {
+      setPriceText(price > 0 ? formatDollarInput(price) : "");
+    }
+    syncDownForPrice(price, capToPrice);
+  };
+
   const result = useMemo(() => {
     const downPayment =
       lastEdited === "dollars"
-        ? clampDownDollars(downAmount, homePrice)
+        ? downAmount
         : (homePrice * clampPercent(downPct)) / 100;
-    const loanAmount = Math.max(homePrice - downPayment, 0);
+    const loanAmount = Math.max(homePrice - Math.min(downPayment, homePrice), 0);
     const pi = monthlyPI(loanAmount, rate, term);
     const tax = annualTax / 12;
     const ins = annualIns / 12;
@@ -216,19 +290,22 @@ export default function MortgageCalculator() {
     <div className="grid gap-8 lg:grid-cols-2">
       <div className="space-y-5 rounded-2xl border border-white/10 bg-charcoal p-6 sm:p-8">
         <div>
-          <NumberField
+          <CommaDollarField
             label="Home Price"
-            value={homePrice}
-            onChange={applyHomePrice}
-            prefix="$"
-            step={5000}
+            text={priceText}
+            onChange={(formatted, value) => applyHomePrice(value ?? 0, formatted)}
+            onBlur={() => {
+              if (homePrice > 0) syncDownForPrice(homePrice, true);
+            }}
           />
           <input
             type="range"
             min={100000}
             max={2000000}
             step={5000}
-            value={homePrice}
+            value={
+              homePrice >= 100000 ? Math.min(homePrice, 2000000) : 100000
+            }
             onChange={(e) => applyHomePrice(parseFloat(e.target.value))}
             className="mt-3 w-full accent-gold"
           />
@@ -236,10 +313,10 @@ export default function MortgageCalculator() {
 
         <div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <DollarField
+            <CommaDollarField
               label="Down Payment ($)"
               text={dollarText}
-              onTextChange={applyDollars}
+              onChange={applyDollars}
             />
             <NumberField
               label="Down Payment (%)"
@@ -291,19 +368,21 @@ export default function MortgageCalculator() {
         </label>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          <NumberField
+          <CommaDollarField
             label="Annual Property Tax"
-            value={annualTax}
-            onChange={setAnnualTax}
-            prefix="$"
-            step={100}
+            text={taxText}
+            onChange={(formatted, value) => {
+              setTaxText(formatted);
+              setAnnualTax(value ?? 0);
+            }}
           />
-          <NumberField
+          <CommaDollarField
             label="Annual Insurance"
-            value={annualIns}
-            onChange={setAnnualIns}
-            prefix="$"
-            step={100}
+            text={insText}
+            onChange={(formatted, value) => {
+              setInsText(formatted);
+              setAnnualIns(value ?? 0);
+            }}
           />
         </div>
       </div>
