@@ -10,6 +10,43 @@ function monthlyPI(principal: number, annualRate: number, years: number) {
   return (principal * r) / (1 - Math.pow(1 + r, -n));
 }
 
+function clampPercent(value: number) {
+  if (!Number.isFinite(value) || value < 0) return 0;
+  return Math.min(value, 100);
+}
+
+function clampDownDollars(amount: number, homePrice: number) {
+  if (!Number.isFinite(amount) || amount < 0) return 0;
+  if (!Number.isFinite(homePrice) || homePrice <= 0) return 0;
+  return Math.min(Math.round(amount), Math.round(homePrice));
+}
+
+function percentFromDollars(amount: number, homePrice: number) {
+  if (homePrice <= 0) return 0;
+  return Math.round((amount / homePrice) * 10000) / 100;
+}
+
+function dollarsFromPercent(pct: number, homePrice: number) {
+  return clampDownDollars((homePrice * clampPercent(pct)) / 100, homePrice);
+}
+
+function parseDollarInput(raw: string): number | null {
+  const digits = raw.replace(/[^\d]/g, "");
+  if (digits === "") return null;
+  return Number.parseInt(digits, 10);
+}
+
+function formatDollarInput(amount: number) {
+  return new Intl.NumberFormat("en-US", {
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+function displayPercent(value: number) {
+  if (!Number.isFinite(value)) return 0;
+  return Number(value.toFixed(2));
+}
+
 function NumberField({
   label,
   value,
@@ -48,24 +85,105 @@ function NumberField({
   );
 }
 
+function DollarField({
+  label,
+  text,
+  onTextChange,
+}: {
+  label: string;
+  text: string;
+  onTextChange: (raw: string) => void;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block font-heading text-sm font-medium uppercase tracking-wide text-gray-light">
+        {label}
+      </span>
+      <div className="flex items-center rounded-md border border-white/15 bg-black/60 focus-within:border-gold">
+        <span className="pl-3 text-gray-mid">$</span>
+        <input
+          type="text"
+          inputMode="numeric"
+          autoComplete="off"
+          value={text}
+          onChange={(e) => onTextChange(e.target.value)}
+          className="w-full bg-transparent px-3 py-3 text-white focus:outline-none"
+        />
+      </div>
+    </label>
+  );
+}
+
+const DEFAULT_PRICE = 400000;
+const DEFAULT_DOWN_PCT = 10;
+
 export default function MortgageCalculator() {
-  const [homePrice, setHomePrice] = useState(400000);
-  const [downPct, setDownPct] = useState(10);
+  const [homePrice, setHomePrice] = useState(DEFAULT_PRICE);
+  const [downPct, setDownPct] = useState(DEFAULT_DOWN_PCT);
+  const [downAmount, setDownAmount] = useState(
+    dollarsFromPercent(DEFAULT_DOWN_PCT, DEFAULT_PRICE),
+  );
+  const [dollarText, setDollarText] = useState(
+    formatDollarInput(dollarsFromPercent(DEFAULT_DOWN_PCT, DEFAULT_PRICE)),
+  );
+  const [lastEdited, setLastEdited] = useState<"percent" | "dollars">("percent");
   const [rate, setRate] = useState(7.0);
   const [term, setTerm] = useState(30);
   const [annualTax, setAnnualTax] = useState(3000);
   const [annualIns, setAnnualIns] = useState(1800);
   const [showAmort, setShowAmort] = useState(false);
 
+  const applyPercent = (rawPct: number) => {
+    const pct = clampPercent(rawPct);
+    const dollars = dollarsFromPercent(pct, homePrice);
+    setLastEdited("percent");
+    setDownPct(pct);
+    setDownAmount(dollars);
+    setDollarText(formatDollarInput(dollars));
+  };
+
+  const applyDollars = (raw: string) => {
+    const parsed = parseDollarInput(raw);
+    setLastEdited("dollars");
+    if (parsed === null) {
+      setDownAmount(0);
+      setDownPct(0);
+      setDollarText("");
+      return;
+    }
+    const dollars = clampDownDollars(parsed, homePrice);
+    setDownAmount(dollars);
+    setDownPct(percentFromDollars(dollars, homePrice));
+    setDollarText(formatDollarInput(dollars));
+  };
+
+  const applyHomePrice = (nextPrice: number) => {
+    const price = Number.isFinite(nextPrice) && nextPrice > 0 ? nextPrice : 0;
+    setHomePrice(price);
+    if (lastEdited === "dollars") {
+      const dollars = clampDownDollars(downAmount, price);
+      setDownAmount(dollars);
+      setDownPct(percentFromDollars(dollars, price));
+      setDollarText(dollars === 0 && dollarText === "" ? "" : formatDollarInput(dollars));
+    } else {
+      const dollars = dollarsFromPercent(downPct, price);
+      setDownAmount(dollars);
+      setDollarText(formatDollarInput(dollars));
+    }
+  };
+
   const result = useMemo(() => {
-    const downPayment = (homePrice * downPct) / 100;
+    const downPayment =
+      lastEdited === "dollars"
+        ? clampDownDollars(downAmount, homePrice)
+        : (homePrice * clampPercent(downPct)) / 100;
     const loanAmount = Math.max(homePrice - downPayment, 0);
     const pi = monthlyPI(loanAmount, rate, term);
     const tax = annualTax / 12;
     const ins = annualIns / 12;
     const total = pi + tax + ins;
     return { downPayment, loanAmount, pi, tax, ins, total };
-  }, [homePrice, downPct, rate, term, annualTax, annualIns]);
+  }, [homePrice, downPct, downAmount, lastEdited, rate, term, annualTax, annualIns]);
 
   const schedule = useMemo(() => {
     if (!showAmort) return [];
@@ -101,7 +219,7 @@ export default function MortgageCalculator() {
           <NumberField
             label="Home Price"
             value={homePrice}
-            onChange={setHomePrice}
+            onChange={applyHomePrice}
             prefix="$"
             step={5000}
           />
@@ -111,25 +229,34 @@ export default function MortgageCalculator() {
             max={2000000}
             step={5000}
             value={homePrice}
-            onChange={(e) => setHomePrice(parseFloat(e.target.value))}
+            onChange={(e) => applyHomePrice(parseFloat(e.target.value))}
             className="mt-3 w-full accent-gold"
           />
         </div>
 
         <div>
-          <NumberField
-            label="Down Payment"
-            value={downPct}
-            onChange={(v) => setDownPct(Math.min(Math.max(v, 0), 100))}
-            suffix="%"
-          />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <DollarField
+              label="Down Payment ($)"
+              text={dollarText}
+              onTextChange={applyDollars}
+            />
+            <NumberField
+              label="Down Payment (%)"
+              value={displayPercent(downPct)}
+              onChange={applyPercent}
+              suffix="%"
+              step={0.01}
+              min={0}
+            />
+          </div>
           <input
             type="range"
             min={0}
             max={50}
             step={1}
-            value={downPct}
-            onChange={(e) => setDownPct(parseFloat(e.target.value))}
+            value={Math.min(displayPercent(downPct), 50)}
+            onChange={(e) => applyPercent(parseFloat(e.target.value))}
             className="mt-3 w-full accent-gold"
           />
           <p className="mt-1 text-sm text-gray-mid">
