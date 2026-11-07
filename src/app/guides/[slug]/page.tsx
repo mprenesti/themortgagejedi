@@ -111,6 +111,16 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                       ))}
                     </ul>
                   ) : null}
+                  {section.relatedHref && section.relatedLabel ? (
+                    <p className="mt-4 text-lg text-gray-light">
+                      <Link
+                        href={section.relatedHref}
+                        className="text-gold underline hover:text-white"
+                      >
+                        {section.relatedLabel}
+                      </Link>
+                    </p>
+                  ) : null}
                 </section>
               ))}
             </div>
