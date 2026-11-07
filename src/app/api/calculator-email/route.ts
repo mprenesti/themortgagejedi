@@ -5,7 +5,11 @@ import {
   leadSourceCustomFields,
   leadSourceNote,
 } from "@/lib/ghl-lead-source";
-import { CALCULATOR_EMAIL_TAG } from "@/lib/calculator-email";
+import {
+  CALCULATOR_EMAIL_TAG,
+  calculatorDisplayFields,
+} from "@/lib/calculator-email";
+import { calculatorCustomFields } from "@/lib/ghl-calculator-fields";
 
 export const runtime = "nodejs";
 
@@ -65,6 +69,7 @@ function calculatorNote(
     leadSourceAuto?: string;
   },
 ) {
+  const display = calculatorDisplayFields(calc);
   const pmiLine =
     calc.monthlyPmi === null
       ? "PMI (monthly): not shown on this calculator"
@@ -72,16 +77,16 @@ function calculatorNote(
   return [
     `Calculator email request (${CALCULATOR_EMAIL_TAG})`,
     `Calculator: ${calc.calculatorName}`,
-    `Home price: ${formatCurrency(calc.homePrice)}`,
-    `Down payment: ${formatCurrency(calc.downPayment)} (${calc.downPercent}%)`,
-    `Loan amount: ${formatCurrency(calc.loanAmount)}`,
-    `Loan term: ${calc.loanTermYears} years`,
-    `Interest rate used: ${calc.interestRate}%`,
-    `Estimated monthly principal and interest: ${formatCurrency(calc.monthlyPi)}`,
-    `Property tax (monthly): ${formatCurrency(calc.monthlyTax)}`,
-    `Insurance (monthly): ${formatCurrency(calc.monthlyInsurance)}`,
+    `Home price: ${display["contact.calc_home_price"]}`,
+    `Down payment: ${display["contact.calc_down_payment"]}`,
+    `Loan amount: ${display["contact.calc_loan_amount"]}`,
+    `Loan term: ${display["contact.calc_loan_term"]}`,
+    `Interest rate used: ${display["contact.calc_interest_rate"]}`,
+    `Estimated monthly principal and interest: ${display["contact.calc_monthly_pi"]}`,
+    `Property tax (monthly): ${display["contact.calc_monthly_tax"]}`,
+    `Insurance (monthly): ${display["contact.calc_monthly_insurance"]}`,
     pmiLine,
-    `Estimated total monthly payment: ${formatCurrency(calc.monthlyTotal)}`,
+    `Estimated total monthly payment: ${display["contact.calc_total_monthly_payment"]}`,
     "Consent: Yes",
     "",
     leadSourceNote(leadSourceData),
@@ -147,21 +152,42 @@ export async function POST(request: Request) {
   };
   const phone = body.phone?.trim() ? body.phone.trim() : undefined;
   const headers = ghlHeaders(apiKey);
+  const leadFields = leadSourceCustomFields(leadSourceData);
 
   try {
-    const res = await fetch(GHL_UPSERT_URL, {
-      method: "POST",
+    const calcFields = await calculatorCustomFields(body.calculator, {
+      locationId,
       headers,
-      body: JSON.stringify({
+    });
+    const upsertBody = (customFields: typeof leadFields) =>
+      JSON.stringify({
         locationId,
         firstName: body.firstName,
         email: body.email,
         phone,
         source: "themortgagejedi.com",
         tags: ["Website Lead", CALCULATOR_EMAIL_TAG],
-        customFields: leadSourceCustomFields(leadSourceData),
-      }),
+        customFields,
+      });
+
+    let res = await fetch(GHL_UPSERT_URL, {
+      method: "POST",
+      headers,
+      body: upsertBody([...leadFields, ...calcFields]),
     });
+
+    if (!res.ok && calcFields.length > 0) {
+      await res.text().catch(() => "");
+      console.warn(
+        "[/api/calculator-email] Calculator custom fields rejected; retrying without them",
+        res.status,
+      );
+      res = await fetch(GHL_UPSERT_URL, {
+        method: "POST",
+        headers,
+        body: upsertBody(leadFields),
+      });
+    }
 
     if (!res.ok) {
       await res.text().catch(() => "");
