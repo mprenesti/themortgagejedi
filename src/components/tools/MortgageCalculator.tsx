@@ -2,6 +2,7 @@
 
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { formatCurrency } from "@/lib/utils";
+import CalculatorEmailCapture from "@/components/tools/CalculatorEmailCapture";
 
 function monthlyPI(principal: number, annualRate: number, years: number) {
   const r = annualRate / 100 / 12;
@@ -434,6 +435,23 @@ export default function MortgageCalculator() {
             </table>
           </div>
         ) : null}
+
+        <CalculatorEmailCapture
+          snapshot={{
+            calculatorName: "Mortgage Calculator",
+            homePrice,
+            downPayment: result.downPayment,
+            downPercent: displayPercent(downPct),
+            loanAmount: result.loanAmount,
+            loanTermYears: term,
+            interestRate: rate,
+            monthlyPi: result.pi,
+            monthlyTax: result.tax,
+            monthlyInsurance: result.ins,
+            monthlyPmi: null,
+            monthlyTotal: result.total,
+          }}
+        />
       </div>
     </div>
   );
