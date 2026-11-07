@@ -3,6 +3,8 @@ export type GuideSection = {
   heading: string;
   body?: string[];
   bullets?: string[];
+  relatedHref?: string;
+  relatedLabel?: string;
 };
 
 export type Guide = {
@@ -182,7 +184,11 @@ export const GUIDES: Guide[] = [
         body: [
           "A refinance makes sense when it lowers your payment, shortens your term, or gets you cash you need at a fair cost.",
           "The real test is simple. How long until the savings pay back the cost of the refinance? If you will stay past that point, it is usually worth it.",
+          "If monthly payments are the strain and you want to stay in the home, a reverse mortgage is a different tool, not a refinance in the usual sense.",
         ],
+        relatedHref: "/loan-options/reverse-mortgage",
+        relatedLabel:
+          "Read about reverse mortgages for Las Vegas and Henderson homeowners",
       },
       {
         id: "rate-and-term",
@@ -286,7 +292,11 @@ export const GUIDES: Guide[] = [
           "Ongoing or unknown costs, like a long renovation. A HELOC gives you flexibility.",
           "One large known cost. A home equity loan gives you a fixed payment.",
           "You also want a better first mortgage. A cash out refinance can do both at once.",
+          "If the goal is to tap equity without a new monthly mortgage payment, look at a reverse mortgage instead of a HELOC.",
         ],
+        relatedHref: "/loan-options/reverse-mortgage",
+        relatedLabel:
+          "Read about reverse mortgages for Las Vegas and Henderson homeowners",
       },
     ],
   },

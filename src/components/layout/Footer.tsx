@@ -20,6 +20,7 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Loan Options", href: "/loan-options" },
+  { label: "Reverse Mortgage", href: "/loan-options/reverse-mortgage" },
   { label: "Calculator", href: "/tools/calculator" },
   { label: "Blog", href: "/resources/blog" },
   { label: "Get Started", href: "/get-started" },

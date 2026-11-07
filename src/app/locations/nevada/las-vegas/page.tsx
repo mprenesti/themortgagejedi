@@ -229,8 +229,15 @@ export default function LasVegasLocationPage() {
           Explore more about{" "}
           <Link href="/loan-options" className="underline hover:text-gold">
             loan options
-          </Link>{" "}
-          or{" "}
+          </Link>
+          , including{" "}
+          <Link
+            href="/loan-options/reverse-mortgage"
+            className="underline hover:text-gold"
+          >
+            reverse mortgages for Las Vegas and Henderson homeowners
+          </Link>
+          , or{" "}
           <Link href="/get-started" className="underline hover:text-gold">
             start your pre-approval
           </Link>

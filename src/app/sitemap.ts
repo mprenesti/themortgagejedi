@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/loan-options",
+    "/loan-options/reverse-mortgage",
     "/tools/calculator",
     "/tools/affordability",
     "/tools/rent-vs-buy",

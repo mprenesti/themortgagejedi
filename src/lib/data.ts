@@ -57,7 +57,14 @@ const locationsNav: NavLink = { label: "Locations", href: "/locations" };
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Loan Options", href: "/loan-options" },
+  {
+    label: "Loan Options",
+    href: "/loan-options",
+    children: [
+      { label: "All Loan Options", href: "/loan-options" },
+      { label: "Reverse Mortgage", href: "/loan-options/reverse-mortgage" },
+    ],
+  },
   locationsNav,
   {
     label: "Tools",
