@@ -29,7 +29,7 @@ export default function CoverImage({
     <img
       src={src}
       alt={alt}
-      className={`object-cover ${className}`}
+      className={`object-cover object-[center_20%] ${className}`}
       onError={() => setErrored(true)}
     />
   );
