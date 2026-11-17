@@ -27,6 +27,29 @@ export function quotesAreDuplicates(a: string, b: string): boolean {
   return jaccard(quoteWordSet(a), quoteWordSet(b)) >= DUPLICATE_THRESHOLD;
 }
 
+function namesMatch(a: string, b: string): boolean {
+  return a.trim().toLowerCase() === b.trim().toLowerCase();
+}
+
+/**
+ * Fold manual pins into the live Google list. If Places already returned
+ * the same review (same author name or Jaccard ≥ 0.6 on the quote), keep
+ * the API copy and drop the pin so it never appears twice.
+ */
+export function mergePinnedWithLive(
+  pinned: readonly Testimonial[],
+  live: readonly Testimonial[]
+): Testimonial[] {
+  const extra = pinned.filter((pin) => {
+    return !live.some(
+      (review) =>
+        namesMatch(review.name, pin.name) ||
+        quotesAreDuplicates(review.quote, pin.quote)
+    );
+  });
+  return [...live, ...extra];
+}
+
 function reviewTime(t: Testimonial): number {
   if (typeof t.publishedAt === "number" && !Number.isNaN(t.publishedAt)) {
     return t.publishedAt;
