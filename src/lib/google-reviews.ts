@@ -1,6 +1,27 @@
 import type { Testimonial } from "@/lib/data";
 import { TESTIMONIALS } from "@/lib/data";
-import { mergeTestimonials } from "@/lib/merge-testimonials";
+import {
+  mergePinnedWithLive,
+  mergeTestimonials,
+} from "@/lib/merge-testimonials";
+
+/**
+ * Real Google reviews that Places has not returned yet (newest-five cap
+ * or API lag). Same shape as a live Google card. When Places later
+ * returns the same review, mergePinnedWithLive drops the pin and keeps
+ * the API copy.
+ */
+export const PINNED_GOOGLE_REVIEWS: Testimonial[] = [
+  {
+    quote:
+      "Mike is so great to work with! Second time we've used him and he delivered fast results both times. He's quick to respond to all messages and super knowledgeable. Highly recommend him and his team!",
+    name: "Leticia Davidson",
+    date: "November 2026",
+    rating: 5,
+    source: "google",
+    publishedAt: Date.UTC(2026, 10, 16),
+  },
+];
 
 const REVALIDATE = { next: { revalidate: 86400 } } as const;
 
@@ -180,6 +201,10 @@ export async function getGoogleReviews(): Promise<Testimonial[]> {
 }
 
 export async function getDisplayTestimonials(): Promise<Testimonial[]> {
-  const googleReviews = await getGoogleReviews();
+  const liveGoogleReviews = await getGoogleReviews();
+  const googleReviews = mergePinnedWithLive(
+    PINNED_GOOGLE_REVIEWS,
+    liveGoogleReviews
+  );
   return mergeTestimonials(TESTIMONIALS, googleReviews);
 }
