@@ -88,7 +88,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                 <section
                   key={section.id}
                   id={section.id}
-                  className="scroll-mt-36 md:scroll-mt-[13.25rem]"
+                  className="scroll-mt-28"
                 >
                   <h2 className="font-heading text-2xl font-bold text-gold sm:text-3xl">
                     {section.heading}

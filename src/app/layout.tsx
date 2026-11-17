@@ -126,9 +126,7 @@ export default function RootLayout({
         <JsonLd data={FINANCIAL_SERVICE_SCHEMA} />
         <JsonLd data={PERSON_SCHEMA} />
         <Navbar />
-        <main className="min-h-screen pt-36 sm:pt-[10.5rem] md:pt-[13.25rem]">
-          {children}
-        </main>
+        <main className="min-h-screen pt-36 sm:pt-[10.5rem]">{children}</main>
         <Footer />
         <MobileStickyCTA />
         <Analytics />

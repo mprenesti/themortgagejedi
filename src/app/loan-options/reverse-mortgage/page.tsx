@@ -219,7 +219,7 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-36 md:scroll-mt-[13.25rem] space-y-5">
+    <section id={id} className="scroll-mt-28 space-y-5">
       <h2 className="font-heading text-2xl font-bold text-gold sm:text-3xl">
         {title}
       </h2>
