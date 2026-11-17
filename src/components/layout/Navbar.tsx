@@ -72,43 +72,43 @@ export default function Navbar() {
     >
       <nav
         className={cn(
-          "container-page flex items-center justify-between gap-x-2 overflow-visible px-4 py-3 transition-all duration-300 md:px-4 lg:gap-x-4 lg:px-8",
+          "container-page items-center overflow-visible px-4 py-3 transition-all duration-300 md:px-4 lg:px-8",
+          "flex justify-between",
+          "md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-2 lg:gap-x-4",
           scrolled
             ? "min-h-[7rem] sm:min-h-[9rem]"
             : "min-h-[9rem] sm:min-h-[10.5rem]",
         )}
       >
-        <Logo compact={scrolled} />
-
-        {/* Desktop: two-line tab block, then CTAs. CSS only. */}
-        <div className="hidden min-w-0 flex-1 items-center justify-end gap-2 overflow-visible md:flex lg:gap-4">
-          <div className="grid w-max grid-cols-[repeat(6,max-content)] items-center justify-items-start gap-x-0 gap-y-1 overflow-visible">
-            {PRIMARY_NAV_LINKS.map((link) => (
-              <DesktopNavItem key={link.label} link={link} />
-            ))}
-            {SECONDARY_NAV_LINKS.map((link) => (
-              <DesktopNavItem key={link.label} link={link} />
-            ))}
-          </div>
-          <div className="flex shrink-0 items-center gap-2 lg:gap-3">
-            <a
-              href={SITE.applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline hidden lg:inline-flex lg:px-6 lg:py-3 lg:text-base"
-            >
-              Apply Now
-            </a>
-            <Link
-              href="/get-started"
-              className="btn-gold hidden md:inline-flex md:px-3 md:py-2 md:text-xs lg:px-5 lg:py-2.5 lg:text-sm xl:px-6 xl:py-3 xl:text-base"
-            >
-              Book a Call
-            </Link>
-          </div>
+        <div className="justify-self-start">
+          <Logo compact={scrolled} />
         </div>
 
-        <div className="flex shrink-0 items-center gap-2 lg:gap-3">
+        {/* Desktop tabs: true page center. Side 1fr columns keep logo/buttons at the edges. */}
+        <div className="hidden w-max grid-cols-[repeat(6,max-content)] items-center justify-items-start gap-x-0 gap-y-1 justify-self-center overflow-visible md:grid">
+          {PRIMARY_NAV_LINKS.map((link) => (
+            <DesktopNavItem key={link.label} link={link} />
+          ))}
+          {SECONDARY_NAV_LINKS.map((link) => (
+            <DesktopNavItem key={link.label} link={link} />
+          ))}
+        </div>
+
+        <div className="flex shrink-0 items-center justify-end gap-2 justify-self-end lg:gap-3">
+          <a
+            href={SITE.applyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline hidden lg:inline-flex lg:px-6 lg:py-3 lg:text-base"
+          >
+            Apply Now
+          </a>
+          <Link
+            href="/get-started"
+            className="btn-gold hidden md:inline-flex md:px-3 md:py-2 md:text-xs lg:px-5 lg:py-2.5 lg:text-sm xl:px-6 xl:py-3 xl:text-base"
+          >
+            Book a Call
+          </Link>
           <a
             href={SITE.applyUrl}
             target="_blank"
