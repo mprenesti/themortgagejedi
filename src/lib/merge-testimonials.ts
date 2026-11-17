@@ -27,21 +27,28 @@ export function quotesAreDuplicates(a: string, b: string): boolean {
   return jaccard(quoteWordSet(a), quoteWordSet(b)) >= DUPLICATE_THRESHOLD;
 }
 
+function reviewTime(t: Testimonial): number {
+  if (typeof t.publishedAt === "number" && !Number.isNaN(t.publishedAt)) {
+    return t.publishedAt;
+  }
+  const year = Number(t.date);
+  if (year) return Date.UTC(year, 0, 1);
+  return 0;
+}
+
 /**
- * Google reviews first (newest `publishedAt` first), then hardcoded entries
- * that are not duplicates of any Google review, in their original order.
- * Does not mutate `hardcoded`.
+ * Drop hardcoded quotes that duplicate a Google review (Jaccard ≥ 0.6),
+ * keep the Google copy, then sort the merged list newest-first by review
+ * time. Year-only hardcoded dates count as Jan 1 of that year so dated
+ * Google reviews in the same year stay ahead of them. Does not mutate
+ * `hardcoded`.
  */
 export function mergeTestimonials(
   hardcoded: readonly Testimonial[],
   google: readonly Testimonial[]
 ): Testimonial[] {
-  const googleSorted = [...google].sort(
-    (a, b) => (b.publishedAt ?? 0) - (a.publishedAt ?? 0)
-  );
-
   const dropped = new Set<number>();
-  for (const review of googleSorted) {
+  for (const review of google) {
     for (let i = 0; i < hardcoded.length; i += 1) {
       if (dropped.has(i)) continue;
       if (quotesAreDuplicates(review.quote, hardcoded[i].quote)) {
@@ -51,5 +58,12 @@ export function mergeTestimonials(
   }
 
   const remaining = hardcoded.filter((_, i) => !dropped.has(i));
-  return [...googleSorted, ...remaining];
+  const merged = [...google, ...remaining];
+  return merged.sort((a, b) => {
+    const delta = reviewTime(b) - reviewTime(a);
+    if (delta !== 0) return delta;
+    const aGoogle = a.source === "google" ? 1 : 0;
+    const bGoogle = b.source === "google" ? 1 : 0;
+    return bGoogle - aGoogle;
+  });
 }
