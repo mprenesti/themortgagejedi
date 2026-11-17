@@ -4,6 +4,8 @@ export type NavLink = {
   label: string;
   href: string;
   children?: { label: string; href: string }[];
+  /** Desktop header row. Default is the main bar. `2` is the slim strip. */
+  row?: 1 | 2;
 };
 
 // Location landing pages. Add new cities here (Summerlin, North Las Vegas, Reno,
@@ -78,18 +80,15 @@ export const NAV_LINKS: NavLink[] = [
       { label: "Home Value", href: "/home-value" },
     ],
   },
-  {
-    label: "Resources",
-    href: "/guides",
-    children: [
-      { label: "Guides", href: "/guides" },
-      { label: "Blog", href: "/resources/blog" },
-      { label: "Testimonials", href: "/testimonials" },
-      { label: "FAQ", href: "/resources/faq" },
-    ],
-  },
+  { label: "Guides", href: "/guides", row: 2 },
+  { label: "Blog", href: "/resources/blog", row: 2 },
+  { label: "Testimonials", href: "/testimonials", row: 2 },
+  { label: "FAQ", href: "/resources/faq", row: 2 },
   { label: "Contact", href: "/contact" },
 ];
+
+export const PRIMARY_NAV_LINKS = NAV_LINKS.filter((link) => link.row !== 2);
+export const SECONDARY_NAV_LINKS = NAV_LINKS.filter((link) => link.row === 2);
 
 export type Testimonial = {
   quote: string;

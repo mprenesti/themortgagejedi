@@ -220,7 +220,7 @@ export default function LoanOptionsPage() {
           <Reveal key={section.id}>
             <section
               id={section.id}
-              className="scroll-mt-28 rounded-2xl border border-white/10 bg-charcoal p-7 sm:p-9"
+              className="scroll-mt-36 md:scroll-mt-[13.25rem] rounded-2xl border border-white/10 bg-charcoal p-7 sm:p-9"
             >
               <h2 className="font-heading text-3xl font-bold text-gold">
                 {section.title}
