@@ -32,7 +32,7 @@ export default function Logo({
           className={
             compact
               ? "h-20 w-auto shrink-0 sm:h-24 transition-all duration-300"
-              : "h-[7.5rem] w-auto shrink-0 min-[640px]:h-36 min-[768px]:h-24 min-[900px]:h-[8.5rem] min-[1024px]:h-36 min-[1280px]:h-[7.25rem] transition-all duration-300"
+              : "h-[7.5rem] w-auto shrink-0 min-[640px]:h-36 min-[768px]:h-24 min-[1280px]:h-[7.25rem] transition-all duration-300"
           }
           onError={() => setImgError(true)}
         />

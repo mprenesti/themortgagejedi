@@ -78,10 +78,16 @@ export const NAV_LINKS: NavLink[] = [
       { label: "Home Value", href: "/home-value" },
     ],
   },
-  { label: "Guides", href: "/guides" },
-  { label: "Blog", href: "/resources/blog" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "FAQ", href: "/resources/faq" },
+  {
+    label: "Resources",
+    href: "/guides",
+    children: [
+      { label: "Guides", href: "/guides" },
+      { label: "Blog", href: "/resources/blog" },
+      { label: "Testimonials", href: "/testimonials" },
+      { label: "FAQ", href: "/resources/faq" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ];
 
