@@ -10,7 +10,17 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 9rem;
+  }
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 10.5rem;
+    }
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 13.25rem;
+    }
   }
   body {
     @apply bg-black text-white font-body antialiased;

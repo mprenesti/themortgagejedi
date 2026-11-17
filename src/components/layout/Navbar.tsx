@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { NAV_LINKS } from "@/lib/data";
+import { PRIMARY_NAV_LINKS, SECONDARY_NAV_LINKS } from "@/lib/data";
 import { SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import MobileMenu from "./MobileMenu";
 import Logo from "./Logo";
+
+const rowOneLinkClass =
+  "shrink-0 whitespace-nowrap px-1 py-2 font-heading text-xs font-medium uppercase tracking-normal text-white transition-colors hover:text-gold xl:px-2 xl:text-sm xl:tracking-wide";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,19 +41,16 @@ export default function Navbar() {
       >
         <Logo compact={scrolled} />
 
-        {/* Inline nav from the "md" breakpoint (768px) up. One nowrap row via
-            CSS only (no JS width detection). Guides, Blog, Testimonials, and
-            FAQ live under the Resources dropdown from NAV_LINKS. Below md the
-            hamburger in MobileMenu takes over. */}
+        {/* Row one: Home through Contact. One nowrap line from md up, CSS only. */}
         <div className="hidden min-w-0 flex-1 flex-nowrap items-center justify-end overflow-visible md:flex">
-          {NAV_LINKS.map((link) =>
+          {PRIMARY_NAV_LINKS.map((link) =>
             link.children ? (
               <div key={link.label} className="group relative shrink-0">
-                <button className="flex items-center gap-0.5 whitespace-nowrap px-1 py-2 font-heading text-xs font-medium uppercase tracking-normal text-white transition-colors hover:text-gold xl:gap-1 xl:px-2 xl:text-sm xl:tracking-wide">
+                <button className={`flex items-center gap-0.5 ${rowOneLinkClass} xl:gap-1`}>
                   {link.label}
                   <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
                 </button>
-                <div className="invisible absolute left-0 top-full z-50 w-60 translate-y-2 rounded-lg border border-white/10 bg-charcoal p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="invisible absolute left-0 top-full z-[60] w-60 translate-y-2 rounded-lg border border-white/10 bg-charcoal p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {link.children.map((child) => (
                     <Link
                       key={child.href}
@@ -63,11 +63,7 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="shrink-0 whitespace-nowrap px-1 py-2 font-heading text-xs font-medium uppercase tracking-normal text-white transition-colors hover:text-gold xl:px-2 xl:text-sm xl:tracking-wide"
-              >
+              <Link key={link.href} href={link.href} className={rowOneLinkClass}>
                 {link.label}
               </Link>
             ),
@@ -79,7 +75,7 @@ export default function Navbar() {
             href={SITE.applyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline hidden sm:inline-flex md:hidden md:px-4 md:py-2 md:text-sm lg:inline-flex lg:px-6 lg:py-3 lg:text-base"
+            className="btn-outline hidden sm:inline-flex md:px-4 md:py-2 md:text-sm lg:px-6 lg:py-3 lg:text-base"
           >
             Apply Now
           </a>
@@ -92,6 +88,21 @@ export default function Navbar() {
           <MobileMenu />
         </div>
       </nav>
+
+      {/* Row two: content links. Desktop only. */}
+      <div className="hidden border-t border-white/10 md:block">
+        <div className="container-page flex h-11 items-center justify-end gap-x-1 px-4 lg:gap-x-2 lg:px-8">
+          {SECONDARY_NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="whitespace-nowrap px-2 py-1 font-heading text-xs font-medium uppercase tracking-normal text-white transition-colors hover:text-gold xl:px-3 xl:tracking-wide"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
       <span className="sr-only">{SITE.fullName}</span>
     </header>
   );
