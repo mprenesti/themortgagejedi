@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { TESTIMONIALS } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
 import TestimonialCard from "@/components/ui/TestimonialCard";
+import { getDisplayTestimonials } from "@/lib/google-reviews";
 
-export default function Testimonials() {
+export default async function Testimonials() {
+  const testimonials = (await getDisplayTestimonials()).slice(0, 3);
+
   return (
     <section className="bg-charcoal py-20 sm:py-24">
       <div className="container-page">
@@ -17,8 +19,8 @@ export default function Testimonials() {
           </p>
         </Reveal>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.slice(0, 3).map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.1}>
+          {testimonials.map((t, i) => (
+            <Reveal key={`${t.name}-${i}`} delay={i * 0.1}>
               <TestimonialCard testimonial={t} />
             </Reveal>
           ))}

@@ -4,9 +4,8 @@ import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import CTAStrip from "@/components/ui/CTAStrip";
-import { TESTIMONIALS } from "@/lib/data";
 import { SITE } from "@/lib/constants";
-import { getGoogleReviews } from "@/lib/google-reviews";
+import { getDisplayTestimonials } from "@/lib/google-reviews";
 
 export const metadata: Metadata = {
   title: "Testimonials: What Clients Are Saying",
@@ -15,10 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function TestimonialsPage() {
-  const googleReviews = await getGoogleReviews();
-  const allTestimonials = [...TESTIMONIALS, ...googleReviews].sort(
-    (a, b) => (Number(b.date) || 0) - (Number(a.date) || 0)
-  );
+  const allTestimonials = await getDisplayTestimonials();
 
   return (
     <>
