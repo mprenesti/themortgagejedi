@@ -8,12 +8,30 @@ export default function TestimonialCard({
 }) {
   const rating = testimonial.rating;
   const showStars =
-    typeof rating === "number" && rating >= 1 && rating <= 5;
+    testimonial.source === "google" &&
+    typeof rating === "number" &&
+    rating >= 1 &&
+    rating <= 5;
+
+  const name = testimonial.authorUri ? (
+    <a
+      href={testimonial.authorUri}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-heading font-semibold text-white hover:text-gold"
+    >
+      {testimonial.name}
+    </a>
+  ) : (
+    <span className="font-heading font-semibold text-white">
+      {testimonial.name}
+    </span>
+  );
 
   return (
     <figure className="card-dark flex h-full flex-col">
       {showStars ? (
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center gap-0.5" aria-label={`${rating} out of 5 stars`}>
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
@@ -31,9 +49,7 @@ export default function TestimonialCard({
         "{testimonial.quote}"
       </blockquote>
       <figcaption className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-        <span className="font-heading font-semibold text-white">
-          {testimonial.name}
-        </span>
+        {name}
         <span className="flex items-center gap-1.5 text-xs text-gray-mid">
           {testimonial.date}
           {testimonial.source === "google" && (

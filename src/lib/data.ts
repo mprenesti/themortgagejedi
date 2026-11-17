@@ -91,6 +91,10 @@ export type Testimonial = {
   date?: string;
   rating?: number; // 1-5 only when the client gave that rating. Omit to show no stars.
   source?: "google"; // only set on reviews pulled from Google
+  /** Epoch ms from Google `publishTime`. Used to sort Google reviews newest first. */
+  publishedAt?: number;
+  /** Google author profile URI, when the Places API provides one. */
+  authorUri?: string;
 };
 
 export const TESTIMONIALS: Testimonial[] = [
